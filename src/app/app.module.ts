@@ -23,13 +23,17 @@ import { AppComponent } from './app.component';
 import { ListaUsuariosComponent } from '../public/components/lista-usuarios/lista-usuarios.component';
 import { UsuarioComponent } from '../public/components/usuario/usuario.component';
 import { ActualizarCotizacionComponent } from '.././public/components/actualizar-cotizacion/actualizar-cotizacion.component';
+import { ListaMonedasComponent } from '../public/components/lista-monedas/lista-monedas.component';
+import { MonedaComponent } from '../public/components/moneda/moneda.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaUsuariosComponent,
     UsuarioComponent,
-    ActualizarCotizacionComponent
+    ActualizarCotizacionComponent,
+    ListaMonedasComponent,
+    MonedaComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,6 +1,7 @@
 import { MonedaService } from './../../services/moneda/moneda.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-actualizar-cotizacion',
@@ -10,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class ActualizarCotizacionComponent implements OnInit {
 
   form: FormGroup;
-
+  tipo_monedas: string[]=[''];
   createForm(){
     this.form = new FormGroup({
       id: new FormControl('7',[Validators.required]),
@@ -20,6 +21,15 @@ export class ActualizarCotizacionComponent implements OnInit {
   }
   constructor(private MonedaService: MonedaService) { 
 
+    MonedaService.getMonedas().subscribe(
+      res=>{
+       const aux=(res['monedas']);
+      aux.forEach(nombre => {
+        this.tipo_monedas.push(nombre.nombre);
+      });
+      console.log(this.tipo_monedas)
+      }
+    )
     this.createForm();
   }
 
