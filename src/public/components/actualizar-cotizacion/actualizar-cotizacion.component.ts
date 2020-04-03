@@ -15,8 +15,8 @@ export class ActualizarCotizacionComponent implements OnInit {
   monedas: MonedaModule[];
   createForm(){
     this.form = new FormGroup({
-      id: new FormControl('7',[Validators.required]),
-      moneda: new FormControl('',[Validators.required]),
+      id: new FormControl('',[Validators.required]),
+      
       cotizacion: new FormControl('',[Validators.required])
     });
   }
@@ -28,8 +28,9 @@ export class ActualizarCotizacionComponent implements OnInit {
       // aux.forEach(nombre => {
       //   this.tipo_monedas.push(nombre.nombre);
       // });
-      // console.log(this.tipo_monedas)
+     
       this.monedas=aux;
+      console.log(this.monedas)
       }
     )
     this.createForm();
@@ -39,12 +40,12 @@ export class ActualizarCotizacionComponent implements OnInit {
   }
 
   enviar(){
-
+    console.log(  this.form.get('id').value);
     if(this.form.invalid){
         alert('falta completar form');
     }else{
       const dataForm = new FormData();
-      dataForm.append('moneda', this.form.get('moneda').value);
+      //dataForm.append('moneda', this.form.get('moneda').value);
        dataForm.append('id', this.form.get('id').value);
       dataForm.append('cotizacion', this.form.get('cotizacion').value);
       this.MonedaService.updateCotizacion(dataForm).subscribe(
