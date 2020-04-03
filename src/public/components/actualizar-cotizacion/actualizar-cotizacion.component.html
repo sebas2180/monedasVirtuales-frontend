@@ -8,8 +8,8 @@
         <mat-form-field class="full-width" appearance="outline" name="tipo_documento">
             <mat-label>MONEDA</mat-label>
             <mat-select formControlName="tipo_documento"> 
-                <mat-option *ngFor="let tipo of this.tipo_monedas"  [value]="tipo"  >
-                    {{tipo}}</mat-option>      
+                <mat-option *ngFor="let tipo of this.monedas"  [value]="tipo.nombre"  >
+                    {{tipo.nombre}}</mat-option>      
             </mat-select>
             <mat-error *ngIf="this.form.get('tipo_documento')?.invalid ">Falta tipo documento</mat-error>       
         </mat-form-field>
