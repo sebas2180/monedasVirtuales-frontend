@@ -9,7 +9,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MonedaComponent implements OnInit {
 
   @Input() moneda: MonedaModule;
-  constructor() { }
+  constructor() { 
+    console.log(this.moneda)
+  }
 
   ngOnInit(): void {
   }

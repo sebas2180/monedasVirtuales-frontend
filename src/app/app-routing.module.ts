@@ -8,7 +8,7 @@ import { ListaUsuariosComponent } from 'src/public/components/lista-usuarios/lis
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/actualizarCotizacion',
+    redirectTo: '/listaMonedas',
     pathMatch: 'full'
   },
   {
