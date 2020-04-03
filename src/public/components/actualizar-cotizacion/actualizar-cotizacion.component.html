@@ -3,11 +3,11 @@
     
 <div class="card">
     <form  [formGroup]="this.form"> 
-            <div class="card-body">
+    <div class="card-body">
         <mat-form-field class="full-width" name="cotizacion">
             <mat-label>cotizacion</mat-label>
-            <input  matInput  type="text"
-                    name="cotizacion" formControlName="cotizacion" >
+            <input  matInput  type="number"
+                      formControlName="cotizacion" >
                 <mat-error *ngIf="this.form.get('cotizacion')?.invalid ">Falta cotizacion</mat-error>
         </mat-form-field>
     </div>

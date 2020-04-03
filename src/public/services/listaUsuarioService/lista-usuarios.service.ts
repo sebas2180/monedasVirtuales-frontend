@@ -6,11 +6,13 @@ import { Injectable } from '@angular/core';
 })
 export class ListaUsuariosService {
 
+   // ruta :string  = `http://localhost:3000/`;
+   ruta :string  = `https://backend-crypto.herokuapp.com/`;
   constructor(private http: HttpClient) {
 
 
   }
   getUsuario(){
-      return this.http.get(`https://backend-crypto.herokuapp.com/`);
+      return this.http.get(this.ruta);
   }
 }

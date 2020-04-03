@@ -6,12 +6,14 @@ import { Injectable } from '@angular/core';
 })
 export class MonedaService {
 
+  // ruta :string  = `http://localhost:3000/`;
+  ruta :string  = `https://backend-crypto.herokuapp.com/`;
   constructor(private http: HttpClient) { }
 
   updateImporte(form: FormData){
-    return this.http.post<string>(`http://localhost:3000/updateImporte/`,form);
+    return this.http.post<string>(this.ruta + `updateImporte/`, form);
   }
   updateCotizacion(form: FormData){
-    return this.http.post<string>(`http://localhost:3000/updateCotizacion/`,form);
+    return this.http.post<string>(this.ruta + `updateCotizacion/`, form);
   }
 }
