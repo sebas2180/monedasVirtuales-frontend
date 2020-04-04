@@ -1,4 +1,4 @@
-import { UsuarioModelModule } from '../../modelos/usuario-model/usuario-model.module';
+import { UsuarioModelModule } from '../../../modelos/usuario-model/usuario-model.module';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({

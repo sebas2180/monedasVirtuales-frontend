@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ]
 })
-export class MonedaModule { 
+export class MonedaModule {
   id: number;
   nombre: string;
   cotizacion: number;

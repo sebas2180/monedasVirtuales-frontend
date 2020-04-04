@@ -1,0 +1,15 @@
+<barra-superior></barra-superior>
+<div class="principal">
+    <div class="opciones">
+        <div class="opcion1"  [ngStyle]="{'color': 
+        estado_login ? 'white':'#7B1FA2' ,'background-color': estado_login ? '#7B1FA2':  'white'  }" (click)="ver_registro()">
+            <p>Ingresar</p>
+        </div>
+        <div class="opcion2" [ngStyle]="{'color': 
+        estado_login ?  '#7B1FA2' : 'white' ,'background-color': estado_login ?  'white':'#7B1FA2' }" (click)="ver_login()">
+            <p>Registrarme</p>
+        </div>
+    </div>
+    <login *ngIf="!this.estado_login" @state></login>
+    <registro *ngIf="this.estado_login" @state></registro>
+</div>

@@ -1,5 +1,5 @@
-import { MonedaModule } from './../../modelos/moneda/moneda.module';
-import { MonedaService } from './../../services/moneda/moneda.service';
+import { MonedaModule } from '../../../modelos/moneda/moneda.module';
+import { MonedaService } from '../../../services/moneda/moneda.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,13 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaMonedasComponent implements OnInit {
     monedas: MonedaModule[];
-  constructor(private MonedaService: MonedaService) { 
+  constructor(private MonedaService: MonedaService) {
 
     this.MonedaService.getMonedas().subscribe(
-      res=>{
+      res => {
         console.log(res);
-        const aux=(res['monedas']);
-        this.monedas= aux;
+        const aux = res['monedas'];
+        this.monedas = aux;
       }
     )
   }

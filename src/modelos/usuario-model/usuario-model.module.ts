@@ -15,4 +15,7 @@ export class UsuarioModelModule {
   apellido:string;
   email:string;
   usuario:string;
+  password:string;
+  rol:string;
+  create_at:  Date;
 }

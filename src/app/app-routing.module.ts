@@ -1,3 +1,5 @@
+import { PantallaPrincipalComponent } from './../public/components/pantalla-principal/pantalla-principal.component';
+import { LoginComponent } from '../public/components/login/login.component';
 import { ListaMonedasComponent } from '../public/components/lista-monedas/lista-monedas.component';
 import { ActualizarCotizacionComponent } from '.././public/components/actualizar-cotizacion/actualizar-cotizacion.component';
 import { NgModule } from '@angular/core';
@@ -18,6 +20,10 @@ const routes: Routes = [
   {
     path: 'listaMonedas',
     component: ListaMonedasComponent
+  },
+  {
+    path: 'pantallaprincipal',
+    component: PantallaPrincipalComponent
   }
 ];
 

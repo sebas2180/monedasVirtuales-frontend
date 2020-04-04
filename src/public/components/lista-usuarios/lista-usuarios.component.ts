@@ -1,5 +1,5 @@
-import { UsuarioModelModule } from '../../modelos/usuario-model/usuario-model.module';
-import { ListaUsuariosService } from './../../services/listaUsuarioService/lista-usuarios.service';
+import { UsuarioService } from '../../../services/usuarioService/usuario.service';
+import { UsuarioModelModule } from '../../../modelos/usuario-model/usuario-model.module';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,9 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class ListaUsuariosComponent implements OnInit {
   ok:boolean = false;
   usuarios: UsuarioModelModule[];
-  constructor(private ListaUsuariosService: ListaUsuariosService) { 
+  constructor(private UsuarioService: UsuarioService) { 
 
-    this.ListaUsuariosService.getUsuario().subscribe(
+    this.UsuarioService.getUsuarios().subscribe(
       res=>{
         this.usuarios = res['bancos'];
         console.log(this.usuarios);

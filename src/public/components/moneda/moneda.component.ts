@@ -1,4 +1,4 @@
-import { MonedaModule } from '../../modelos/moneda/moneda.module';
+import { MonedaModule } from '../../../modelos/moneda/moneda.module';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({

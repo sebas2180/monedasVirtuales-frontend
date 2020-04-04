@@ -1,5 +1,5 @@
-import { MonedaModule } from '../../modelos/moneda/moneda.module';
-import { MonedaService } from './../../services/moneda/moneda.service';
+import { MonedaModule } from '../../../modelos/moneda/moneda.module';
+import { MonedaService } from '../../../services/moneda/moneda.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';

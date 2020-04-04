@@ -1,0 +1,40 @@
+
+.card{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+
+}
+.titulo,.header{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+.body{
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.field{
+    width: 80%;
+    justify-content: center;
+    text-align: center;
+}
+input{
+    width: 100%;
+    font-size: 2em;
+}
+.acciones{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.entrar{
+    width: 80%;
+}
