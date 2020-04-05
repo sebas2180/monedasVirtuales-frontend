@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'barra-superior',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BarraSuperiorComponent implements OnInit {
 
+  //iconProfile : boolean = false;
+  @Output() changeIconEmitter : EventEmitter<boolean> = new EventEmitter();
+  @Input() iconProfile : boolean =true;
   constructor() { }
 
   ngOnInit(): void {
+  }
+  changeIcon(){
+    this.changeIconEmitter.emit(true);
   }
 
 }

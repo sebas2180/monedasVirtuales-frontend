@@ -14,16 +14,16 @@
 
         <mat-form-field  class="field">
             <input matInput type="password" formControlName="password" placeholder="Ingrese su contraseña">
-            <mat-error *ngIf="this.form.get('usuario').invalid"> Falta usuario</mat-error>
+            <mat-error *ngIf="this.form.get('password').invalid"> Falta usuario</mat-error>
         </mat-form-field>
 
         <mat-form-field  class="field">
-            <input matInput type="password" formControlName="password2" placeholder="Repita su contraseña">
-            <mat-error *ngIf="this.form.get('password2').value != this.form.get('password').value"> Falta usuario</mat-error>
+            <input matInput   type="password" formControlName="password2" placeholder="Repita su contraseña">
+            <mat-error *ngIf="this.form.controls.password2 ">La contraseña no coinciden</mat-error>
         </mat-form-field>
     </mat-card-content>
     <mat-card-actions class="acciones">
-        <button mat-raised-button color="primary" class="entrar" (click)="this.registrar()">Registrarme</button>
+        <button mat-raised-button color="primary" class="entrar" [disabled]="this.form.invalid" (click)="this.registrar()">Registrarme</button>
     </mat-card-actions>
 </form>
 </mat-card>

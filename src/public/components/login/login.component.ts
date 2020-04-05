@@ -1,6 +1,7 @@
+import { AuthService } from './../../../services/authService/auth.service';
 import { UsuarioService } from '../../../services/usuarioService/usuario.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
 
+  @Output() cerra_ventana: EventEmitter<boolean> = new EventEmitter();
   form: FormGroup;
   newForm(){
     this.form = new FormGroup({
@@ -17,7 +19,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl('',[Validators.required])
     });
   }
-  constructor(private UsuarioService: UsuarioService) { 
+  constructor(private UsuarioService: UsuarioService,private AuthService: AuthService) { 
     this.newForm();
   }
 
@@ -39,11 +41,12 @@ export class LoginComponent implements OnInit {
             });
           }else{
             if(res['status']==703){
-              Swal.fire({
-                icon: 'success',
-                timer: 1500,
-                title: res['success']
-              });
+              const aux = res['user'];
+              console.log(aux['rol']);
+              if(aux['rol'] == 'cliente'){
+                this.AuthService.setUserInfo( res['user'] );
+               }
+              this.cerra_ventana.emit(true);
             }
           }
         },

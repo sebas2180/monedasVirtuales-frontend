@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/authService/auth.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
@@ -26,7 +27,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PantallaPrincipalComponent implements OnInit {
   estado_login: boolean = false;
-  constructor() { }
+  isPrincipal: boolean = false;
+  isLogeado: boolean = false;
+  constructor(private AuthService: AuthService) {
+    if(this.AuthService.isAuthenticatede){
+     // alert('true');
+      this.isPrincipal = false;
+      this.isLogeado = true;
+    }else{
+     // alert('false');
+    }
+
+  }
 
   ngOnInit(): void {
   }
@@ -38,6 +50,18 @@ export class PantallaPrincipalComponent implements OnInit {
   ver_login(){
     if(!this.estado_login){
       this.estado_login=true;
+    }
+  }
+  changeIsPrincipal(e){
+    if(!this.isLogeado){
+      if(this.isPrincipal) {
+        this.isPrincipal = false;//
+        this.isLogeado=true;
+      }else{
+        this.isPrincipal = true;//
+      }
+    }else{
+      alert('ver detalles');
     }
   }
 }

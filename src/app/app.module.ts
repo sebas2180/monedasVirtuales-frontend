@@ -1,3 +1,4 @@
+import { AuthService } from './../services/authService/auth.service';
 import { RegistroComponent } from './../public/components/registro/registro.component';
  
 import { MatButtonModule } from '@angular/material/button';
@@ -72,7 +73,8 @@ import { UsuarioService  } from './../services/usuarioService/usuario.service';
   ],
   providers: [ 
                 MonedaService,
-              UsuarioService
+              UsuarioService,
+              AuthService
             ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,5 @@
-<barra-superior></barra-superior>
-<div class="principal">
+<barra-superior (changeIconEmitter)="changeIsPrincipal($event)" [iconProfile]="!isPrincipal"></barra-superior>
+<div class="principal" *ngIf="isPrincipal && !isLogeado">
     <div class="opciones">
         <div class="opcion1"  [ngStyle]="{'color': 
         estado_login ? 'white':'#7B1FA2' ,'background-color': estado_login ? '#7B1FA2':  'white'  }" (click)="ver_registro()">
@@ -10,6 +10,9 @@
             <p>Registrarme</p>
         </div>
     </div>
-    <login *ngIf="!this.estado_login" @state></login>
+    <login *ngIf="!this.estado_login" @state (cerra_ventana)="this.changeIsPrincipal($event)"></login>
     <registro *ngIf="this.estado_login" @state></registro>
+</div>
+<div class="secundario" *ngIf="isLogeado">
+    <app-lista-monedas></app-lista-monedas>
 </div>

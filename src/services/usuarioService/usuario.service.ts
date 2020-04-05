@@ -12,6 +12,10 @@ export class UsuarioService {
   login(form: FormData){
     return this.http.post(this.m.ruta+`login/`,form);
   }
+  signup(form: FormData){
+    console.log('signup service');
+    return this.http.post(this.m.ruta+`signup/`,form);
+  }
   getUsuarios(){
     return this.http.get(this.m.ruta+`getUsuarios/`);
 }

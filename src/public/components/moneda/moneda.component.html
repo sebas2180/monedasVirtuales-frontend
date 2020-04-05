@@ -1,12 +1,14 @@
-<div class="card">
-    <div class="card-header">
-        <h1>{{this.moneda.nombre}}</h1>
-    </div>
-    <div class="card-body">
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            <h3>{{this.moneda.nombre}}</h3>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
         <ul>
             <li> id:&nbsp;&nbsp;{{this.moneda.id}}</li>
             <li> Importe:&nbsp;&nbsp;{{this.moneda.importe}}</li>
             <li> Cotizacion:&nbsp;&nbsp; {{this.moneda.cotizacion}}</li>
         </ul>
-    </div>
-</div>
+    </mat-card-content>
+</mat-card>
