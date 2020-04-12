@@ -1,5 +1,15 @@
+barra-superior{
+    height: 70px;
+}
+menu{
+    position: relative;
+    width: 100%;
+   // top: 70px;
+   margin : 0;
+   padding : 0;
+}
 login,registro{
-    position: absolute;
+    position: relative;
     width: 100%;
 }
 p{
@@ -21,7 +31,6 @@ p{
     border: solid 1px;
     //background-color: #7B1FA2;
 }
-.opcion2{
-    //background-color: rgb(255, 255, 255);
-    //color: #7B1FA2;
+lista-cotizaciones{
+    margin-top: 5%;
 }

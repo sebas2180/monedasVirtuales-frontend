@@ -1,0 +1,38 @@
+<div class="panel-general">
+    <form  [formGroup]="this.form" >
+            <mat-form-field class="select"  appearance="fill">
+                <mat-label>Tipo de contrato</mat-label>
+                <mat-select formControlName="categoria"> 
+                    <mat-option *ngFor="let contrato of this.tipo_contratos"  [value]="contrato" >
+                        {{contrato}}</mat-option>        
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="select"  appearance="fill">
+                <mat-label>Cantidad</mat-label>
+                <mat-select formControlName="cantidad"> 
+                    <mat-option *ngFor="let canti of this.tipo_cantidad"  [value]="canti" >
+                        {{canti}}</mat-option>        
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="number"  appearance="fill">
+                <mat-label>Ethereum pagado</mat-label>
+                <input matInput type="number"formControlName="eth_pagado" >
+                <mat-error *ngIf="this.form.controls.eth_pagado.invalid">Ethereum</mat-error>
+            </mat-form-field>
+            <mat-form-field class="select"  appearance="fill">
+                <mat-label>Monedero donde se recibirán los ETH</mat-label>
+                <mat-select formControlName="nombreMonedero"> 
+                    <mat-option *ngFor="let monedero of this.tipo_monederos"  [value]="monedero" >
+                        {{monedero}}</mat-option>        
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="text"  appearance="fill">
+                <mat-label>Fecha declarado</mat-label>
+                <input matInput type="text"formControlName="fechaActual" readonly="readonly">
+                <mat-error *ngIf="this.form.controls.eth_pagado.invalid">Ethereum</mat-error>
+            </mat-form-field>
+            <button mat-flat-button color="primary" (click)="enviar()">Generar</button>
+            <button  mat-button color="warn"(click)="volver()">VOLVER</button>
+        </form>
+</div>
+ 

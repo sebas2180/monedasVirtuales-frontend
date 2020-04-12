@@ -1,0 +1,17 @@
+<barra-superior (changeIconEmitter)="changeIsPrincipal($event)" 
+                (ver_menu)="changeVerMenu($event)"
+                [iconProfile]="!isPrincipal"
+                [isLogeado]="!isLogeado" 
+                
+></barra-superior>
+<menu   *ngIf="verMenu && this.isLogeado" 
+        (cerrar_menu)="this.cerrar_menu()"
+        @enterState>
+</menu>
+
+<form [formGroup]="this.form">
+    <!-- <mat-select formControlName="contrato"> 
+        <mat-option *ngFor="let contrato of this.contratos"  [value]="contrato"  >
+            {{contrato}}</mat-option>      
+    </mat-select> -->
+</form>

@@ -1,6 +1,10 @@
-import { AuthService } from './../services/authService/auth.service';
-import { RegistroComponent } from './../public/components/registro/registro.component';
- 
+import { ContratoService } from './../services/contrato/contrato.service';
+import { NuevoContratoComponent } from './../public/components/nuevo-contrato/nuevo-contrato.component';
+import { GestionarContratosComponent } from './../public/components/gestionar-contratos/gestionar-contratos.component';
+import { AgregarPagoComponent } from './../public/components/agregar-pago/agregar-pago.component';
+import { MenuComponent } from './../public/components/menu/menu.component';
+
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -17,9 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 import { AppComponent } from './app.component';
 import { ListaUsuariosComponent } from '../public/components/lista-usuarios/lista-usuarios.component';
@@ -30,12 +34,22 @@ import { MonedaComponent } from '../public/components/moneda/moneda.component';
 import { LoginComponent } from '../public/components/login/login.component';
 import { PantallaPrincipalComponent } from './../public/components/pantalla-principal/pantalla-principal.component';
 import { BarraSuperiorComponent } from './../public/components/barra-superior/barra-superior.component';
+import { RegistroComponent } from './../public/components/registro/registro.component'; 
+import { ListaCotizacionesComponent } from './../public/components/lista-cotizaciones/lista-cotizaciones.component';
+import { CotizacionComponent } from './../public/components/cotizacion/cotizacion.component';
 
+import { GuardGuard } from './../services/guard/guard.guard';
+import { CotizacionService  } from './../services/cotizacion/cotizacion.service';
 import { MonedaService } from './../services/moneda/moneda.service';
+import { AuthService } from './../services/authService/auth.service';
 import { UsuarioService  } from './../services/usuarioService/usuario.service';
+import {  TokenInterceptorService  } from './../services/token-interceptor/token-interceptor.service';
+import { MatRippleModule } from '@angular/material/core';
+import { ContratoComponent } from 'src/public/components/contrato/contrato.component';
 @NgModule({
   declarations: [
     AppComponent,
+    AgregarPagoComponent,
     ListaUsuariosComponent,
     UsuarioComponent,
     ActualizarCotizacionComponent,
@@ -44,15 +58,23 @@ import { UsuarioService  } from './../services/usuarioService/usuario.service';
     LoginComponent,
     PantallaPrincipalComponent,
     BarraSuperiorComponent,
-    RegistroComponent
+    RegistroComponent,
+    CotizacionComponent,
+    ListaCotizacionesComponent,
+    MenuComponent,
+    GestionarContratosComponent,
+    ContratoComponent,
+    NuevoContratoComponent
   ],
   imports: [
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatRippleModule,
     RouterModule,
     BrowserAnimationsModule,
     CdkTableModule,
+    CarouselModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
@@ -72,9 +94,18 @@ import { UsuarioService  } from './../services/usuarioService/usuario.service';
     MatButtonModule
   ],
   providers: [ 
-                MonedaService,
+              MonedaService,
               UsuarioService,
-              AuthService
+              CotizacionService,
+              AuthService,
+              ContratoService,
+      
+              GuardGuard,
+              {
+                provide: HTTP_INTERCEPTORS,
+                useClass: TokenInterceptorService,
+                multi: true
+              }
             ],
   bootstrap: [AppComponent]
 })

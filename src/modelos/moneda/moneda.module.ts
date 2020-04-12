@@ -11,7 +11,10 @@ import { CommonModule } from '@angular/common';
 })
 export class MonedaModule {
   id: number;
-  nombre: string;
-  cotizacion: number;
-  importe: number;
+  nombre?: string;
+  symbol?:string;
+  cotizacion?: number;
+  importe?: number;
+  create_at?: Date;
+  monedero?:string;
 }

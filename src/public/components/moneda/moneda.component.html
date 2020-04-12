@@ -1,14 +1,73 @@
 <mat-card>
     <mat-card-header>
         <mat-card-title>
-            <h3>{{this.moneda.nombre}}</h3>
+            <p>{{this.titulo}}</p>
         </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <ul>
-            <li> id:&nbsp;&nbsp;{{this.moneda.id}}</li>
-            <li> Importe:&nbsp;&nbsp;{{this.moneda.importe}}</li>
-            <li> Cotizacion:&nbsp;&nbsp; {{this.moneda.cotizacion}}</li>
-        </ul>
+        <div class="titulos">
+            <div class="titulo">    <p class="tituloNombre">Monedero     </p>  </div>
+            <div class="titulo">    <p class="tituloNombre">Cantidad   </p>  </div>
+            <div class="titulo">    <p class="tituloNombre">{{this.lugarVenta}}    </p>  </div>
+        </div>
+        <div *ngFor="let moneda of monedas"  class="monedaList">
+            <div  class="monedaItem">
+                <div class="proveedor">{{this.moneda.monedero}}</div>
+                <div class="cantidad">{{this.moneda.importe}}</div>    
+                <div class="venta_3">{{this.moneda.importe * this.multiplicador | number:'1.2-2' }}</div>    
+                <!-- <div class="venta_3"  *ngIf="this.moneda.nombre=='Bitcoin'">{{(this.cotizacionbitArgenBTCARS *this.moneda.importe)| number:'1.2-2'}}</div>
+                <div class="venta_3"  *ngIf="this.moneda.nombre=='Litecoin'">{{(this.cotizacionSatoARSLTC*this.moneda.importe)| number:'1.2-2'}}</div>
+                <div class="venta_3"  *ngIf="this.moneda.nombre=='Ethereum'">{{(this.cotizacionSatoARSETH *this.moneda.importe)| number:'1.2-2'}}</div> -->
+            </div>
+            <!-- <div *ngIf="this.tipo_moneda=='EUR'"  class="monedaItem">
+                <div class="proveedor">{{this.moneda.monedero}}</div>
+                <div class="cantidad">{{this.moneda.importe}}</div>    
+                <div class="venta_1" *ngIf="this.moneda.nombre=='Bitcoin'">{{this.cotizacionbit2meEURBTC*this.moneda.importe | number:'1.2-2'}}</div>
+                <div class="venta_1" *ngIf="this.moneda.nombre=='Litecoin'">{{this.cotizacionbit2meEURLTC*this.moneda.importe | number:'1.2-2'}}</div>
+                <div class="venta_1" *ngIf="this.moneda.nombre=='Ethereum'">{{this.cotizacionbit2meEURETH*this.moneda.importe | number:'1.2-2'}}</div>
+            </div>
+            <div *ngIf="this.tipo_moneda=='USD'"  class="monedaItem">
+                <div class="proveedor">{{this.moneda.monedero}}</div>
+                <div class="cantidad">{{this.moneda.importe}}</div>
+                <div class="venta_2"  *ngIf="this.moneda.nombre=='Bitcoin'">{{this.cotizacionbitstampUSDBTC*this.moneda.importe| number:'1.2-2'}} </div>
+                <div class="venta_2"  *ngIf="this.moneda.nombre=='Litecoin'"><p>NULL</p> </div>
+                <div class="venta_2"  *ngIf="this.moneda.nombre=='Ethereum'"><p>NULL</p> </div>    
+            </div> -->
+        </div>
+        <div class="footer">
+            <div class="itemfooter">
+                <p>TOTAL</p>
+            </div>
+            <div class="itemfooter">
+                <p>{{this.importeTotal | number:'1.2-4'}}</p>
+            </div>
+            <div   class="itemfooter">
+                <p>{{this.tipo_moneda}} {{this.importeTotalMultiplicado | number:'1.2-2'}}</p>
+            </div>
+            <!-- <div *ngIf="this.tipo_moneda=='ARS' && this.titulo=='Ethereum'" class="itemfooter">
+                <p>ARS {{(this.importeTotal*this.cotizacionSatoARSETH)| number:'1.2-2'}}</p>
+            </div>
+            <div *ngIf="this.tipo_moneda=='ARS' && this.titulo=='Litecoin'" class="itemfooter">
+                <p>ARS {{(this.importeTotal*this.cotizacionSatoARSLTC)| number:'1.2-2'}}</p>
+            </div>
+            <div *ngIf="this.tipo_moneda=='EUR' && this.titulo=='Bitcoin'" class="itemfooter">
+                <p>€ {{(this.importeTotal*this.cotizacionbit2meEURBTC)| number:'1.2-2'}}</p>
+            </div>
+            <div *ngIf="this.tipo_moneda=='EUR' && this.titulo=='Ethereum'" class="itemfooter">
+                <p>€ {{(this.importeTotal*this.cotizacionbit2meEURETH)| number:'1.2-2'}}</p>
+            </div>
+            <div *ngIf="this.tipo_moneda=='EUR' && this.titulo=='Litecoin'" class="itemfooter">
+                <p>€ {{(this.importeTotal*this.cotizacionSatoARSLTC)| number:'1.2-2'}}</p>
+            </div>
+            <div *ngIf="this.tipo_moneda=='USD' && this.titulo=='Bitcoin'" class="itemfooter">
+                <p>USD {{(this.importeTotal*this.cotizacionbitstampUSDBTC)| number:'1.2-2'}}</p>
+            </div>
+            <div *ngIf="this.tipo_moneda=='USD' && this.titulo=='Ethereum'" class="itemfooter">
+                <p>USD {{(this.importeTotal*this.cotizacionbit2meEURETH*0.88)| number:'1.2-2'}}</p>
+            </div>
+            <div *ngIf="this.tipo_moneda=='USD' && this.titulo=='Litecoin'"class="itemfooter">
+                <p>USD {{(this.importeTotal*this.cotizacionbit2meEURLTC*0.88)| number:'1.2-2'}}</p>
+            </div> -->
+        </div>
     </mat-card-content>
 </mat-card>

@@ -1,6 +1,65 @@
-mat-card,mat-card-content,mat-card-title{
+mat-card,mat-card-title{
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    width: 100%;
+}
+mat-card {
     display: flex;
     justify-content: center;
     align-content: center;
+    flex-direction: column;
 }
- 
+mat-card-header{
+    display: flex;
+    justify-content: center;
+     background-color: rgb(141, 36, 206);
+     color: white;
+     font-size: 1.2rem;
+     height: 30px;
+}
+mat-card-content{
+    position: relative;
+    border: solid 1px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+.monedaList,.titulo{
+    position: relative;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+}
+.monedaItem,.titulos,.footer{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    margin-top: 5px;
+}
+.titulos{
+    background-color: grey;
+    
+}
+.itemfooter{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    font-weight: bold;
+    flex-direction: column;
+}
+.tituloNombre{
+    font-size: 1.2 rem;
+}
+// .encabezado,.proveedor,.cantidad.venta_1,.venta_2,.venta_3{
+//     position: relative;
+//     width: 20%;
+//     display: flex;
+//     flex-direction: row;
+// }

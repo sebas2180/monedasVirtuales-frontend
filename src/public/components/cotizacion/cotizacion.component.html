@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            {{this.CotizacionModule[0]['name']}} {{this.CotizacionModule[0]['base']}}
+           <div class="box">
+                <img src="../../../assets//bit.webp" alt="" *ngIf="this.CotizacionModule[0].symbol=='BTC'">
+                <img src="../../../assets//ether.webp" alt="" *ngIf="this.CotizacionModule[0].symbol=='ETH'">
+           </div>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="datos" *ngFor="let cotizacion of this.CotizacionModule">
+            <div class="proveedor">{{cotizacion.proveedor}}</div> 
+            <div class="compra">{{cotizacion.compra}} </div>
+            <div class="venta"> {{cotizacion.venta}}</div>    
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -11,7 +11,6 @@ export class ListaUsuariosComponent implements OnInit {
   ok:boolean = false;
   usuarios: UsuarioModelModule[];
   constructor(private UsuarioService: UsuarioService) { 
-
     this.UsuarioService.getUsuarios().subscribe(
       res=>{
         this.usuarios = res['bancos'];

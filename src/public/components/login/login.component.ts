@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       dataForm.append('password',this.form.get('password').value);
       this.UsuarioService.login(dataForm).subscribe(
         res=>{
-          console.log(res['success']);
+          console.log(res);
           if(res['status']==702){
             Swal.fire({
               icon: 'error',
@@ -42,9 +42,8 @@ export class LoginComponent implements OnInit {
           }else{
             if(res['status']==703){
               const aux = res['user'];
-              console.log(aux['rol']);
               if(aux['rol'] == 'cliente'){
-                this.AuthService.setUserInfo( res['user'] );
+                this.AuthService.setUserInfo( aux['usuario'],res['token'] );
                }
               this.cerra_ventana.emit(true);
             }

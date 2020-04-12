@@ -1,0 +1,28 @@
+<barra-superior (changeIconEmitter)="changeIsPrincipal($event)" 
+                (ver_menu)="changeVerMenu($event)"
+                [iconProfile]="!isPrincipal"
+                [isLogeado]="!isLogeado" 
+                
+></barra-superior>
+<menu   *ngIf="verMenu && this.isLogeado" 
+        (cerrar_menu)="this.cerrar_menu()"
+        @enterState>
+</menu>
+<button class = "buton_agregar"
+        mat-stroked-button
+        color="primary"
+        *ngIf="!isNuevoContrato"  
+        (click)=" this.isNuevoContrato=true ">
+                Agregar contrato
+</button>
+
+<div class="mis_contratos">
+        <p>Mis contratos</p>
+</div>
+<app-nuevo-contrato     *ngIf="isNuevoContrato" 
+                        (change_isNuevoContrato)="change_isNuevoContrato()">
+</app-nuevo-contrato>
+<div *ngIf=" !isNuevoContrato"  >
+        <contrato *ngFor="let contrato of contratos" [contrato]="contrato">
+        </contrato>
+</div>

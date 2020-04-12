@@ -1,0 +1,56 @@
+<mat-card>
+    <div class="header">
+        <div class="header2">
+            <img src="../../../assets/HR.png" alt="Photo of a Shiba Inu" *ngIf="this.contrato.categoria=='Alto riesgo'">
+            <img src="../../../assets/MR.png" alt="Photo of a Shiba Inu"*ngIf="this.contrato.categoria=='Medio riesgo'">
+            <img src="../../../assets/LR.png" alt="Photo of a Shiba Inu" *ngIf="this.contrato.categoria=='Bajo riesgo'">
+        </div>
+        <div class="header1">
+            <div class="dato">
+               <p>{{contrato.categoria}}</p>
+            </div>
+            <div class="dato">
+                <p>Cantidad:</p><p>{{contrato.cantidad}}</p>
+            </div>
+            <div  class="dato">
+                <p>{{this.contrato.status}}</p> <p>{{this.contrato.create_at}}</p>
+            </div>
+            <div  class="dato"> 
+                <p>ETH pagado:</p><p> {{this.contrato.eth_pagado}}</p>
+            </div>
+            <div class="dato"> 
+                                   <p>Monedero:</p><p>{{this.monedero}}</p>
+            </div>
+            <div class="dato">  
+              <p>Pagos recibidos:</p><p> {{this.contrato.pagos_registrados || 0 }}</p>
+            </div>
+        </div>
+    </div>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" 
+                    *ngIf="this.contrato.status=='Sin activar'"
+                    (click)="activar()">Activar</button>
+            <button mat-raised-button
+                    color="primary"
+                    (click)="this.registrar_pago()">Agregar pago</button>
+        </mat-card-actions>
+<!-- 
+    
+    <mat-card-content>
+        <div class="dato">
+            <p>Cantidad:</p><p>{{contrato.cantidad}}</p>
+        </div>
+        <div  class="dato">
+            <p>{{this.contrato.status}}</p> <p>{{this.contrato.create_at}}</p>
+        </div>
+        <div  class="dato"> 
+            <p>ETH pagado:</p><p> {{this.contrato.eth_pagado}}</p>
+        </div>
+        <div class="dato"> 
+           <p>Monedero:</p><p>{{this.monedero}}</p>
+        </div>
+        <div class="dato">  
+          <p>Pagos recibidos:</p><p> {{this.contrato.pagos_registrados || 0 }}</p>
+        </div>
+    </mat-card-content> -->
+</mat-card>

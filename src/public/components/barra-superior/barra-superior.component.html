@@ -1,4 +1,6 @@
 <div class="principal">
-    <h1>CYPTOINFO</h1>
+    <h1 (click)="irPantallaPrincipal()">CYPTOINFO</h1>
     <div class="enter" *ngIf="this.iconProfile"   (click)="changeIcon()"><span class="material-icons">account_circle</span></div>
+
+    <div class="menu" *ngIf="this.verMenu"   (click)="verMenu()"><span class="material-icons">menu</span></div>
 </div>

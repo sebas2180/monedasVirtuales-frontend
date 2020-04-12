@@ -1,4 +1,12 @@
-<barra-superior (changeIconEmitter)="changeIsPrincipal($event)" [iconProfile]="!isPrincipal"></barra-superior>
+<barra-superior (changeIconEmitter)="changeIsPrincipal($event)" 
+                (ver_menu)="changeVerMenu($event)"
+                [iconProfile]="!isPrincipal"
+                [isLogeado]="!isLogeado" 
+                
+></barra-superior>
+<menu   *ngIf="verMenu && this.isLogeado" 
+        (cerrar_menu)="this.cerrar_menu($event)"
+        @enterState></menu>
 <div class="principal" *ngIf="isPrincipal && !isLogeado">
     <div class="opciones">
         <div class="opcion1"  [ngStyle]="{'color': 
@@ -12,7 +20,10 @@
     </div>
     <login *ngIf="!this.estado_login" @state (cerra_ventana)="this.changeIsPrincipal($event)"></login>
     <registro *ngIf="this.estado_login" @state></registro>
-</div>
+</div>   
 <div class="secundario" *ngIf="isLogeado">
     <app-lista-monedas></app-lista-monedas>
 </div>
+<lista-cotizaciones *ngIf="!isPrincipal || isLogeado" (outputUSDBTC)="this.changeUSDBTC($event)"></lista-cotizaciones >
+ 
+<button class="btn btn-success" (click)="salir()"> Salir</button>

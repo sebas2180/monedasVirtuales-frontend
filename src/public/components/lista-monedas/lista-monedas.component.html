@@ -1,1 +1,40 @@
-<app-moneda  *ngFor="let moneda of monedas" [moneda]="moneda"></app-moneda>
+ 
+<div class="card cardCentral">
+    <div class="card-header">
+        <h3>Mis posesiones</h3>
+    </div>
+    <div class="card-body">
+        <div class="posesion">
+            <div class="card cardTotal">
+                <div class="body">
+                    <span>{{this.moneda_seleccionada}}&nbsp;{{this.total_monedero | number:'1.2-4' }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" bodyMonedas">
+        <div class="opciones-monedas">
+            <button mat-fab [color]="colorARS" (click)="changeMoneda('ARS')"> ARS</button>
+            <button mat-fab [color]="colorEUR"(click)="changeMoneda('EUR')"> EUR</button>
+            <button mat-fab [color]="colorUSD"(click)="changeMoneda('USD')"> USD</button>
+        </div>
+         
+        <app-moneda [monedas]="this.monedasBTC"  
+                    [tipo_moneda]="this.moneda_seleccionada"
+                    *ngIf="this.monedasBTC" 
+                    (export_total)="this.setTotal($event)"
+        ></app-moneda>
+        <app-moneda [monedas]="this.monedasETC" 
+        [tipo_moneda]="this.moneda_seleccionada"
+        *ngIf="this.monedasETC"
+        (export_total)="this.setTotal($event)"
+        ></app-moneda>
+        <app-moneda [monedas]="this.monedasLTC" 
+                    [tipo_moneda]="this.moneda_seleccionada"    
+                    *ngIf="this.monedasLTC"
+                    (export_total)="this.setTotal($event)"
+        ></app-moneda>
+
+         
+    </div>
+</div>

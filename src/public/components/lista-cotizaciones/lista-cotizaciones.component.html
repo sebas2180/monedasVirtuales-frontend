@@ -1,0 +1,43 @@
+ <div *ngIf="this.isLoad">
+    
+<owl-carousel-o [options]="this.customOptions">
+  <!-- <ng-template carouselSlide *ngFor="let cotizacion of this.cotizacionesFULL" >
+    <cotizacion [CotizacionModule]="cotizacion">
+    </cotizacion>
+  </ng-template>   -->
+  <ng-template carouselSlide *ngIf="this.CotizacionService.cotizacionesARSBTC.length>0" >
+    <cotizacion [CotizacionModule]="this.CotizacionService.cotizacionesARSBTC">
+    </cotizacion>
+  </ng-template>  
+  
+  <ng-template carouselSlide  *ngIf="this.CotizacionService.cotizacionesUSDBTC.length>0" >
+    <cotizacion [CotizacionModule]="this.CotizacionService.cotizacionesUSDBTC">
+    </cotizacion>
+  </ng-template> 
+  
+  <ng-template carouselSlide *ngIf="this.CotizacionService.cotizacionesEURBTC.length>0" >
+    <cotizacion [CotizacionModule]="this.CotizacionService.cotizacionesEURBTC">
+    </cotizacion>
+  </ng-template>  
+  
+  <ng-template carouselSlide  *ngIf="this.CotizacionService.cotizacionesEURETH.length>0" >
+    <cotizacion [CotizacionModule]="this.CotizacionService.cotizacionesEURETH">
+    </cotizacion>
+  </ng-template>  
+  <ng-template carouselSlide  *ngIf="this.CotizacionService.cotizacionesARSETH.length>0" >
+    <cotizacion [CotizacionModule]="this.CotizacionService.cotizacionesARSETH">
+    </cotizacion>
+  </ng-template>  
+  <ng-template carouselSlide  *ngIf="this.CotizacionService.cotizacionesARSETH.length>0" >
+    <cotizacion [CotizacionModule]="this.CotizacionService.cotizacionesARSLTC">
+    </cotizacion>
+  </ng-template>  
+  <ng-template carouselSlide  *ngIf="this.CotizacionService.cotizacionesEURLTC.length>0" >
+    <cotizacion [CotizacionModule]="this.CotizacionService.cotizacionesEURLTC">
+    </cotizacion>
+  </ng-template>  
+  
+  </owl-carousel-o>
+  
+ </div>
+ 
