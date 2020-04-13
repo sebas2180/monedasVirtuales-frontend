@@ -5,7 +5,8 @@
     [matRippleDisabled]="disabled"
     [matRippleUnbounded]="unbounded"
     [matRippleRadius]="radius"
-    [matRippleColor]="color">
+    [matRippleColor]="color"
+    (click)="menuPrincipal()">
            Mis monederos
     </div>
     <div class="menuItem" matRipple
@@ -23,14 +24,6 @@
     [matRippleRadius]="this.radius"
     [matRippleColor]="this.color"
     (click)="gestionarContratos()"> GestionarContratos 
-    </div>
-    <div class="menuItem" matRipple
-    [matRippleCentered]="this.centered"
-    [matRippleDisabled]="this.disabled"
-    [matRippleUnbounded]="this.unbounded"
-    [matRippleRadius]="this.radius"
-    [matRippleColor]="this.color"
-    (click)="agregarPago()"> Agregar pago Kuliandp 
     </div>
 </div>
 <!-- <div class="example-ripple-container mat-elevation-z4"

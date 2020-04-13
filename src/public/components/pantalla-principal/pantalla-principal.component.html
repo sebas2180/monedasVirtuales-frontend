@@ -19,7 +19,7 @@
         </div>
     </div>
     <login *ngIf="!this.estado_login" @state (cerra_ventana)="this.changeIsPrincipal($event)"></login>
-    <registro *ngIf="this.estado_login" @state></registro>
+    <registro *ngIf="this.estado_login" (cerra_ventana)="this.changeIsPrincipal($event)" @state></registro>
 </div>   
 <div class="secundario" *ngIf="isLogeado">
     <app-lista-monedas></app-lista-monedas>

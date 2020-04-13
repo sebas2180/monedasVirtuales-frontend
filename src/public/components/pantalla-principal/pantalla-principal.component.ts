@@ -44,30 +44,31 @@ export class PantallaPrincipalComponent implements OnInit {
   isLogeado: boolean = false;
   verMenu: boolean = false;
   constructor(public AuthService: AuthService) {
-    if(this.AuthService.isAuthenticatede){
-     // alert('true');
-      this.isPrincipal = false;
-      this.isLogeado = true;
-      this.isLogeado=false;
-      this.verMenu=false;
+    if(this.AuthService.isAuthenticatede()){
+      console.log('true');
+      this.isPrincipal = true;
+      this.isLogeado=true;
+      this.verMenu=true;
     }else{
-     // alert('false');
+      console.log('false');
+      this.isPrincipal = false;
+      this.isLogeado = false;
+      this.verMenu = false;
     }
 
   }
-
   ngOnInit(): void {
-      if(this.AuthService.isAuthenticatede()){
-        this.isPrincipal = true;
-        this.isLogeado = true ;
-        this.estado_login = true;
-      }
+    // if(this.AuthService.isAuthenticatede){
+    //     this.isPrincipal = true;
+    //     this.isLogeado = true ;
+    //     this.estado_login = true;
+    // }
   }
   salir(){
     this.AuthService.clearLocalStorage();
-    this.estado_login=false;
-    this.isPrincipal=true;
-    this.isLogeado=false;
+    this.estado_login = false;
+    this.isPrincipal = true;
+    this.isLogeado = false;
     //this.AuthService.canActivate();
   }
   ver_registro() {

@@ -14,10 +14,13 @@ export class GuardGuard implements CanActivate {
 
   }
   canActivate() :boolean{
-    console.log('canActivated: '+ this.AuthService.isAuthenticatede())
+    console.log('canActivated: '+ this.AuthService.isAuthenticatede());
     if(this.AuthService.isAuthenticatede()){
+      console.log('true');
       return true;
+    }else{
+      console.log('false');
+      this.Router.navigate(['/pantallaprincipal']);
     }
-    this.Router.navigate(['/pantallaprincipal']);
   }
 }

@@ -11,7 +11,7 @@ import  Swal  from 'sweetalert2';
 })
 export class ContratoComponent implements OnInit {
   @Input() contrato : ContratoModule;
-  monedero : string ='';
+   ganancia : number =0;
   constructor(private MonedaService: MonedaService,  private ContratoService: ContratoService) { 
   }
   activar(){
@@ -58,27 +58,41 @@ export class ContratoComponent implements OnInit {
           dataForm.append('id_monedero',this.contrato.id_monedero.toString());
           this.ContratoService.registrarPago(dataForm).subscribe(
             response => {
-              console.log(response);
+              this.contrato.eth_recibido+=parseFloat(res.value);
+              this.contrato.pagos_registrados++;
+              Swal.fire({
+                icon: 'success',
+                title:'Agregado con exito'
+              }
+              )
             }
           )
-
          }else{
-           Swal.fire({
-             icon: 'error',
-             timer: 2200,
-            title: 'Debe ser numerico y mayor a cero',
-           }).then( res1 =>    {  this.registrar_pago();  })
-          
+           if(res.dismiss === Swal.DismissReason.cancel){
+            Swal.fire(
+              'Cancelado' 
+            )
+           }else{
+            Swal.fire({
+              icon: 'error',
+              timer: 2200,
+             title: 'Debe ser numerico y mayor a cero',
+            }).then( res1 =>    {  
+              this.registrar_pago();  
+            })
+
+           }
          }
        }
      )
   }
   ngOnInit(): void {
-    this.MonedaService.getNombreMonedero(this.contrato.id_monedero).subscribe(
-      res => {
-        //console.log(res);
-        this.monedero = res['body']['monedero'];
-      });
+    this.ganancia =( (this.contrato.eth_recibido*100)/parseFloat(this.contrato.eth_pagado));
+    // this.MonedaService.getNombreMonedero(this.contrato.id_monedero.toString()).subscribe(
+    //   res => {
+    //     console.log(res);
+    //     this.monedero = res['body']['monedero'];
+    //   });
   }
 
 }

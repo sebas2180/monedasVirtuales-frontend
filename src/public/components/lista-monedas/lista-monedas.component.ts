@@ -23,6 +23,7 @@ export class ListaMonedasComponent implements OnInit {
   constructor(public MonedaService: MonedaService,public CotizacionService: CotizacionService) {
     this.MonedaService.getMonedas().subscribe(
       res => {
+        console.log(res);
         if(res['BTC'][0]){
           this.monedasBTC = res['BTC'][0];
         }

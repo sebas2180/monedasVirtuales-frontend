@@ -62,9 +62,9 @@ export class CotizacionService {
     this.satoshitangoARSLTC.next(cotizacion);
   }
   getCotizaciones(){
-    return this.http.get(`${this.m.ruta}getCotizaciones`);
+    return this.http.get(`${this.AuthService.ruta}getCotizaciones`);
   }
   getCotizacionParaMonedero(){
-    return this.http.get(`${this.m.ruta}getCotizacionParaMonedero`);
+    return this.http.get(`${this.AuthService.ruta}getCotizacionParaMonedero`);
   }
 }

@@ -1,6 +1,7 @@
+import { AuthService } from './../../../services/authService/auth.service';
 import { UsuarioService } from './../../../services/usuarioService/usuario.service';
 import { FormGroup, FormControl, Validators, ValidatorFn, FormBuilder } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -9,9 +10,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./registro.component.scss']
 })
 export class RegistroComponent implements OnInit {
-
+  @Output() cerra_ventana: EventEmitter<boolean> = new EventEmitter();
   form: FormGroup;
-  constructor(private formBuilder: FormBuilder,private UsuarioService: UsuarioService) { 
+  constructor(private formBuilder: FormBuilder,private UsuarioService: UsuarioService
+              ,private AuthService :AuthService) { 
     
   }
   newForm(){
@@ -56,14 +58,14 @@ export class RegistroComponent implements OnInit {
     if(!this.form.invalid){
       const dataForm = new FormData;
       dataForm.append('usuario',this.form.get('usuario').value);
-      dataForm.append('password',this.form.get('usuario').value);
+      dataForm.append('password',this.form.get('password').value);
       this.UsuarioService.signup(dataForm).subscribe(
        resp =>{
          console.log(resp['status']);
         const status = resp['status'];
         // tslint:disable-next-line: triple-equals
         if(status == 750) {
-            Swal.fire({
+          Swal.fire({
             icon: 'error',
             timer: 1500,
             title: resp['msj']
@@ -75,6 +77,17 @@ export class RegistroComponent implements OnInit {
             timer: 1500,
             title: resp['msj']
           });
+          
+          this.UsuarioService.login(dataForm).subscribe(
+            res=>{
+              console.log(res);
+              if(res['status']==703){
+                const aux = res['user'];
+                this.AuthService.setUserInfo( aux['usuario'],res['token'] );
+                this.cerra_ventana.emit(true);
+              }
+            }
+          )
         }
        },
       

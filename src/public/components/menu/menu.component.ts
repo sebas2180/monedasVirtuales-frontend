@@ -39,6 +39,10 @@ export class MenuComponent implements OnInit {
     this.route.navigate(['/agregarPago']);
     
   }
+  menuPrincipal(){
+    this.cerrar_menu.emit();
+    this.route.navigate(['/pantallaprincipal']);
+  }
   gestionarContratos(){
     this.cerrar_menu.emit();
     this.route.navigate(['/gestionarContratos']);

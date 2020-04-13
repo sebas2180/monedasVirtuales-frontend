@@ -17,10 +17,12 @@ export class ContratoModule {
     fecha_inicio? : Date;
     cantidad: number;
     eth_pagado: string;
+    eth_recibido: number;
     id_usuario : number;
     pagos_registrados : number;
     id_monedero : number;
     status : string;
+    monedero?: string;
 
     deserialize?(input: any): this {
       return Object.assign(this, input);
