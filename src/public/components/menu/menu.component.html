@@ -1,37 +1,39 @@
- 
+<div class="principal">
+   
 <div class="menuBar" @enterState>
-    <div class="menuItem" matRipple
-    [matRippleCentered]="centered"
-    [matRippleDisabled]="disabled"
-    [matRippleUnbounded]="unbounded"
-    [matRippleRadius]="radius"
-    [matRippleColor]="color"
-    (click)="menuPrincipal()">
-           Mis monederos
-    </div>
-    <div class="menuItem" matRipple
-    [matRippleCentered]="centered"
-    [matRippleDisabled]="disabled"
-    [matRippleUnbounded]="unbounded"
-    [matRippleRadius]="radius"
-    [matRippleColor]="color">
-           Agregar compra
-    </div> 
-    <div class="menuItem" matRipple
-    [matRippleCentered]="this.centered"
-    [matRippleDisabled]="this.disabled"
-    [matRippleUnbounded]="this.unbounded"
-    [matRippleRadius]="this.radius"
-    [matRippleColor]="this.color"
-    (click)="gestionarContratos()"> GestionarContratos 
-    </div>
+  <div class="menuItem" matRipple
+  [matRippleCentered]="centered"
+  [matRippleDisabled]="disabled"
+  [matRippleUnbounded]="unbounded"
+  [matRippleRadius]="radius"
+  [matRippleColor]="color"
+  (click)="gestionarMonederos()">
+        Gestionar monederos
+  </div>
+  <div class="menuItem" matRipple
+  [matRippleCentered]="centered"
+  [matRippleDisabled]="disabled"
+  [matRippleUnbounded]="unbounded"
+  [matRippleRadius]="radius"
+  [matRippleColor]="color">
+         Agregar compra
+  </div> 
+  <div class="menuItem" matRipple
+  [matRippleCentered]="this.centered"
+  [matRippleDisabled]="this.disabled"
+  [matRippleUnbounded]="this.unbounded"
+  [matRippleRadius]="this.radius"
+  [matRippleColor]="this.color"
+  (click)="gestionarContratos()"> GestionarContratos 
+  </div>
+  <div class="menuItem" matRipple
+  [matRippleCentered]="this.centered"
+  [matRippleDisabled]="this.disabled"
+  [matRippleUnbounded]="this.unbounded"
+  [matRippleRadius]="this.radius"
+  [matRippleColor]="this.color"
+  (click)="salir()"> Salir 
+  </div>
 </div>
-<!-- <div class="example-ripple-container mat-elevation-z4"
-     matRipple
-     [matRippleCentered]="centered"
-     [matRippleDisabled]="disabled"
-     [matRippleUnbounded]="unbounded"
-     [matRippleRadius]="radius"
-     [matRippleColor]="color">
-  Click me
-</div> -->
+
+</div>

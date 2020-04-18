@@ -1,3 +1,4 @@
+import { GestionarMonederoComponent } from './../public/components/gestionar-monedero/gestionar-monedero.component';
 import { GestionarContratosComponent } from './../public/components/gestionar-contratos/gestionar-contratos.component';
 import { AgregarPagoComponent } from './../public/components/agregar-pago/agregar-pago.component';
 import { ListaCotizacionesComponent } from './../public/components/lista-cotizaciones/lista-cotizaciones.component';
@@ -17,8 +18,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'actualizarCotizacion',
-    component: ActualizarCotizacionComponent,
+    path: 'gestionarMonederos',
+    component: GestionarMonederoComponent,
     canActivate:[GuardGuard]
   },
   {

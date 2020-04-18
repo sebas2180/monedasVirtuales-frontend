@@ -4,17 +4,10 @@
     background:rgb(192, 104, 192);
     z-index: 100;
 }
-// .menuItem{
- 
-//     position: relative;
-//     display: flex;
-//     justify-content: center;
-//     //align-items: center;
-//     text-align: center;
-//     border: 1px solid;
-//     flex-direction: column;
-//     width: 100%;
-//     padding: 20px;
+.principal{
+  width: 100%;
+      background-color: rgb(138, 51, 192);
+}
 
     
 // }
@@ -35,6 +28,7 @@
     font-weight: bold;
     border-color: white;
     border: 1px solid;
+    background-color: rgba(74, 4, 97, 0.973);
   }
   
   /** Styles to make the demo look better. */

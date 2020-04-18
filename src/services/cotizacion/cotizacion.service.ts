@@ -20,6 +20,11 @@ export class CotizacionService {
   private satoshitangoARSETH  = new BehaviorSubject<CotizacionModule>(new CotizacionModule);
   private satoshitangoARSLTC  = new BehaviorSubject<CotizacionModule>(new CotizacionModule);
 
+  private copayUSDETH  = new BehaviorSubject<CotizacionModule>(new CotizacionModule);
+
+  private decryptoARSBTC = new BehaviorSubject<CotizacionModule>(new CotizacionModule);
+  private decryptoUSDBTC = new BehaviorSubject<CotizacionModule>(new CotizacionModule);
+
   public  cotizacionesUSDBTC : CotizacionModule[] =[];
   public cotizacionesEURBTC : CotizacionModule[] =[];
   public cotizacionesARSBTC : CotizacionModule[] =[];
@@ -34,17 +39,26 @@ export class CotizacionService {
   public Cbit2meEURLTC = this.bit2meEURLTC.asObservable();
   public Cbit2meEURETH = this.bit2meEURETH.asObservable();
 
+  
   public CbitstampUSDBTC = this.bitstampUSDBTC.asObservable();
   public CargenbtcARSBTC = this.argenbtcARSBTC.asObservable();
 
   public CsatoshitangoARSETH = this.satoshitangoARSETH.asObservable();
   public CsatoshitangoARSLTC = this.satoshitangoARSLTC.asObservable();
 
+  public CcopayUSDETH = this.copayUSDETH.asObservable();
+
+  public CdecryptoUSDBTC = this.copayUSDETH.asObservable();
+  public CdecryptoARSBTC = this.copayUSDETH.asObservable();
+
   public changeBit2meEURBTC(cotizacion: CotizacionModule):void{
     this.bit2meEURBTC.next(cotizacion);
   }
   public changeBit2meEURETH(cotizacion: CotizacionModule):void{
     this.bit2meEURETH.next(cotizacion);
+  }
+  public changeCopayUSDETH(cotizacion: CotizacionModule):void{
+    this.copayUSDETH.next(cotizacion);
   }
   public changeBit2meEURLTC(cotizacion: CotizacionModule):void{
     this.bit2meEURLTC.next(cotizacion);
@@ -60,6 +74,12 @@ export class CotizacionService {
   }
   public changeSatoshitangoARSLTC(cotizacion: CotizacionModule):void{
     this.satoshitangoARSLTC.next(cotizacion);
+  }
+  public changDecryptoUSDBTC(cotizacion: CotizacionModule):void{
+    this.decryptoUSDBTC.next(cotizacion);
+  }
+  public changDecryptoARSBTC(cotizacion: CotizacionModule):void{
+    this.decryptoARSBTC.next(cotizacion);
   }
   getCotizaciones(){
     return this.http.get(`${this.AuthService.ruta}getCotizaciones`);

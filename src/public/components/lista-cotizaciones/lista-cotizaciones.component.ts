@@ -74,6 +74,9 @@ export class ListaCotizacionesComponent implements OnInit {
                     if(registro['proveedor'] == 'ArgenBtc'){
                       this.CotizacionService.changeArgenbtcARSBTC(registro);
                     }
+                    if(registro['proveedor'] == 'Decrypto'){
+                      this.CotizacionService.changDecryptoARSBTC(registro);
+                    }
                   }
                   if(registro.base =='EUR'){
                     this.cotizacionesUSDBTC.push(registro);
@@ -85,6 +88,9 @@ export class ListaCotizacionesComponent implements OnInit {
                     this.cotizacionesEURBTC.push(registro);
                     if(registro['proveedor'] == 'Bitstamp'){
                       this.CotizacionService.changeBitstampUSDBTC(registro);
+                    }
+                    if(registro['proveedor'] == 'Decrypto'){
+                      this.CotizacionService.changeCopayUSDETH(registro);
                     }
                   }
                 }
@@ -101,7 +107,12 @@ export class ListaCotizacionesComponent implements OnInit {
                         this.CotizacionService.changeBit2meEURETH(registro);
                       }
                   }
-                  if(registro.base ==='USD' ){    this.cotizacionesUSDETH.push(registro);    }
+                  if(registro.base ==='USD' ){    
+                    this.cotizacionesUSDETH.push(registro);
+                    if(registro['proveedor'] == 'Copay'){
+                      this.CotizacionService.changeCopayUSDETH(registro);
+                    }
+                  }
                 }
                 if(registro.symbol == 'LTC'){
                   if(registro.base =='EUR' ){

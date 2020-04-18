@@ -1,4 +1,4 @@
- <div *ngIf="this.isLoad">
+ <div *ngIf="this.isLoad" class="principal">
     
 <owl-carousel-o [options]="this.customOptions">
   <!-- <ng-template carouselSlide *ngFor="let cotizacion of this.cotizacionesFULL" >
@@ -24,12 +24,12 @@
     <cotizacion [CotizacionModule]="this.CotizacionService.cotizacionesEURETH">
     </cotizacion>
   </ng-template>  
-  <ng-template carouselSlide  *ngIf="this.CotizacionService.cotizacionesARSETH.length>0" >
-    <cotizacion [CotizacionModule]="this.CotizacionService.cotizacionesARSETH">
+  <ng-template carouselSlide  *ngIf="this.CotizacionService.cotizacionesUSDETH.length>0" >
+    <cotizacion [CotizacionModule]="this.CotizacionService.cotizacionesUSDETH">
     </cotizacion>
   </ng-template>  
   <ng-template carouselSlide  *ngIf="this.CotizacionService.cotizacionesARSETH.length>0" >
-    <cotizacion [CotizacionModule]="this.CotizacionService.cotizacionesARSLTC">
+    <cotizacion [CotizacionModule]="this.CotizacionService.cotizacionesARSETH">
     </cotizacion>
   </ng-template>  
   <ng-template carouselSlide  *ngIf="this.CotizacionService.cotizacionesEURLTC.length>0" >

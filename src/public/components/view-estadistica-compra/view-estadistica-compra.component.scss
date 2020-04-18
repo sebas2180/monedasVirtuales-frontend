@@ -1,0 +1,41 @@
+.dato{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: space-around;
+    border: solid 1px gray;
+    font-size: 1.1rem !important;
+   
+}
+.titulo{
+    position: relative;
+    text-align: center;
+    color: indigo;
+    font-size: 1.2rem;
+}
+.estadistica{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: solid 1px;
+    //justify-content: center;
+    width: 100%;
+    //align-items: center;
+}
+.p{
+    position: relative;
+    width: 70%;
+}
+.info{
+    text-align: start;
+    justify-content: start;
+    width:  30%;
+}
+@media(min-width: 768px) {
+    .estadistica{
+        position: relative;
+        width: 60%;
+        left: 20%;
+    }
+}

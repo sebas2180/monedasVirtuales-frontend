@@ -77,7 +77,6 @@ export class MonedaComponent implements OnInit {
     );
   }
   comprobar_titulo(){
-
     switch(this.tipo_moneda){
       case 'ARS':
         switch(this.titulo){

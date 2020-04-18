@@ -2,6 +2,7 @@ import { ContratoService } from './../../../services/contrato/contrato.service';
 import { AuthService } from './../../../services/authService/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ContratoModule } from 'src/modelos/contrato/contrato.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gestionar-contratos',
@@ -11,20 +12,23 @@ import { ContratoModule } from 'src/modelos/contrato/contrato.module';
 export class GestionarContratosComponent implements OnInit {
   isPrincipal: boolean = false;
   isLogeado: boolean = false;
+  verHistorial :boolean = false;
   verMenu: boolean = false;
   isNuevoContrato = false;
   contratos : ContratoModule[] = [];
   constructor(private AuthService : AuthService,
-              private ContratoService : ContratoService) {
+              private ContratoService : ContratoService,
+              private route: Router
+              ) {
   if ( this.AuthService.isAuthenticatede ) {
-      // alert('true');
+      console.log(this.AuthService.isAuthenticatede );
       this.isPrincipal = false;
       this.isLogeado = true;
       this.verMenu = false;
 
       this.traer_contratos();
      } else {
-      // alert('false');
+      this.route.navigate(['/pantallaprincipal']);
     }
   }
   traer_contratos(){
@@ -55,6 +59,9 @@ export class GestionarContratosComponent implements OnInit {
     } else {
       this.isNuevoContrato = true;
     }
+  }
+  change_ver_contrato(e) {
+    console.log(e);
   }
   ngOnInit(): void {
   }

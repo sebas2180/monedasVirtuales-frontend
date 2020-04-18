@@ -1,0 +1,121 @@
+
+<div>
+    <div class="header">
+        <p>Nueva operación</p>
+    </div>
+    <div class="Formulario0">
+        <button class="tipo_op" mat-raised-button [color]="this.color_compra" (click)="compra()">COMPRA</button>
+        <button class="tipo_op" mat-raised-button [color]="this.color_venta"  (click)="venta()">VENTA</button>
+    </div>
+    <div class="Formulario1">
+        <form [formGroup]="form">
+            <mat-form-field class="text"  appearance="fill" >
+                <mat-label>Tipo de operacion</mat-label>
+                <input matInput type="text"formControlName="tipo_operacion" [readonly]="true" >
+            </mat-form-field>
+            <mat-form-field class="select"  appearance="fill">
+                <mat-label>Cryto moneda</mat-label>
+                <mat-select formControlName="moneda" [disabled]="isNuevoMonedero ==3"> 
+                    <mat-option *ngFor="let moneda of this.tipo_moneda"  
+                                [value]="moneda" 
+                                (click)="buscar_monederos()">
+                        {{moneda}}</mat-option>        
+                    </mat-select>
+            </mat-form-field>
+            <mat-form-field class="select"  appearance="fill">
+                <mat-label>Monedero</mat-label>
+                <mat-select formControlName="nombreMonedero" [disabled]="isNuevoMonedero ==3"> 
+                    <mat-option *ngFor="let monedero of this.tipo_monederos"  
+                                [disabled]="isNuevoMonedero ==3"
+                                [value]="monedero"
+                                (click)="esNuevo_monedero()" >
+                        {{monedero}}
+                    </mat-option>        
+                </mat-select>
+            </mat-form-field>
+        </form> 
+        <button mat-raised-button 
+        color="primary" 
+        (click)="siguiente()" 
+        *ngIf="this.form.get('nombreMonedero').value!=('+ Nuevo monedero' && '') && this.isNuevoMonedero == 1" >
+    Siguiente
+    </button>
+    </div>
+    <div class="Formulario2" *ngIf="isNuevoMonedero >= 2 &&  this.form.get('nombreMonedero').value=='+ Nuevo monedero'  ">
+        <form  [formGroup]="form2" >
+            <mat-form-field class="number"  appearance="fill" >
+                <mat-label>Ingrese nombre del monedero</mat-label>
+                <input matInput type="text"formControlName="nombre" [readonly]="this.isNuevoMonedero ==3" >
+                <mat-error *ngIf="this.form2.controls.nombre.invalid">Falta el nombre</mat-error>
+            </mat-form-field>
+        </form>
+        <button mat-raised-button 
+        color="primary" 
+        (click)="siguiente()" 
+        [disabled]="isNuevoMonedero ==3"
+        *ngIf="(this.form.get('nombreMonedero').value=='+ Nuevo monedero' && !this.form2.invalid)" >
+    Agregar y seguir
+    </button>
+    </div>
+    <div class="Formulario3" *ngIf="isNuevoMonedero == 3">
+        <form [formGroup]="this.form3">
+            <mat-form-field class="number"  appearance="fill">
+                <mat-label>Cotizacion al momento de la compra en USD</mat-label>
+                <input matInput type="number"formControlName="cotizacion_USD"  >
+                <mat-error *ngIf="this.form3.controls.cotizacion_USD.invalid" >Debe introducir una cotizacion</mat-error>
+            </mat-form-field>
+            <mat-form-field class="number"  appearance="fill">
+                <mat-label>Saldo actual</mat-label>
+                <input matInput type="number"formControlName="saldo_actual" [readonly] ="true" >
+                <mat-error *ngIf="this.form3.controls.saldo_actual.invalid" >Error</mat-error>
+            </mat-form-field>
+            <mat-form-field class="number"  appearance="fill">
+                <mat-label>Ingrese el monto</mat-label>
+                <input matInput type="number"formControlName="agregar" (keyup)="modificarSaldo()" min="0">
+                <mat-error *ngIf="this.form3.controls.agregar.invalid">Falta el importe</mat-error>
+            </mat-form-field>
+            <mat-form-field class="number"  appearance="fill">
+                <mat-label>Nuevo saldo</mat-label>
+                <input matInput type="number"formControlName="nuevo_saldo" (keyup)="modificarSaldoFinal()">
+                <mat-error *ngIf="this.form3.controls.nuevo_saldo.invalid">El saldo no puede ser negativo</mat-error>
+            </mat-form-field>
+            
+            <button mat-raised-button 
+            color="primary" 
+            (click)="guardar()" >
+                Guardar
+        </button>
+        </form>
+    </div>
+    <button mat-stroked-button 
+    color = "primary" 
+    *ngIf = " this.isNuevoMonedero>1 "
+    (click) = "reset()" >
+        Elegir otra moneda
+</button>
+<div class="card instrucciones">
+    <div class="card-body">
+        <p style="position: relative;width: 100%;text-align: center;text-decoration: underline;font-weight: bold;">Intrucciones</p>
+        <ol>
+            <li>
+                Seleccione la cryto moneda deseada.
+            </li>
+            <li>
+                Seleccione el monedero deseado.
+            </li>
+            <li>
+               Seleccionar '+ Nuevo monedero', para agregar uno nuevo.
+            </li>
+            <li>
+                Introducir el importe a restar o agregar.
+            </li>
+            <li>
+                También puede introducir el importe del monedero final directamente.
+            </li>
+            <li>
+                Guarde los cambios
+            </li>
+        </ol>
+    </div>
+</div>
+</div>

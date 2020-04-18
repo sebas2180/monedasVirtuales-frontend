@@ -1,3 +1,4 @@
+
 import { ContratoService } from './../services/contrato/contrato.service';
 import { NuevoContratoComponent } from './../public/components/nuevo-contrato/nuevo-contrato.component';
 import { GestionarContratosComponent } from './../public/components/gestionar-contratos/gestionar-contratos.component';
@@ -24,6 +25,7 @@ import { NgModule } from '@angular/core';
 import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { MatRippleModule } from '@angular/material/core';
 
 import { AppComponent } from './app.component';
 import { ListaUsuariosComponent } from '../public/components/lista-usuarios/lista-usuarios.component';
@@ -37,6 +39,7 @@ import { BarraSuperiorComponent } from './../public/components/barra-superior/ba
 import { RegistroComponent } from './../public/components/registro/registro.component'; 
 import { ListaCotizacionesComponent } from './../public/components/lista-cotizaciones/lista-cotizaciones.component';
 import { CotizacionComponent } from './../public/components/cotizacion/cotizacion.component';
+import { NuevoSaldoComponent } from './../public/components/nuevo-saldo/nuevo-saldo.component';
 
 import { GuardGuard } from './../services/guard/guard.guard';
 import { CotizacionService  } from './../services/cotizacion/cotizacion.service';
@@ -44,8 +47,13 @@ import { MonedaService } from './../services/moneda/moneda.service';
 import { AuthService } from './../services/authService/auth.service';
 import { UsuarioService  } from './../services/usuarioService/usuario.service';
 import {  TokenInterceptorService  } from './../services/token-interceptor/token-interceptor.service';
-import { MatRippleModule } from '@angular/material/core';
 import { ContratoComponent } from 'src/public/components/contrato/contrato.component';
+import { GestionarMonederoComponent } from '../public/components/gestionar-monedero/gestionar-monedero.component';
+import { HistorialPagosComponent } from '../public/components/historial-pagos/historial-pagos.component';
+import { EstadisticasCompraComponent } from '../public/components/estadisticas-compra/estadisticas-compra.component';
+import { EstadisticasContratosComponent } from '../public/components/estadisticas-contratos/estadisticas-contratos.component';
+import { LoaderComponent } from '../public/components/loader/loader.component';
+import { ViewEstadisticaCompraComponent } from '../public/components/view-estadistica-compra/view-estadistica-compra.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +72,14 @@ import { ContratoComponent } from 'src/public/components/contrato/contrato.compo
     MenuComponent,
     GestionarContratosComponent,
     ContratoComponent,
-    NuevoContratoComponent
+    NuevoContratoComponent,
+    GestionarMonederoComponent,
+    NuevoSaldoComponent,
+    HistorialPagosComponent,
+    EstadisticasContratosComponent,
+    EstadisticasCompraComponent,
+    LoaderComponent,
+    ViewEstadisticaCompraComponent
   ],
   imports: [
     AppRoutingModule,

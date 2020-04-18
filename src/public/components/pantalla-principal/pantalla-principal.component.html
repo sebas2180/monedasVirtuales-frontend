@@ -1,12 +1,18 @@
-<barra-superior (changeIconEmitter)="changeIsPrincipal($event)" 
+<barra-superior (changeIconEmitter)="changeIsPrincipal($event)"
+                
                 (ver_menu)="changeVerMenu($event)"
                 [iconProfile]="!isPrincipal"
                 [isLogeado]="!isLogeado" 
                 
 ></barra-superior>
-<menu   *ngIf="verMenu && this.isLogeado" 
+<menu   *ngIf="!verMenu && this.isLogeado" 
         (cerrar_menu)="this.cerrar_menu($event)"
-        @enterState></menu>
+        @enterState
+        (out_salir)="this.salir()">
+    </menu>
+<lista-cotizaciones *ngIf="!isPrincipal || isLogeado" (outputUSDBTC)="this.changeUSDBTC($event)">
+    
+</lista-cotizaciones >
 <div class="principal" *ngIf="isPrincipal && !isLogeado">
     <div class="opciones">
         <div class="opcion1"  [ngStyle]="{'color': 
@@ -20,10 +26,15 @@
     </div>
     <login *ngIf="!this.estado_login" @state (cerra_ventana)="this.changeIsPrincipal($event)"></login>
     <registro *ngIf="this.estado_login" (cerra_ventana)="this.changeIsPrincipal($event)" @state></registro>
-</div>   
-<div class="secundario" *ngIf="isLogeado">
-    <app-lista-monedas></app-lista-monedas>
 </div>
-<lista-cotizaciones *ngIf="!isPrincipal || isLogeado" (outputUSDBTC)="this.changeUSDBTC($event)"></lista-cotizaciones >
- 
-<button class="btn btn-success" (click)="salir()"> Salir</button>
+<div class="secundario" *ngIf="isLogeado">
+    <app-lista-monedas>
+    </app-lista-monedas>
+    
+    <estadisticas-contratos >
+    </estadisticas-contratos> 
+
+    <estadisticas-compra [id_usuario]="this.id_usuario" *ngIf="this.isVerEstadisticas">
+    </estadisticas-compra> 
+     
+</div>

@@ -1,0 +1,20 @@
+
+<div class="principal">
+    <div class="card">
+        <div class="header">
+            <span>Estadisticas contratos</span>
+        </div>
+        <div class="dato">
+            <p>Total de contratos: </p><p>{{this.total_contratos}}</p>
+        </div>
+        <div class="dato">
+            <p>Total de kuanlian: </p><p>{{this.total_kualians}}</p>
+        </div>
+        <div class="dato">
+            <p>Valor actual ETH invertido:  </p><p>{{(this.eth_pagado*this.cotizacionETHUSD)  | number:'1.2-2'}} &nbsp;USD </p>
+        </div>
+        <div class="dato">
+            <p>Dinero recibido: USD </p><p>{{(this.eth_recibido *this.cotizacionETHUSD ) | number:'1.2-2'}}</p>
+        </div>
+    </div>
+</div>

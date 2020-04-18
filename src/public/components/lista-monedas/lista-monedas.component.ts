@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/authService/auth.service';
 import { CotizacionModule } from './../../../modelos/cotizacion/cotizacion.module';
 import { CotizacionService } from './../../../services/cotizacion/cotizacion.service';
 import { MonedaModule } from '../../../modelos/moneda/moneda.module';
@@ -19,11 +20,17 @@ export class ListaMonedasComponent implements OnInit {
     total_BTC :number=0;
     total_ETH :number=0;
     total_LTC:number=0;
+    isLoading : boolean = true;
   
-  constructor(public MonedaService: MonedaService,public CotizacionService: CotizacionService) {
+  constructor(public MonedaService: MonedaService,public CotizacionService: CotizacionService,
+              private AuthService: AuthService) {
+     
     this.MonedaService.getMonedas().subscribe(
       res => {
         console.log(res);
+        if(res['status']==760){
+          this.AuthService.clearLocalStorage();
+        }
         if(res['BTC'][0]){
           this.monedasBTC = res['BTC'][0];
         }
@@ -54,6 +61,7 @@ export class ListaMonedasComponent implements OnInit {
     }
   }
   setTotal(e){
+    this.isLoading= true;
     if(e.a){
       switch(e.b){
         case 'Ethereum':
@@ -67,6 +75,7 @@ export class ListaMonedasComponent implements OnInit {
           break;
       }
       this.total_monedero = this.total_ETH + this.total_BTC + this.total_LTC;
+      
     }
   }
   ngOnInit(): void {

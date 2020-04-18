@@ -10,10 +10,10 @@ export class AppComponent {
   title = 'cryptoInfo';
 
   constructor(private auth: AuthService){
-    interval(20000).subscribe(
-      res =>{
-        console.log(res);
-      }
-    )
+    // interval(20000).subscribe(
+    //   res =>{
+    //     console.log(res);
+    //   }
+    // )
   }
 }

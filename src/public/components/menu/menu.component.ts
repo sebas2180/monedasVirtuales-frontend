@@ -1,3 +1,4 @@
+import { AuthService } from '../../../services/authService/auth.service';
 import { Router } from '@angular/router';
 import { trigger, state, transition, animate, style } from '@angular/animations';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
@@ -24,19 +25,32 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
   @Output() cerrar_menu : EventEmitter<boolean> = new EventEmitter();
+  @Output() out_salir : EventEmitter<boolean> = new EventEmitter();
   centered = false;
   disabled = false;
   unbounded = false;
   mycolor:string='green';
   radius: number;
   color: string;
-  constructor(private route : Router) { }
+  constructor(private route : Router,private AuthService : AuthService) { }
 
   ngOnInit(): void {
   }
   agregarPago(){
     this.cerrar_menu.emit();
     this.route.navigate(['/agregarPago']);
+    
+  }
+  salir(){
+    console.log('salir')
+    this.AuthService.clearLocalStorage();
+    this.route.navigate(['/']);
+    this.out_salir.emit();
+    
+  }
+  gestionarMonederos(){
+    this.cerrar_menu.emit();
+    this.route.navigate(['/gestionarMonederos']);
     
   }
   menuPrincipal(){

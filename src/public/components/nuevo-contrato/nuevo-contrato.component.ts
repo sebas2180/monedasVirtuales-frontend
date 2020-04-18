@@ -44,9 +44,8 @@ export class NuevoContratoComponent implements OnInit {
     this.MonedaService.getMonedas()
     this.newForm();
     if(this.AuthService.isAuthenticatede){
-      this.MonedaService.getNombreMonedas(this.AuthService.getLocal()).subscribe(
+      this.MonedaService.getNombreMonedas(this.AuthService.getLocal(), 'Ethereum').subscribe(
         res => {
-
           for (let index = 0; index < 20; index++) {
             if(res['body'][index]) {
               var encontrado: boolean = false;
@@ -58,7 +57,7 @@ export class NuevoContratoComponent implements OnInit {
               }
             }
           }
-          res['body']
+       
         }
       );
       // alert('true');

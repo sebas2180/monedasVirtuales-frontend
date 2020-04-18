@@ -1,0 +1,6 @@
+<div class="principal">
+    <p>Estadisticas compra / venta</p>
+   <view-estadistica-compra *ngFor="let estadistica of this.Estadisticas " [estadistica]="estadistica">
+    </view-estadistica-compra>
+</div>
+<app-loader *ngIf="isLoading"></app-loader>

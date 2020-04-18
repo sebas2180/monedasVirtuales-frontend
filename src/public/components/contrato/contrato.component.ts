@@ -1,6 +1,7 @@
+import { CotizacionService } from './../../../services/cotizacion/cotizacion.service';
 import { ContratoService } from './../../../services/contrato/contrato.service';
 import { MonedaService } from './../../../services/moneda/moneda.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ContratoModule } from 'src/modelos/contrato/contrato.module';
 import  Swal  from 'sweetalert2';
 
@@ -11,8 +12,11 @@ import  Swal  from 'sweetalert2';
 })
 export class ContratoComponent implements OnInit {
   @Input() contrato : ContratoModule;
-   ganancia : number =0;
-  constructor(private MonedaService: MonedaService,  private ContratoService: ContratoService) { 
+  @Output() emit_ver_historial = new EventEmitter;
+  cotizacionETHUSD : number = 0;
+   ganancia : number = 0;
+  constructor(private MonedaService: MonedaService,  private ContratoService: ContratoService,
+              private CotizacionService : CotizacionService) { 
   }
   activar(){
     Swal.fire({
@@ -58,8 +62,9 @@ export class ContratoComponent implements OnInit {
           dataForm.append('id_monedero',this.contrato.id_monedero.toString());
           this.ContratoService.registrarPago(dataForm).subscribe(
             response => {
-              this.contrato.eth_recibido+=parseFloat(res.value);
+              this.contrato.eth_recibido =  this.contrato.eth_recibido + parseFloat(res.value);
               this.contrato.pagos_registrados++;
+              this.ganancia =( (this.contrato.eth_recibido*100)/parseFloat(this.contrato.eth_pagado));
               Swal.fire({
                 icon: 'success',
                 title:'Agregado con exito'
@@ -86,7 +91,13 @@ export class ContratoComponent implements OnInit {
        }
      )
   }
+  ver_historial() {
+    this.emit_ver_historial.emit(this.contrato);
+  }
   ngOnInit(): void {
+    //debo enocntrar una web donde agarrar ETH en dolares y luego en botizacionservice hacer el observable para luegp
+    //agarrarlo aca y mustrar ese valor 
+    //this.CotizacionService.cbit
     this.ganancia =( (this.contrato.eth_recibido*100)/parseFloat(this.contrato.eth_pagado));
     // this.MonedaService.getNombreMonedero(this.contrato.id_monedero.toString()).subscribe(
     //   res => {

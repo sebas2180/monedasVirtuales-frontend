@@ -2,6 +2,7 @@
 .cardCentral{
     position: relative;
     width: 100%;
+    background-color: rgb(138, 51, 192);;
 }.card-header{
     display: flex;
     justify-content: center;
@@ -20,10 +21,22 @@
 }
     
 .cardTotal{
+    position: relative;
+    width: 100%;
     display: flex;
     justify-content: center;
-    color: white;
-    background: rgb(158, 16, 224);
+    background-color: white;
+    font-size: 2rem;
+    color: rgb(69, 9, 97);
+}
+.body{
+    width: 100%;
+    display:flex;position: relative;
+    justify-content: center;
+    text-align: center;
+}
+span{
+    width: 50%;
 }
 .bodyMonedas{
     position: relative;
@@ -35,4 +48,10 @@ app-moneda{
 }
 a:nth-child(2){
     background: linear-gradient(90deg,rgb(233, 233, 233),#1b2425);
+}
+@media (max-width:768px){
+    .cardTotal{
+        font-size: 1.35rem;
+
+    }
 }

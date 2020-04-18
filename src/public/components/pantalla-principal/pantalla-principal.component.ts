@@ -43,19 +43,28 @@ export class PantallaPrincipalComponent implements OnInit {
   isPrincipal: boolean = false;
   isLogeado: boolean = false;
   verMenu: boolean = false;
+  id_usuario: string='';
+  isVerEstadisticas : boolean = false;
   constructor(public AuthService: AuthService) {
-    if(this.AuthService.isAuthenticatede()){
-      console.log('true');
-      this.isPrincipal = true;
-      this.isLogeado=true;
-      this.verMenu=true;
-    }else{
+    if(this.AuthService.isAuthenticatede()) {
+      if ( this.AuthService.getLocal() ) {
+        this.id_usuario = this.AuthService.getLocal().split('"')[1];
+        this.isPrincipal = true;
+        this.isLogeado = true;
+        this.verMenu = true;
+        this.isVerEstadisticas = true;
+      }
+      
+    } else {
       console.log('false');
       this.isPrincipal = false;
       this.isLogeado = false;
       this.verMenu = false;
     }
 
+  }
+  getId(){
+    return  this.AuthService.getLocal().split('"')[1];
   }
   ngOnInit(): void {
     // if(this.AuthService.isAuthenticatede){
@@ -65,11 +74,11 @@ export class PantallaPrincipalComponent implements OnInit {
     // }
   }
   salir(){
-    this.AuthService.clearLocalStorage();
+ 
     this.estado_login = false;
     this.isPrincipal = true;
     this.isLogeado = false;
-    //this.AuthService.canActivate();
+ 
   }
   ver_registro() {
     if (this.estado_login) {

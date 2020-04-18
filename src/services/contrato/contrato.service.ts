@@ -30,8 +30,8 @@ export class ContratoService {
     .set('id_usuario', id_usuario.toString());
     return this.http.get<String>(`${this.AuthService.ruta}getContratos`,{ params: params , observe: 'response' } )
     .pipe( map((data => new ContratoModule().deserialize(data))
+      )
     )
-  )
   }
   registrarPago(form : FormData){
     return this.http.post(`${this.AuthService.ruta}registrarPago`, form);
@@ -43,6 +43,14 @@ export class ContratoService {
     return this.http.get(`${this.AuthService.ruta}registrarPago`,{
       params: params, observe:'response'
     });
+  }
+  getEstadisticasContratos(id_usuario){
+    const params = new HttpParams()
+    .set('id_usuario', id_usuario.toString());
+    return this.http.get(`${this.AuthService.ruta}getEstadisticasContratos`,{
+      params: params, observe:'response' }).pipe( map((data => new ContratoModule().deserialize(data))
+      )
+    )
   }
 }
 

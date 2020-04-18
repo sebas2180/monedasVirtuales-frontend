@@ -27,8 +27,7 @@ export class AuthService {
     return localStorage.getItem('access-token');
   }
   public comprobar() {
-    return this.http.get(`${this.ruta}verificarToken` );
-      // return !!localStorage.getItem('access-token');
+     this.http.get(`${this.ruta}verificarToken` );
     }
     public isAuthenticatede() : Boolean {
       let userData = localStorage.getItem('userInfo');
