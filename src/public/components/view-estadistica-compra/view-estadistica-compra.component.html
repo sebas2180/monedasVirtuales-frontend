@@ -1,18 +1,20 @@
 
 <div class="card estadistica">
+    <div class="dato"> 
         <p class="titulo">{{this.estadistica.tipo_moneda}}</p>
-
+        <p class="saldo" [style.color]="this.colorSaldo">{{this.saldoRestanteUSD | number:'1.2-3'}}&nbsp; USD</p>
+    </div>
     <div class="dato"> 
         <p>Comprado / vendido: </p><p class="info">{{this.estadistica.compra ||0 | number:'1.2-3'}}&nbsp;/&nbsp;{{this.estadistica.venta ||0 | number:'1.2-3'}}</p>
     </div>
     <div class="dato"> 
-        <p>Precio venta restante promedio: </p><p class="info">{{this.estadistica.promedio_restante | number:'1.2-3'}}&nbsp;USD</p>
+        <p>Necesitas vender a: </p><p class="info">{{this.estadistica.promedio_restante | number:'1.2-3'}}&nbsp;USD</p>
     </div>
     <div class="dato"> 
-        <p>Precio compra promedio: </p><p class="info">{{this.estadistica.promedio_compra | number:'1.2-3'}}&nbsp;USD</p>
+        <p>Prom. comprado: </p><p class="info">{{this.estadistica.promedio_compra | number:'1.2-3'}}&nbsp;USD</p>
     </div>
     <div class="dato"> 
-        <p >Precio vendido promedio: </p><p class="info">{{this.estadistica.promedio_venta || 'No hay ventas' }}</p>
+        <p >Prom. vendido: </p><p class="info">{{this.estadistica.promedio_venta || 'No hay ventas' }}&nbsp;USD</p>
     </div>
 
 </div>

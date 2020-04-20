@@ -21,7 +21,22 @@ export class ListaMonedasComponent implements OnInit {
     total_ETH :number=0;
     total_LTC:number=0;
     isLoading : boolean = true;
-  
+
+    view: any[] = [700, 400];
+    showXAxis = true;
+    showYAxis = true;
+    gradient = false;
+    showLegend = true;
+    showXAxisLabel = true;
+    xAxisLabel = 'Number';
+    showYAxisLabel = true;
+    yAxisLabel = 'data';
+    timeline = true;
+     colorScheme = {
+      domain: ['#E91E63', '#CDDC39', '#3F51B5', '#AAAAAA']
+    };
+
+
   constructor(public MonedaService: MonedaService,public CotizacionService: CotizacionService,
               private AuthService: AuthService) {
      
@@ -80,6 +95,51 @@ export class ListaMonedasComponent implements OnInit {
   }
   ngOnInit(): void {
      
+    const data = [
+      {
+        "name": "Germany",
+        "value": 40632,
+        "extra": {
+          "code": "de"
+        }
+      },
+      {
+        "name": "United States",
+        "value": 50000,
+        "extra": {
+          "code": "us"
+        }
+      },
+      {
+        "name": "France",
+        "value": 36745,
+        "extra": {
+          "code": "fr"
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 36240,
+        "extra": {
+          "code": "uk"
+        }
+      },
+      {
+        "name": "Spain",
+        "value": 33000,
+        "extra": {
+          "code": "es"
+        }
+      },
+      {
+        "name": "Italy",
+        "value": 35800,
+        "extra": {
+          "code": "it"
+        }
+      }
+    ];
+    
   }
 
 }

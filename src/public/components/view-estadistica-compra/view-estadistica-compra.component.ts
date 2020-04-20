@@ -9,20 +9,41 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ViewEstadisticaCompraComponent implements OnInit {
   cotizacionUSD : number;
-  importeCompraUSD : number;
-  importeActualUSD: number;
-  
+  saldoVendidoUSD : number = 0;
+  saldoRestanteUSD: number = 0;
+  colorSaldo : string = "red";
+
   @Input() estadistica : EstadisticasMonedasModule;
   constructor(private CotizacionService : CotizacionService) {
 
-    this.CotizacionService.CbitstampUSDBTC.subscribe(
-      res => {
-        this.cotizacionUSD = res.compra;
-      }
-    )
-   }
+  }
 
   ngOnInit(): void {
+    if(this.estadistica){
+        if(this.estadistica.tipo_moneda === 'Bitcoin') {
+          this.CotizacionService.CbitstampUSDBTC.subscribe(
+              res => {
+              this.cotizacionUSD = res.compra;
+                this.saldoRestanteUSD = (this.estadistica.compra-this.estadistica.venta)*
+                (this.cotizacionUSD-this.estadistica.promedio_restante);
+            }
+          )
+        }
+        if(this.estadistica.tipo_moneda === 'Ethereum') {
+          this.CotizacionService.CcopayUSDETH.subscribe(
+              res => {
+              this.cotizacionUSD = res.compra;
+                this.saldoRestanteUSD = (this.estadistica.compra-this.estadistica.venta)*
+                (this.cotizacionUSD-this.estadistica.promedio_restante);
+            }
+          )
+        }
+        if( this.saldoRestanteUSD < 0 ) {
+          this.colorSaldo= "red"
+        } else {
+          this.colorSaldo = "green" ;
+        }
+  }
   }
 
 }

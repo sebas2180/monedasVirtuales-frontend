@@ -38,7 +38,7 @@ export class EstadisticasContratosComponent implements OnInit {
                   this.total_kualians = this.total_kualians + parseInt(element['cantidad']);
                   this.eth_pagado = this.eth_pagado + parseFloat(element['eth_pagado']);
                   this.eth_recibido = this.eth_recibido + parseFloat(element['eth_recibido']);
-                  console.log(element);
+                  //console.log(element);
                   if( element['status'] === 'Activo') {
                     this.activo = element ;
                   }

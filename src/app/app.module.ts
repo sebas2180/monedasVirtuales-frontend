@@ -53,6 +53,7 @@ import { HistorialPagosComponent } from '../public/components/historial-pagos/hi
 import { EstadisticasCompraComponent } from '../public/components/estadisticas-compra/estadisticas-compra.component';
 import { EstadisticasContratosComponent } from '../public/components/estadisticas-contratos/estadisticas-contratos.component';
 import { LoaderComponent } from '../public/components/loader/loader.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ViewEstadisticaCompraComponent } from '../public/components/view-estadistica-compra/view-estadistica-compra.component';
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { ViewEstadisticaCompraComponent } from '../public/components/view-estadi
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgxChartsModule,
     MatRippleModule,
     RouterModule,
     BrowserAnimationsModule,
