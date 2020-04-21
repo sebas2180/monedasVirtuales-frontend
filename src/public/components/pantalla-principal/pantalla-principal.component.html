@@ -1,4 +1,5 @@
-<barra-superior (changeIconEmitter)="changeIsPrincipal($event)"
+<div class="body">
+    <barra-superior (changeIconEmitter)="changeIsPrincipal($event)"
                 
                 (ver_menu)="changeVerMenu($event)"
                 [iconProfile]="!isPrincipal"
@@ -9,10 +10,10 @@
         (cerrar_menu)="this.cerrar_menu($event)"
         @enterState
         (out_salir)="this.salir()">
-    </menu>
-<lista-cotizaciones *ngIf="!isPrincipal || isLogeado" (outputUSDBTC)="this.changeUSDBTC($event)">
-    
+</menu>
+<lista-cotizaciones *ngIf="!isPrincipal || isLogeado" (outputUSDBTC)="this.changeUSDBTC($event)">   
 </lista-cotizaciones >
+
 <div class="principal" *ngIf="isPrincipal && !isLogeado">
     <div class="opciones">
         <div class="opcion1"  [ngStyle]="{'color': 
@@ -37,4 +38,45 @@
     <estadisticas-compra [id_usuario]="this.id_usuario" *ngIf="this.isVerEstadisticas">
     </estadisticas-compra> 
      
+</div>
+
+<div class="card" *ngIf="!isPrincipal">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Portafolios de wallets
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+                <p class="contenido_card">Un registro con valor en tiempo real, de todos tus cryptomonedas.
+                    Puedes ingresar ingresos y egresos de monederos de wallets y exchangers
+                </p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Kuanliandp
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+                <p class="contenido_card">En un solo lugar, todos tus contratos, con estadisticas de compra de unidades, dinero invertido, dinero recuperado y más.</p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+               Ganancias
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+                <p class="contenido_card">De acuerdo a tus movimientos registrados, te decimos a que promedio 
+                    has comprado y vendido y que precio deberías vender para recuerar el dinero invertido. 
+                </p>
+ 
+        </mat-card-content>
+    </mat-card>
+</div>
+<logos-proveedores  *ngIf="!isPrincipal">
+</logos-proveedores>
 </div>

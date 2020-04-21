@@ -4,53 +4,39 @@
         <div class="posesion">
             <div class="card cardTotal">
                 <div class="body">
-                    <span>Mis monederos:</span><span>{{this.moneda_seleccionada}}&nbsp;{{this.total_monedero | number:'1.2-4' }}</span>
+                    <span>Mis monederos:</span><span>{{this.moneda_seleccionada}}&nbsp;{{this.total_monedero | number:'1.2-2' }}</span>
                 </div>
             </div>
         </div>
     </div>
-
-    <div style="display: inline-block">
-        <ngx-charts-area-chart
-          [view]="view"
-          [scheme]="colorScheme"
-          [results]="multi"
-          [gradient]="gradient"
-          [xAxis]="showXAxis"
-          [yAxis]="showYAxis"
-          [legend]="showLegend"
-          [showXAxisLabel]="showXAxisLabel"
-          [showYAxisLabel]="showYAxisLabel"
-          [xAxisLabel]="xAxisLabel"
-          [yAxisLabel]="yAxisLabel"
-          [autoScale]="autoScale"
-          (select)="onSelect($event)">
-        </ngx-charts-area-chart>
+    <div class="graficoYmonedas">
+        <div class=" bodyMonedas">
+            <div class="opciones-monedas">
+                <button mat-fab [color]="colorARS" (click)="changeMoneda('ARS')"> ARS</button>
+                <button mat-fab [color]="colorEUR"(click)="changeMoneda('EUR')"> EUR</button>
+                <button mat-fab [color]="colorUSD"(click)="changeMoneda('USD')"> USD</button>
+            </div>  
         </div>
-        
-    <div class=" bodyMonedas">
-        <div class="opciones-monedas">
-            <button mat-fab [color]="colorARS" (click)="changeMoneda('ARS')"> ARS</button>
-            <button mat-fab [color]="colorEUR"(click)="changeMoneda('EUR')"> EUR</button>
-            <button mat-fab [color]="colorUSD"(click)="changeMoneda('USD')"> USD</button>
-        </div>
-         
+        <div class="grafico">
+            <canvas id="myChart" height="15vw" width="30vw" ></canvas>
+        </div>  
+    </div>
+    <div class="monedas">
         <app-moneda [monedas]="this.monedasBTC"  
-                    [tipo_moneda]="this.moneda_seleccionada"
-                    *ngIf="this.monedasBTC" 
-                    (export_total)="this.setTotal($event)"
-        ></app-moneda>
-        <app-moneda [monedas]="this.monedasETC" 
-        [tipo_moneda]="this.moneda_seleccionada"
-        *ngIf="this.monedasETC"
-        (export_total)="this.setTotal($event)"
-        ></app-moneda>
-        <app-moneda [monedas]="this.monedasLTC" 
-                    [tipo_moneda]="this.moneda_seleccionada"    
-                    *ngIf="this.monedasLTC"
-                    (export_total)="this.setTotal($event)"
-        ></app-moneda>
+                [tipo_moneda]="this.moneda_seleccionada"
+                *ngIf="this.monedasBTC" 
+                (export_total)="this.setTotal($event)"
+    ></app-moneda>
+    <app-moneda [monedas]="this.monedasETC" 
+    [tipo_moneda]="this.moneda_seleccionada"
+    *ngIf="this.monedasETC"
+    (export_total)="this.setTotal($event)"
+    ></app-moneda>
+    <app-moneda [monedas]="this.monedasLTC" 
+                [tipo_moneda]="this.moneda_seleccionada"    
+                *ngIf="this.monedasLTC"
+                (export_total)="this.setTotal($event)"
+    ></app-moneda>
 
-         
     </div>
 </div>

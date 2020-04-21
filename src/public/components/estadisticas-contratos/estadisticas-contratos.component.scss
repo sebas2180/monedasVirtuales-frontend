@@ -1,8 +1,9 @@
-
+.body{
+    background-color: rgb(138, 51, 192);
+}
 .principal{
     position: relative;
     background-color: rgb(138, 51, 192);
-    width: 100%;
 }.card{
     display: flex;
     flex-direction: column;
@@ -11,6 +12,8 @@
     color: black;
     align-content: center;
     width: 100%;
+    width: 95%;
+    left: 2.5%;
 }
 .dato{
     width: 100%;
