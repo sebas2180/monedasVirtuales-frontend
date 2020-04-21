@@ -1,5 +1,5 @@
 import { EstadisticasMonedasModule } from './../../../modelos/estadisticas-monedas/estadisticas-monedas.module';
-import { AuthserviceService } from './../../../../../../Exchange/FrontEnd/src/app/services/authservice.service';
+
 import { MonedaService } from './../../../services/moneda/moneda.service';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { interval } from 'rxjs';
