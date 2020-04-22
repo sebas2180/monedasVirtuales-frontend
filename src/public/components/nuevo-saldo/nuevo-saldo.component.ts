@@ -110,6 +110,7 @@ export class NuevoSaldoComponent implements OnInit {
     } else {
       nombreMonedero = this.form2.get('nombre').value ;
     }
+    console.log('siguienteeeee')
     this.MonedaService.getMoneda(this.form.get('id_usuario').value, this.form.get('moneda').value, nombreMonedero).subscribe(
       res => {
        if ( res['body']['status'] === 760 ){

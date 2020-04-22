@@ -52,7 +52,7 @@ export class ListaCotizacionesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    interval(5000).subscribe(
+    interval(20000).subscribe(
       res=>{
         this.cotizacionesUSDBTC = [];
         this.cotizacionesEURBTC = [];
