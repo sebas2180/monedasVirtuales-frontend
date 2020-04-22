@@ -1,0 +1,4 @@
+---
+production: &default
+  serverPort: 9898
+  baseUrl: http://157.245.136.204
