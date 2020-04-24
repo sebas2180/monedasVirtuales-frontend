@@ -14,7 +14,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class MonedaComponent implements OnInit {
   @Output() export_total =new EventEmitter();
  
-  @Input() monedas: MonedaModule;
+  @Input() monedas: MonedaModule[];
   @Input() tipo_moneda: string = 'ARS';
   cotizacionbitstampUSDBTC : number;
   cotizacionbitArgenBTCARS : number;
@@ -138,6 +138,7 @@ export class MonedaComponent implements OnInit {
         this.importeTotal+=this.monedas[index].importe;
       }
      }
+     console.log(this.importeTotal);
   }
   
 }

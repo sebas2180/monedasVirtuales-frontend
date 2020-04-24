@@ -31,6 +31,7 @@ export class EstadisticasContratosComponent implements OnInit {
           const usuario = this.auth.getLocal().split('"')[1];
           this.ContratoService.getEstadisticasContratos(usuario).subscribe(
             res => {
+             
               for (let index = 0; index < 3; index++) {
                 if (res['body'][index]) {
                   const element = res['body'][index];

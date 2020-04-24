@@ -11,6 +11,7 @@ export class UsuarioService {
   constructor(private http: HttpClient,private m: MonedaService,private AuthService: AuthService) { 
   }
   login(form: FormData){
+    console.log('login');
     return this.http.post(this.AuthService.ruta+`login/`,form);
   }
   logout(form: FormData){

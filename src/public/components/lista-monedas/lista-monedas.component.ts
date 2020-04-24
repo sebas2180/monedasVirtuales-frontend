@@ -47,13 +47,13 @@ export class ListaMonedasComponent implements OnInit {
           this.AuthService.clearLocalStorage();
         }
         if(res['BTC'][0]){
-          this.monedasBTC = res['BTC'][0];
+          this.monedasBTC = res['BTC'];
         }
         if(res['ETC'][0]){
-          this.monedasETC = res['ETC'][0];
+          this.monedasETC = res['ETC'];
         }
         if(res['LTC'][0]){
-          this.monedasLTC=res['LTC'][0];
+          this.monedasLTC=res['LTC'];
         }
       }, err => {
         console.log(err);
