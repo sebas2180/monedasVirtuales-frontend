@@ -4,15 +4,82 @@ menu{
    margin : 0;
    padding : 0;
 }
+.header{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+ 
+}
+.botones{
+    display: flex;
+    flex-direction: column;
+}
 .buton_agregar{
+
     margin-top: 10px;
     position: relative;
     width: 50%;
     left: 25%; 
     margin-bottom: 20px;
 }
+button{
+    margin-top: 10px;
+}
 .mis_contratos{
     font-size: 2rem;
     text-decoration: underline;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.card-nuevo{
+    left: 25%;
+    width: 50%;
+}
+.card-header{
+    background-color: rgb(119, 109, 180);
+    color: white;
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.card-body,mat-form-field,.botonGuardar{
+    position: relative;
+    width: 100%;
+}
+
+@media (max-width:768px){
+    .card-nuevo{
+        left: 0%;
+        width: 100%;
+    }
+}
+@media(min-width : 768px) {
+    .graficoYmonedas{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .bodyMonedas{
+        position: relative;
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        
+        
+    }
+    .opciones-monedas{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        height: 50%;
+       top: 25%; 
+    }
+    .grafico{
+        position: relative;
+        //left: 25%;
+        width:40%;
+        height: 50%;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
 }

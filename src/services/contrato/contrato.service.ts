@@ -25,6 +25,13 @@ export class ContratoService {
     return this.http.get(`${this.AuthService.ruta}activarContrato`, {
       params: params , observe: 'response' });
   }
+  getCantidadContratos(id_usuario){
+    console.log(' ---- getCantidadContratos ----');
+    var params =  new HttpParams()
+    .set('id_usuario', id_usuario.toString());
+    return this.http.get(`${this.AuthService.ruta}getCantidadContratos`, {
+      params: params  });
+  }
   getContratos( id_usuario ): Observable<ContratoModule>{
     const params = new HttpParams()
     .set('id_usuario', id_usuario.toString());

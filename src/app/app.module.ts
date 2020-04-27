@@ -55,6 +55,8 @@ import { EstadisticasContratosComponent } from '../public/components/estadistica
 import { LoaderComponent } from '../public/components/loader/loader.component';
 import { ViewEstadisticaCompraComponent } from '../public/components/view-estadistica-compra/view-estadistica-compra.component';
 import { LogosProveedoresComponent } from '../public/components/logos-proveedores/logos-proveedores.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,7 +106,8 @@ import { LogosProveedoresComponent } from '../public/components/logos-proveedore
     MatButtonModule,
     MatToolbarModule,
     MatGridListModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   exports:[
     MatInputModule,

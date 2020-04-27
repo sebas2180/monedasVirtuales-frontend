@@ -8,18 +8,70 @@
         (cerrar_menu)="this.cerrar_menu()"
         @enterState>
 </menu>
-<div class="principal" *ngIf="!this.verHistorial">
-        <button class = "buton_agregar"
-        mat-stroked-button
-        color="primary"
-        *ngIf="!isNuevoContrato"  
-        (click)=" this.isNuevoContrato=true ">
-                Agregar contrato
-        </button>
-
+<div class="header">
         <div class="mis_contratos">
                 <p>Mis contratos</p>
         </div>
+</div>
+<div class="graficoYmonedas">
+        <div class=" bodyMonedas">
+            <div class="opciones-monedas">
+                <button class = "buton_agregar"
+                mat-stroked-button
+                color="primary"
+                *ngIf="!isNuevoContrato"  
+                (click)=" this.isNuevoContrato=true ">
+                        Agregar contrato
+                </button>
+                <button class = "buton_agregar"
+                mat-stroked-button
+                color="primary"
+                *ngIf="!isVerNuevoPago"  
+                (click)=" this.isVerNuevoPago=true ">
+                        Nuevo pago
+                </button>
+        </div>
+ 
+        </div>
+        <div class="grafico">
+            <canvas id="myChart" height="15vw" width="30vw" ></canvas>
+        </div>  
+    </div>
+
+<div class="principal" *ngIf="!this.verHistorial">
+        <div class="card card-nuevo"  *ngIf="isVerNuevoPago"  >
+                <div class="card-header">
+                        <p>Nuevo pago</p>
+                </div>
+                <div class="card-body">
+                        <form [formGroup]="form">
+                                <mat-form-field class="full-width" appearance="outline" name="id">
+                                        <mat-label>Tipo de contrato</mat-label>
+                                        <mat-select formControlName="tipo_contrato"> 
+                                            <mat-option *ngFor="let tipo of this.tipos_contratos"  [value]="tipo"  >
+                                                {{tipo}}</mat-option>      
+                                        </mat-select>
+                                        <mat-error *ngIf="this.form.get('tipos_contrato')?.invalid ">Falta tipo documento</mat-error>       
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="full-width" name="importe">
+                                        <mat-label>Importe</mat-label>
+                                        <input  matInput  type="number"  name="importe" formControlName="importe">
+                                        <mat-error *ngIf="this.form.get('importe')?.invalid ">El importe debe ser mayor a cero</mat-error>
+                                </mat-form-field>
+                                <button mat-raised-button color="primary" (click)="this.guardar()" class="botonGuardar">
+                                    Enviar
+                                </button>
+                                <button mat-raised-button color="Warn" (click)="this.isVerNuevoPago=false" class="botonGuardar">
+                                        Cancelar
+                                    </button>
+                         </form>
+                </div>
+        </div>      
+        <div class="header">
+                <div class="mis_contratos">
+                        <p>Lista de contratos</p>
+                </div>
+        </div>  
         <app-nuevo-contrato     *ngIf="isNuevoContrato" 
                                 (change_isNuevoContrato)="change_isNuevoContrato()">
         </app-nuevo-contrato>

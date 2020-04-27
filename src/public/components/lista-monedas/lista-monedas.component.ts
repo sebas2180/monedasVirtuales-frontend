@@ -29,13 +29,12 @@ export class ListaMonedasComponent implements OnInit {
     por_LTC : number =0 ;
     isLoading : boolean = true;
     graficoCharged : number = 0;
-
     title = 'angular8chartjs';
-  canvas: any;
-  ctx: any;
-  ngAfterViewInit() {
-    this.setGrafico();
-  }
+    canvas: any;
+    ctx: any;
+    ngAfterViewInit() {
+          this.setGrafico();
+    }
 
 
   constructor(public MonedaService: MonedaService,public CotizacionService: CotizacionService,
