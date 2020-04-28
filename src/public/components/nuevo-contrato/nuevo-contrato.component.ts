@@ -71,42 +71,53 @@ export class NuevoContratoComponent implements OnInit {
    }
    enviar(){
      if(!this.form.invalid) {
-       this.MonedaService.getIdMonederos( this.form.get('nombreMonedero').value , this.form.get('id_usuario').value)
-       .subscribe(
-        res => {
-           console.log(res['body']['id']);
-           const id_monedero = res['body']['id'];
-           var dataForm = new FormData();
-           dataForm.append('id_monedero', id_monedero);
-           dataForm.append('id_usuario', this.form.get('id_usuario').value);
-           dataForm.append('cantidad', this.form.get('cantidad').value);
-           dataForm.append('categoria', this.form.get('categoria').value);
-           dataForm.append('eth_pagado', this.form.get('eth_pagado').value);
-           this.contratoService.setContrato(dataForm).subscribe(
-             res => {
-               const status = res['status'];
-               if ( status === 769 ) {
-                Swal.fire({
-                  icon: 'success',
-                  title: res['msj']
-                }).then(
-                  r => {
-                      this.change_isNuevoContrato.emit();
-                      }
-                  )
-               } else {
-                Swal.fire({
-                  icon: 'error',
-                  title: res['msj']
-                })
-               }
-             }
-           )
-         },
-         err => {
-           console.log('Hubo un error');
-         }
-      )
+      Swal.fire({
+        title: `Estas por guardar un contrato de ${this.form.get('categoria').value}`,
+        text: `Cantidad de kuals  ${this.form.get('cantidad').value}`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, generlo!'
+      }).then((result) => {
+        this.MonedaService.getIdMonederos( this.form.get('nombreMonedero').value , this.form.get('id_usuario').value)
+        .subscribe(
+         res => {
+            console.log(res['body']['id']);
+            const id_monedero = res['body']['id'];
+            var dataForm = new FormData();
+            dataForm.append('id_monedero', id_monedero);
+            dataForm.append('id_usuario', this.form.get('id_usuario').value);
+            dataForm.append('cantidad', this.form.get('cantidad').value);
+            dataForm.append('categoria', this.form.get('categoria').value);
+            dataForm.append('eth_pagado', this.form.get('eth_pagado').value);
+            this.contratoService.setContrato(dataForm).subscribe(
+              res => {
+                const status = res['status'];
+                if ( status === 769 ) {
+                 Swal.fire({
+                   icon: 'success',
+                   title: res['msj']
+                 }).then(
+                   r => {
+                       this.change_isNuevoContrato.emit();
+                       }
+                   )
+                } else {
+                 Swal.fire({
+                   icon: 'error',
+                   title: res['msj']
+                 })
+                }
+              }
+            )
+          },
+          err => {
+            console.log('Hubo un error');
+          }
+       )
+         
+      })
      } else {
       // console.log(this.form.get('monedero').value);
       // console.log(this.form.get('eth_pagado').value);

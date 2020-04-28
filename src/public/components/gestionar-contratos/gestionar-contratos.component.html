@@ -13,29 +13,22 @@
                 <p>Mis contratos</p>
         </div>
 </div>
-<div class="graficoYmonedas">
-        <div class=" bodyMonedas">
-            <div class="opciones-monedas">
-                <button class = "buton_agregar"
-                mat-stroked-button
-                color="primary"
-                *ngIf="!isNuevoContrato"  
-                (click)=" this.isNuevoContrato=true ">
-                        Agregar contrato
-                </button>
-                <button class = "buton_agregar"
-                mat-stroked-button
-                color="primary"
-                *ngIf="!isVerNuevoPago"  
-                (click)=" this.isVerNuevoPago=true ">
+<div class="graficoYmonedas"  *ngIf="!this.verHistorial && !isVerNuevoPago">
+    <div class=" bodyMonedas">
+       <div class="boton">
+        <button  mat-raised-button  color="primary" *ngIf="!isNuevoContrato"   (click)=" this.isNuevoContrato=true ">
+                Agregar contrato
+        </button>
+       </div>
+        <div class="boton"  *ngIf="!isNuevoContrato">
+                <button mat-raised-button   color="primary" *ngIf="!isVerNuevoPago"   (click)=" this.isVerNuevoPago=true ">
                         Nuevo pago
                 </button>
         </div>
- 
-        </div>
-        <div class="grafico">
+    </div>
+     <div class="grafico"  *ngIf="!isNuevoContrato">
             <canvas id="myChart" height="15vw" width="30vw" ></canvas>
-        </div>  
+    </div>  
     </div>
 
 <div class="principal" *ngIf="!this.verHistorial">
@@ -44,6 +37,11 @@
                         <p>Nuevo pago</p>
                 </div>
                 <div class="card-body">
+                        <div class="header" *ngIf=" isNuevoContrato" >
+                                <div class="mis_contratos">
+                                        <p>Nuevo contrato</p>
+                                </div>
+                        </div>  
                         <form [formGroup]="form">
                                 <mat-form-field class="full-width" appearance="outline" name="id">
                                         <mat-label>Tipo de contrato</mat-label>
@@ -67,15 +65,15 @@
                          </form>
                 </div>
         </div>      
-        <div class="header">
+        <div class="header" *ngIf="!isVerNuevoPago && !isNuevoContrato" >
                 <div class="mis_contratos">
                         <p>Lista de contratos</p>
                 </div>
         </div>  
-        <app-nuevo-contrato     *ngIf="isNuevoContrato" 
+        <app-nuevo-contrato      *ngIf="!isVerNuevoPago && this.isNuevoContrato"
                                 (change_isNuevoContrato)="change_isNuevoContrato()">
         </app-nuevo-contrato>
-        <div *ngIf=" !isNuevoContrato"  >
+        <div  *ngIf="!isVerNuevoPago">
                 <contrato *ngFor="let contrato of contratos" 
                            [contrato]="contrato"
                         (emit_ver_historial)="this.change_ver_contrato($event)">

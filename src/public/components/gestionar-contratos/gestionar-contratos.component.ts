@@ -25,6 +25,7 @@ export class GestionarContratosComponent implements OnInit {
   title = 'angular8chartjs';
   canvas: any;
   ctx: any;
+  indicador: boolean = false;
 
   newForm(){
     this.form = new FormGroup({
@@ -36,6 +37,7 @@ export class GestionarContratosComponent implements OnInit {
               private ContratoService : ContratoService,
               private route: Router
               ) {
+        
         this.usuario = this.AuthService.getLocal().split('"')[1];
         this.newForm();
   if ( this.AuthService.isAuthenticatede() ) {
@@ -43,11 +45,19 @@ export class GestionarContratosComponent implements OnInit {
       this.isLogeado = true;
       this.verMenu = false;
       this.traer_contratos();
-      this.setGrafico();
      } else {
       this.route.navigate(['/pantallaprincipal']);
     }
-
+    this.ContratoService.getCantidadContratos(this.usuario).subscribe(
+      res => {
+         
+        this.crearGrafico(res);
+         // Chart.defaults.global.defaultFontColor = '#fff';
+      },err => {
+        console.log(err);
+        this.crearGrafico(null);
+      }
+    )
   }
   guardar(){
     if(!this.form.invalid){
@@ -63,6 +73,7 @@ export class GestionarContratosComponent implements OnInit {
               icon: 'success',
               title: 'Modificacion correcta',
             });
+            this.traer_contratos();
             this.isVerNuevoPago = false ;
           } else {
             if(res['status'] === 773 ){
@@ -79,12 +90,42 @@ export class GestionarContratosComponent implements OnInit {
     }
 
   }
-  setGrafico(){
 
+  crearGrafico(res){
+    var bajo = 0; var medio = 0 ; var alto = 0 ;
+    if(res != null){
+    bajo =   res['bajo']  ;  medio =  res['medio'] ;  alto =  res['alto'] ;
+    } 
+    console.log(res);
+    this.canvas =  document.getElementById('myChart');
+    this.ctx    =  this.canvas.getContext('2d');
+    let myChart = new Chart(this.ctx, {
+      type: 'doughnut',
+      data: {
+          labels: ["Bajo riesgo", "Medio riesgo", "Alto riesgo"],
+          datasets: [{
+              label: 'Monedero',
+              data: [  res['bajo']  ,  medio =  res['medio'] ,  res['alto']  ],
+              backgroundColor: [
+                  'rgb(76, 76, 209);',
+                  'rgb(122, 5, 201)',
+                  'rgba(255, 206, 86, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+        responsive :true,
+        title: {
+          display: true,
+          text: 'Cantidad de contratos'
+        }
+      }
+      });
   }
   traer_contratos(){
-    const aux = this.AuthService.getLocal().split('"')[1];
-      console.log(aux);
+    this.contratos = null;
+    const aux = this.AuthService.getLocal().split('"')[1];;
     this.ContratoService.getContratos(aux).subscribe(
       res => {
         this.contratos = res['body'] ;
@@ -107,6 +148,7 @@ export class GestionarContratosComponent implements OnInit {
     if ( this.isNuevoContrato ) {
       this.isNuevoContrato = false;
       this.traer_contratos();
+      this.traer_contratos();
     } else {
       this.isNuevoContrato = true;
     }
@@ -115,39 +157,7 @@ export class GestionarContratosComponent implements OnInit {
     console.log(e);
   }
   ngOnInit(): void {
-    this.canvas =  document.getElementById('myChart');
-    this.ctx    =  this.canvas.getContext('2d');
-    this.ContratoService.getCantidadContratos(this.usuario).subscribe(
-      res => {
-        console.log(res);
-          let myChart = new Chart(this.ctx, {
-          type: 'doughnut',
-          data: {
-              labels: ["Bajo riesgo", "Medio riesgo", "Alto riesgo"],
-              datasets: [{
-                  label: 'Monedero',
-                  data: [ parseInt(res['bajo']) , parseInt(res['medio']) , parseInt(res['alto']) ],
-                  backgroundColor: [
-                      'rgb(76, 76, 209);',
-                      'rgb(122, 5, 201)',
-                      'rgba(255, 206, 86, 1)'
-                  ],
-                  borderWidth: 1
-              }]
-          },
-          options: {
-            responsive :true,
-            title: {
-              display: true,
-              text: 'Cantidad de contratos'
-            }
-          }
-          });
-         // Chart.defaults.global.defaultFontColor = '#fff';
-      },err => {
-        console.log(err);
-      }
-    )
+
   }
 
 }

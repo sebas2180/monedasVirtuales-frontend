@@ -9,6 +9,11 @@
         </mat-card-title>
     </mat-card-header>
     <mat-card-content>
+        <div class="titulos">
+            <div class="columna_titulo"> <p>proveedor</p> </div>
+            <div class="columna_titulo"> <p>Compra </p> </div>
+            <div class="columna_titulo"> <p>Venta</p> </div>
+        </div>
         <div class="datos" *ngFor="let cotizacion of this.CotizacionModule">
             <div class="proveedor">{{cotizacion.proveedor}}</div> 
             <div class="compra">{{cotizacion.compra}} </div>
