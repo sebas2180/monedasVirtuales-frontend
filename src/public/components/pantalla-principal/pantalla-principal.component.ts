@@ -77,6 +77,7 @@ export class PantallaPrincipalComponent implements OnInit {
  
     this.estado_login = false;
     this.isPrincipal = true;
+    this.verMenu=false;
     this.isLogeado = false;
  
   }

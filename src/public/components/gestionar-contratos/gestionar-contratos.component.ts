@@ -18,6 +18,7 @@ export class GestionarContratosComponent implements OnInit {
   verMenu: boolean = false;
   isNuevoContrato = false;
   contratos : ContratoModule[] = [];
+  contrato : ContratoModule;
   tipos_contratos :string[] = ['Bajo riesgo','Medio riesgo','Alto riesgo'];
   form : FormGroup;
   isVerNuevoPago: boolean = false;
@@ -33,7 +34,7 @@ export class GestionarContratosComponent implements OnInit {
       importe: new FormControl('0',[Validators.required,Validators.min(0.000000001)])
     })
   }
-  constructor(private AuthService : AuthService,
+  constructor(public AuthService : AuthService,
               private ContratoService : ContratoService,
               private route: Router
               ) {
@@ -154,7 +155,14 @@ export class GestionarContratosComponent implements OnInit {
     }
   }
   change_ver_contrato(e) {
-    console.log(e);
+    if(this.verHistorial ) { 
+      this.verHistorial = false ;
+    }else {
+      this.contrato = e;
+      console.log( this.contrato);
+      this.verHistorial = true ;
+    }
+
   }
   ngOnInit(): void {
 

@@ -6,7 +6,7 @@
                 [isLogeado]="!isLogeado" 
                 
 ></barra-superior>
-<menu   *ngIf="!verMenu && this.isLogeado" 
+<menu   *ngIf="verMenu" 
         (cerrar_menu)="this.cerrar_menu($event)"
         @enterState
         (out_salir)="this.salir()">

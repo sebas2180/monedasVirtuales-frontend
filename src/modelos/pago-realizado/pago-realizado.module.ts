@@ -12,6 +12,11 @@ import { CommonModule } from '@angular/common';
 export class PagoRealizadoModule { 
   id: number;
   id_contrato: number;
-  createat: Date;
+  create_at: Date;
   eth_pagado: number;
+
+  deserialize?(input: any): this {
+    return Object.assign(this, input);
+  }
+
 }

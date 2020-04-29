@@ -9,7 +9,7 @@
         @enterState>
 </menu>
 <div class="header">
-        <div class="mis_contratos">
+        <div class="mis_contratos" *ngIf="!this.verHistorial">
                 <p>Mis contratos</p>
         </div>
 </div>
@@ -79,4 +79,8 @@
                         (emit_ver_historial)="this.change_ver_contrato($event)">
                 </contrato>
         </div>
+</div>
+<div class="secundario"  *ngIf="this.verHistorial">
+        <historial-pagos *ngIf="this.verHistorial" 
+                        [contrato]="this.contrato" (emitterVolver)="this.change_ver_contrato($event)"></historial-pagos>
 </div>

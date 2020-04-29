@@ -1,3 +1,4 @@
+import { PagoRealizadoModule } from './../../modelos/pago-realizado/pago-realizado.module';
 import { AuthService } from './../authService/auth.service';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -50,6 +51,14 @@ export class ContratoService {
     return this.http.get(`${this.AuthService.ruta}registrarPago`,{
       params: params, observe:'response'
     });
+  }
+  getListaPagos(id_contrato,id_usuario){
+    const params = new HttpParams()
+    .set('id_contrato', id_contrato.toString())
+    .set('id_usuario', id_usuario.toString());
+    return this.http.get(`${this.AuthService.ruta}getListaPagos`,{
+      params: params});
+  
   }
   getEstadisticasContratos(id_usuario){
     const params = new HttpParams()
