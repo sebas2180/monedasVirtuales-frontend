@@ -16,7 +16,8 @@ import { interval } from 'rxjs';
 })
 export class NuevoSaldoComponent implements OnInit {
   color_compra: string = 'primary';
-  color_venta: string = 'basic';
+  color_movimiento: string = 'primary';
+  color_venta: string = 'primary';
   form: FormGroup;
   form2: FormGroup;
   form3: FormGroup;
@@ -32,6 +33,8 @@ export class NuevoSaldoComponent implements OnInit {
   precio_venta_ETH: number = 0;
   precio_compra_BTC : number = 0;
   precio_venta_BTC: number = 0;
+  isMovimiento : boolean = false;
+  isCompraVenta : boolean = false;
   newForm(){
     var usuario = this.AuthService.getLocal().split('"')[1];
     this.form = new FormGroup({
@@ -47,7 +50,7 @@ export class NuevoSaldoComponent implements OnInit {
     });
     this.form3 = new FormGroup({
       id_monedero: new FormControl(' ', [ Validators.required ] ),
-      saldo_actual: new FormControl('0', [ Validators.required , Validators.min(0)]),
+      saldo_actual: new FormControl('0', [ Validators.required , Validators.min(-10)]),
       agregar: new FormControl('0', [ Validators.required, Validators.min(0)]),
       nuevo_saldo: new FormControl('0', [ Validators.required , Validators.min(0)]),
       cotizacion_USD: new FormControl('0', [ Validators.required , Validators.min(0)])
@@ -227,10 +230,21 @@ export class NuevoSaldoComponent implements OnInit {
     this.form3.patchValue( { 'agregar' : cuenta.toString() } );
   
   }
+  movimiento() {
+    this.form.patchValue( { 'tipo_operacion' : 'Movimiento' } );
+    this.color_movimiento = 'primary';
+    this.color_compra = 'basic';
+    this.color_venta = 'basic';
+    this.isCompraVenta = false;
+    this.isMovimiento = true;
+  }
   compra(){
     this.form.patchValue( { 'tipo_operacion' : 'Compra' } );
     this.color_compra = 'primary';
+    this.color_movimiento = 'basic';
     this.color_venta = 'basic';
+    this.isCompraVenta = true;
+    this.isMovimiento = false;
     if  (this.form.get('moneda').value === 'Bitcoin') {
       this.form3.patchValue({'cotizacion_USD' : this.precio_compra_BTC});
     }
@@ -244,7 +258,10 @@ export class NuevoSaldoComponent implements OnInit {
   venta(){
     this.form.patchValue( { 'tipo_operacion' : 'Venta' } );
     this.color_compra = 'basic';
+    this.color_movimiento = 'basic';
     this.color_venta = 'primary';
+    this.isCompraVenta = true;
+    this.isMovimiento = false;
     console.log(this.form.get('moneda').value);
     console.log(this.precio_venta_BTC);
     if  (this.form.get('moneda').value === 'Bitcoin') {

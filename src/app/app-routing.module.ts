@@ -1,3 +1,4 @@
+import { VerCotizacionesComponent } from './../public/components/ver-cotizaciones/ver-cotizaciones.component';
 import { GestionarMonederoComponent } from './../public/components/gestionar-monedero/gestionar-monedero.component';
 import { GestionarContratosComponent } from './../public/components/gestionar-contratos/gestionar-contratos.component';
 import { AgregarPagoComponent } from './../public/components/agregar-pago/agregar-pago.component';
@@ -31,6 +32,11 @@ const routes: Routes = [
     component: AgregarPagoComponent,
     canActivate:[GuardGuard]
   },{
+    path: 'cotizaciones',
+    component: VerCotizacionesComponent,
+    canActivate:[GuardGuard]
+  },
+  {
     path: 'gestionarContratos',
     component: GestionarContratosComponent,
     canActivate:[GuardGuard]

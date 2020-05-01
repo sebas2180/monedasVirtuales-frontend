@@ -108,7 +108,7 @@ export class GestionarContratosComponent implements OnInit {
               label: 'Monedero',
               data: [  res['bajo']  ,  medio =  res['medio'] ,  res['alto']  ],
               backgroundColor: [
-                  'rgb(76, 76, 209);',
+                  'rgb(112, 80, 103)',
                   'rgb(122, 5, 201)',
                   'rgba(255, 206, 86, 1)'
               ],

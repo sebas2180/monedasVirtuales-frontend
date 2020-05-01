@@ -6,18 +6,23 @@
     </mat-card-header>
     <mat-card-content>
         <div class="titulos">
+            <div class="titulo">    <p class="tituloNombre">Historial     </p>  </div>
             <div class="titulo">    <p class="tituloNombre">Monedero     </p>  </div>
             <div class="titulo">    <p class="tituloNombre">Cantidad   </p>  </div>
             <div class="titulo">    <p class="tituloNombre">{{this.lugarVenta}}    </p>  </div>
         </div>
         <div *ngFor="let moneda of monedas"  class="monedaList">
             <div  class=" card monedaItem" style="height: 50px;">
+                <div class="proveedor"><span class="material-icons">  list_alt  </span></div>
                 <div class="proveedor">{{this.moneda.monedero}}</div>
                 <div class="cantidad">{{this.moneda.importe}}</div>    
                 <div class="venta_3">{{this.moneda.importe * this.multiplicador | number:'1.2-2' }}</div>    
             </div>
         </div>
         <div class="footer">
+            <div class="itemfooter">
+                <p> </p>
+            </div>
             <div class="itemfooter">
                 <p>TOTAL</p>
             </div>

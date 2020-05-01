@@ -57,7 +57,7 @@ export class PantallaPrincipalComponent implements OnInit {
       
     } else {
       console.log('false');
-      this.isPrincipal = false;
+      this.isPrincipal = true;
       this.isLogeado = false;
       this.verMenu = false;
     }

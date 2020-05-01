@@ -57,6 +57,8 @@ import { ViewEstadisticaCompraComponent } from '../public/components/view-estadi
 import { LogosProveedoresComponent } from '../public/components/logos-proveedores/logos-proveedores.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { VerCotizacionesComponent } from '../public/components/ver-cotizaciones/ver-cotizaciones.component';
+import { TransferenciaSaldoComponent } from '../public/components/transferencia-saldo/transferencia-saldo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +85,9 @@ import { environment } from '../environments/environment';
     EstadisticasCompraComponent,
     LoaderComponent,
     ViewEstadisticaCompraComponent,
-    LogosProveedoresComponent
+    LogosProveedoresComponent,
+    VerCotizacionesComponent,
+    TransferenciaSaldoComponent
   ],
   imports: [
     AppRoutingModule,

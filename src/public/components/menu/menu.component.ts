@@ -36,6 +36,14 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  misMonederos(){
+    this.cerrar_menu.emit();
+    this.route.navigate(['/pantallaPrincipal']);
+  }
+  cotizaciones(){
+    this.cerrar_menu.emit();
+    this.route.navigate(['/cotizaciones']);
+  }
   agregarPago(){
     this.cerrar_menu.emit();
     this.route.navigate(['/agregarPago']);
