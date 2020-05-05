@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
- // public ruta :string  = `http://localhost:3000/`;
-  
-   public ruta :string  = `http://167.99.54.122:3000/`;
+  //public ruta :string  = `http://localhost:3000/`;
+
+  public ruta :string  = `http://167.99.54.122:3000/`;
 
   constructor(private http: HttpClient, private route : Router) { }
 

@@ -86,15 +86,15 @@
                 
                 <button mat-raised-button 
                 color="primary" 
-                (click)="guardar()" >
+                (click)="guardar()"  class="botonGuardar">
                     Guardar
-            </button>
+                </button>
             </form>
         </div>
         <button mat-stroked-button 
         color = "primary" 
         *ngIf = " this.isNuevoMonedero>1 "
-        (click) = "reset()" >
+        (click) = "reset()"  class="botonOtro">
             Elegir otra moneda
         </button>
         <div class="card instrucciones">

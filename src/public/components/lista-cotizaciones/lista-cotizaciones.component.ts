@@ -17,6 +17,7 @@ export class ListaCotizacionesComponent implements OnInit {
   cotizacionesEURETH : CotizacionModule[] =[];
   cotizacionesARSETH : CotizacionModule[] =[];
   cotizacionesARSLTC : CotizacionModule[] =[];
+  cotizacionesUSDLTC : CotizacionModule[] =[];
   cotizacionesEURLTC : CotizacionModule[] =[];
   isLoad: boolean = false;
   customOptions: OwlOptions = {
@@ -62,89 +63,67 @@ export class ListaCotizacionesComponent implements OnInit {
         this.cotizacionesARSETH = [];
         this.cotizacionesARSLTC = [];
         this.cotizacionesEURLTC = [];
-        this.CotizacionService.getCotizaciones().subscribe(
+        this.cotizacionesUSDLTC = [];
+        this.CotizacionService.getCotizacionesV2().subscribe(
           res=>{
-            if(res['status']==770){
-              var cotizaciones = res['cotizaciones'];
-              cotizaciones.forEach(registro => {
-                if(registro.symbol == 'BTC'){
-                  if(registro.base =='ARS' ){
-                    this.cotizacionesARSBTC.push(registro);
-                     
-                    if(registro['proveedor'] == 'ArgenBtc'){
-                      this.CotizacionService.changeArgenbtcARSBTC(registro);
-                    }
-                    if(registro['proveedor'] == 'Decrypto'){
-                      this.CotizacionService.changDecryptoARSBTC(registro);
-                    }
-                  }
-                  if(registro.base =='EUR'){
-                    this.cotizacionesUSDBTC.push(registro);
-                    if(registro['proveedor'] == 'Bit2me'){
-                      this.CotizacionService.changeBit2meEURBTC(registro);
-                    }
-                  }
-                  if(registro.base =='USD' ){
-                    this.cotizacionesEURBTC.push(registro);
-                    if(registro['proveedor'] == 'Bitstamp'){
-                      this.CotizacionService.changeBitstampUSDBTC(registro);
-                    }
-                    if(registro['proveedor'] == 'Decrypto'){
-                      this.CotizacionService.changeCopayUSDETH(registro);
-                    }
-                  }
-                }
-                if(registro.symbol == 'ETH'){
-                  if(registro.base =='ARS' ){    
-                    this.cotizacionesARSETH.push(registro);
-                    if(registro['proveedor'] == 'Satoshitango'){
-                      this.CotizacionService.changeSatoshitangoARSETH(registro);
-                    }
-                  }
-                  if(registro.base ==='EUR' ){
-                       this.cotizacionesEURETH.push(registro);
-                       if(registro['proveedor'] == 'Bit2me'){
-                        this.CotizacionService.changeBit2meEURETH(registro);
-                      }
-                  }
-                  if(registro.base ==='USD' ){    
-                    this.cotizacionesUSDETH.push(registro);
-                    if(registro['proveedor'] == 'Copay'){
-                      this.CotizacionService.changeCopayUSDETH(registro);
-                    }
-                  }
-                }
-                if(registro.symbol == 'LTC'){
-                  if(registro.base =='EUR' ){
-                    this.cotizacionesEURLTC.push(registro);
-                    if(registro['proveedor'] == 'Bit2me'){
-                     // console.log(registro['proveedor'] +'   '+registro['compra']);
-                      this.CotizacionService.changeBit2meEURLTC(registro);
-                    }
-                  }
-                  if(registro.base =='ARS' ){
-                    this.cotizacionesARSLTC.push(registro);
-                    if(registro['proveedor'] == 'Satoshitango'){
-                      this.CotizacionService.changeSatoshitangoARSLTC(registro);
-                    }
-                  }
-                }
-              });
-               (this.CotizacionService.CsatoshitangoARSLTC.subscribe(e=>{
-                //console.log(e)
-              }));
-              this.CotizacionService.cotizacionesUSDBTC = this.cotizacionesUSDBTC;
-              this.CotizacionService.cotizacionesEURBTC = this.cotizacionesEURBTC;
-              this.CotizacionService.cotizacionesARSBTC = this.cotizacionesARSBTC;
+            console.log(res);
 
-              this.CotizacionService.cotizacionesUSDETH = this.cotizacionesUSDETH;
-              this.CotizacionService.cotizacionesEURETH = this.cotizacionesEURETH;
-              this.CotizacionService.cotizacionesARSETH = this.cotizacionesARSETH;
+            this.CotizacionService.cotizacionesUSDBTC =   res['BTCUSD'];
+            this.CotizacionService.cotizacionesEURBTC =   res['BTCEUR'];
+            this.CotizacionService.cotizacionesARSBTC =   res['BTCARS'];
+            this.CotizacionService.cotizacionesUSDETH =   res['ETHUSD'];
+            this.CotizacionService.cotizacionesEURETH =   res['ETHEUR'];
+            this.CotizacionService.cotizacionesARSETH =   res['ETHARS'];
+            this.CotizacionService.cotizacionesARSLTC =   res['LTCARS'];
+            this.CotizacionService.cotizacionesEURLTC =    res['LTCEUR'];
+            this.CotizacionService.cotizacionesUSDLTC =    res['LTCUSD'];
+            this.isLoad = true;
 
-              this.CotizacionService.cotizacionesARSLTC = this.cotizacionesARSLTC;
-              this.CotizacionService.cotizacionesEURLTC = this.cotizacionesEURLTC;
-              this.isLoad = true;
-            }
+            this.CotizacionService.cotizacionesEURLTC.forEach(element => {
+              if(element.proveedor === 'Bit2me' ){
+                this.CotizacionService.changeBit2meEURLTC(element) ;
+              }
+            });
+            this.CotizacionService.cotizacionesEURETH.forEach(element => {
+              if(element.proveedor === 'Bit2me' ){
+                this.CotizacionService.changeBit2meEURETH(element) ;
+              }
+            });
+            this.CotizacionService.cotizacionesEURBTC.forEach(element => {
+              if(element.proveedor === 'Bit2me' ){
+                this.CotizacionService.changeBit2meEURBTC(element) ;
+              }
+            });
+            this.CotizacionService.cotizacionesARSBTC.forEach(element => {
+              if(element.proveedor === 'ArgenBtc' ){
+                this.CotizacionService.changeArgenbtcARSBTC(element) ;
+              }
+            });
+            this.CotizacionService.cotizacionesARSETH.forEach(element => {
+              if(element.proveedor === 'Cryptomkt' ){
+                this.CotizacionService.changeCryptomktARSETH(element) ;
+              }
+            });
+            this.CotizacionService.cotizacionesARSLTC.forEach(element => {
+              if(element.proveedor === 'Cryptomkt' ){
+                this.CotizacionService.changeCryptomktARSETH(null) ;
+              }
+            });
+            this.CotizacionService.cotizacionesUSDBTC.forEach(element => {
+              if(element.proveedor === 'Bitstamp' ){
+                this.CotizacionService.changeBitstampUSDBTC(null) ;
+              }
+            });
+            this.CotizacionService.cotizacionesUSDETH.forEach(element => {
+              if(element.proveedor === 'Coinbase' ){
+                this.CotizacionService.changeCopayUSDETH(null) ;
+              }
+            });
+            // this.CotizacionService.cotizacionesUSDETH.forEach(element => {
+            //   if(element.proveedor === 'Coinbase' ){
+            //     this.CotizacionService.changeCoin(null) ;
+            //   }
+            // });
           }
         )
       }

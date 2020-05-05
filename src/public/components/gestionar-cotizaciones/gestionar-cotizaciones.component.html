@@ -1,0 +1,41 @@
+<barra-superior (changeIconEmitter)="changeIsPrincipal($event)" 
+                (ver_menu)="changeVerMenu($event)"
+                [iconProfile]="!isPrincipal"
+                [isLogeado]="!isLogeado" 
+                
+></barra-superior>
+<div class="botones-monedas">
+        <button mat-stroked-button color="primary">
+                <div  class="dato">
+                        <img src="../../../assets/icons/ars.svg" alt=""> <p class="base">ARS</p>
+                </div>
+        </button>
+        <button mat-stroked-button color="primary">
+               <div  class="dato"> 
+                       <img  src="../../../assets/icons/usd.svg" alt=""> <p class="base">USD</p>
+                </div>
+        </button>
+</div>
+<menu   *ngIf="verMenu && this.isLogeado" 
+        (cerrar_menu)="this.cerrar_menu()"
+        @enterState>
+</menu>
+<div *ngIf=" this.isOkETHARS">
+        <app-tabla-cotizaciones [cotizaciones]= "this.cotizacionesETHARS" [isOk]="this.isOkETHARS">
+        </app-tabla-cotizaciones>
+</div>
+
+<div *ngIf=" this.isOkETHUSD">
+        <app-tabla-cotizaciones [cotizaciones]= "this.cotizacionesETHUSD" [isOk]="this.isOkETHUSD">
+        </app-tabla-cotizaciones>
+</div>
+ 
+<div *ngIf=" this.isOkBTCARS">
+        <app-tabla-cotizaciones [cotizaciones]= "this.cotizacionesBTCARS" [isOk]="this.isOkBTCARS">
+        </app-tabla-cotizaciones>
+</div>
+
+<div *ngIf=" this.isOkBTCUSD">
+        <app-tabla-cotizaciones [cotizaciones]= "this.cotizacionesBTCUSD" [isOk]="this.isOkBTCUSD">
+        </app-tabla-cotizaciones>
+</div>

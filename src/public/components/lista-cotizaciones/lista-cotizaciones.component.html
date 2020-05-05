@@ -37,6 +37,11 @@
     </cotizacion>
   </ng-template>  
   
+  <ng-template carouselSlide  *ngIf="this.CotizacionService.cotizacionesUSDLTC.length>0" >
+    <cotizacion [CotizacionModule]="this.CotizacionService.cotizacionesUSDLTC">
+    </cotizacion>
+  </ng-template>  
+
   </owl-carousel-o>
   
  </div>

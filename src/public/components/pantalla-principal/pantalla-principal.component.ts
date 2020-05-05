@@ -51,7 +51,7 @@ export class PantallaPrincipalComponent implements OnInit {
         this.id_usuario = this.AuthService.getLocal().split('"')[1];
         this.isPrincipal = true;
         this.isLogeado = true;
-        this.verMenu = true;
+        this.verMenu = false;
         this.isVerEstadisticas = true;
       }
       

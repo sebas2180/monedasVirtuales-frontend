@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VerCotizacionesComponent } from './ver-cotizaciones.component';
+import { TablaCotizacionesComponent } from './tabla-cotizaciones.component';
 
-describe('VerCotizacionesComponent', () => {
-  let component: VerCotizacionesComponent;
-  let fixture: ComponentFixture<VerCotizacionesComponent>;
+describe('TablaCotizacionesComponent', () => {
+  let component: TablaCotizacionesComponent;
+  let fixture: ComponentFixture<TablaCotizacionesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VerCotizacionesComponent ]
+      declarations: [ TablaCotizacionesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VerCotizacionesComponent);
+    fixture = TestBed.createComponent(TablaCotizacionesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

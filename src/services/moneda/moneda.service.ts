@@ -16,6 +16,9 @@ export class MonedaService {
   updateImporte(form: FormData){
     return this.http.post<string>(this.AuthService.ruta + `updateImporte/`, form);
   }
+  transferenciaSaldo(form: FormData){
+    return this.http.post<string>(this.AuthService.ruta + `transferenciaSaldo`, form);
+  }
   updateCotizacion(form: FormData){
     return this.http.post<string>(`${this.AuthService.ruta}updateCotizacion` , form);
   }
@@ -59,7 +62,7 @@ export class MonedaService {
     const params = new HttpParams()
       .set('id_monedero', id_monedero);
     return this.http.get<string>(this.AuthService.ruta + `getNombreMonedero/`,{
-      params: params , observe: 'response'});
+      params: params});
   }
 
   getEstadisticasTransacciones(id_usuario : string){ 

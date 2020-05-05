@@ -1,1 +1,52 @@
-<p>transferencia-saldo works!</p>
+<div class="principal">
+    <p class="p_titulo">TRANSFERENCIA ENTRE MIS MONEDEROS</p>
+    <form [formGroup]="form">
+        <mat-form-field class="select"  appearance="fill">
+            <mat-label>TIPO MONEDA</mat-label>
+            <mat-select formControlName="moneda" [disabled]="IsMonedaSeleccionada ==true"> 
+                <mat-option *ngFor="let moneda of this.monedas"  
+                            [value]="moneda"
+                            (click)="buscar_monederos()" >
+                    {{moneda}}</mat-option>        
+                </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="select"  appearance="fill">
+            <mat-label>ORIGEN</mat-label>
+            <mat-select formControlName="origen" [disabled]="IsMonedaSeleccionada ==false"> 
+                <mat-option *ngFor="let origen of this.monederos"  
+                            [value]="origen.id" 
+                            (click)="obtener_saldo()">
+                    {{origen.monedero}}</mat-option>        
+                </mat-select>
+        </mat-form-field>
+
+        
+        <mat-form-field class="select"  appearance="fill">
+            <mat-label>DESTINO</mat-label>
+            <mat-select formControlName="destino" [disabled]="IsMonedaSeleccionada ==false"> 
+                <mat-option *ngFor="let destino of this.monederos"  
+                            [value]="destino.id" >
+                    {{destino.monedero}}</mat-option>        
+                </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="number"  appearance="fill">
+            <mat-label>Saldo actual origen</mat-label>
+            <input matInput type="number"formControlName="saldo_actual">
+            <mat-error *ngIf="this.form.controls.saldo_actual.invalid" >Error</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="number"  appearance="fill">
+            <mat-label>Ingrese el monto</mat-label>
+            <input matInput type="number"formControlName="agregar" (keyup)="modificarSaldo()" min="0">
+            <mat-error *ngIf="this.form.controls.agregar.invalid">Falta el importe</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="enviar()">ENVIAR</button>
+
+        <button mat-stroked-button  color = "primary"  *ngIf = " this.IsMonedaSeleccionada " (click) = "reset()"  class="botonOtro">
+            Elegir otra moneda
+        </button>
+    </form>
+</div>

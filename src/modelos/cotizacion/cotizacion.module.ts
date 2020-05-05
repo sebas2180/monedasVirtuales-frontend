@@ -18,5 +18,7 @@ export class CotizacionModule {
   compra?: number;
   venta?: number;
   proveedor?: string;
+  variacionDia? : number ;
+  variacionHora? : number;
 
 }

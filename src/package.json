@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 167.99.54.122 --port 3200 --disable-host-check",
+    "start": "ng serve --host 161.35.134.242 --port 3200 --disable-host-check",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -42,7 +42,7 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.900.1",
+    "@angular-devkit/build-angular": "^0.900.7",
     "@angular/cli": "^9.0.6",
     "@angular/compiler-cli": "~9.0.0",
     "@angular/language-service": "~9.0.0",

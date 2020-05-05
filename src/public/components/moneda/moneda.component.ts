@@ -21,8 +21,9 @@ export class MonedaComponent implements OnInit {
   cotizacionbit2meEURBTC : number;
   cotizacionbit2meEURLTC : number;
   cotizacionbit2meEURETH : number;
-  cotizacionSatoARSETH : number;
-  cotizacionSatoARSLTC : number;
+  //cotizacionSatoARSETH : number;
+   cotizacionSatoARSLTC : number;
+  cotizacionCritpETHARS : number;
   importeTotal: number = 0;
   importeTotalMultiplicado: number = 0;
   multiplicador: number = 0;
@@ -39,9 +40,9 @@ export class MonedaComponent implements OnInit {
             this.cotizacionbit2meEURETH = cotizacion1['compra'];
           }
         });
-        this.CotizacionService.CsatoshitangoARSETH.subscribe(cotizacion2=>{
+        this.CotizacionService.CcryptomrkETHARS.subscribe(cotizacion2=>{
           if(cotizacion2){
-            this.cotizacionSatoARSETH = cotizacion2['compra'];
+            this.cotizacionCritpETHARS = cotizacion2['compra'];
           }
         });
                       ///////// LITECOIN ///////////////////
@@ -51,9 +52,9 @@ export class MonedaComponent implements OnInit {
             this.cotizacionbit2meEURLTC = cotizacion3['compra'];
           }
         });
-        this.CotizacionService.CsatoshitangoARSLTC.subscribe(cotizacion4=>{
+        this.CotizacionService.CcryptomrkETHARS.subscribe(cotizacion4=>{
           if(cotizacion4){
-            this.cotizacionSatoARSLTC = cotizacion4['compra'];
+            this.cotizacionCritpETHARS = cotizacion4['compra'];
           }
         });
                     ///////// BITCOIN ///////////////////
@@ -87,8 +88,8 @@ export class MonedaComponent implements OnInit {
                             this.multiplicador = this.cotizacionSatoARSLTC;
                            // this.multiplicador = this.cotizacionSatoARSLTC;
               break;
-          case 'Ethereum':  this.lugarVenta='Satoshitango';
-                            this.multiplicador = this.cotizacionSatoARSETH;
+          case 'Ethereum':  this.lugarVenta='Cryptomarkt';
+                            this.multiplicador = this.cotizacionCritpETHARS;
               break;
         }
         this.importeTotalMultiplicado = this.importeTotal * this.multiplicador;

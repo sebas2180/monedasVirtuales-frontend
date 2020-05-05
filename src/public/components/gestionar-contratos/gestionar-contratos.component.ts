@@ -134,7 +134,9 @@ export class GestionarContratosComponent implements OnInit {
       }
     )
   }
-  changeIsPrincipal(e){}
+  changeIsPrincipal(e){
+    
+  }
   changeVerMenu(e) {
     if(this.verMenu){
       this.verMenu = false;

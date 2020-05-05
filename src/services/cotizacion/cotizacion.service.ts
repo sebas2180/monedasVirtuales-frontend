@@ -24,7 +24,7 @@ export class CotizacionService {
 
   private decryptoARSBTC = new BehaviorSubject<CotizacionModule>(new CotizacionModule);
   private decryptoUSDBTC = new BehaviorSubject<CotizacionModule>(new CotizacionModule);
-
+  private CryptoMrkARSETH = new BehaviorSubject<CotizacionModule>(new CotizacionModule);
   public  cotizacionesUSDBTC : CotizacionModule[] =[];
   public cotizacionesEURBTC : CotizacionModule[] =[];
   public cotizacionesARSBTC : CotizacionModule[] =[];
@@ -33,6 +33,8 @@ export class CotizacionService {
   public cotizacionesARSETH : CotizacionModule[] =[];
   public cotizacionesARSLTC : CotizacionModule[] =[];
   public cotizacionesEURLTC : CotizacionModule[] =[];
+  public cotizacionesUSDLTC : CotizacionModule[] =[];
+ 
   constructor(private http: HttpClient, private AuthService: AuthService,private m: MonedaService) { }
 
   public Cbit2meEURBTC = this.bit2meEURBTC.asObservable();
@@ -50,6 +52,8 @@ export class CotizacionService {
 
   public CdecryptoUSDBTC = this.copayUSDETH.asObservable();
   public CdecryptoARSBTC = this.copayUSDETH.asObservable();
+
+  public CcryptomrkETHARS = this.CryptoMrkARSETH.asObservable();
 
   public changeBit2meEURBTC(cotizacion: CotizacionModule):void{
     this.bit2meEURBTC.next(cotizacion);
@@ -72,6 +76,9 @@ export class CotizacionService {
   public changeSatoshitangoARSETH(cotizacion: CotizacionModule):void{
     this.satoshitangoARSETH.next(cotizacion);
   }
+  public changeCryptomktARSETH(cotizacion: CotizacionModule):void{
+    this.CryptoMrkARSETH.next(cotizacion);
+  }
   public changeSatoshitangoARSLTC(cotizacion: CotizacionModule):void{
     this.satoshitangoARSLTC.next(cotizacion);
   }
@@ -83,6 +90,9 @@ export class CotizacionService {
   }
   getCotizaciones(){
     return this.http.get(`${this.AuthService.ruta}getCotizaciones`);
+  }
+  getCotizacionesV2(){
+    return this.http.get(`${this.AuthService.ruta}getCotizacionesV2`);
   }
   getCotizacionParaMonedero(){
     return this.http.get(`${this.AuthService.ruta}getCotizacionParaMonedero`);
