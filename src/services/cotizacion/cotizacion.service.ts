@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { CotizacionModule } from './../../modelos/cotizacion/cotizacion.module';
 import { MonedaService } from './../moneda/moneda.service';
 import { AuthService } from './../authService/auth.service';
@@ -20,7 +21,7 @@ export class CotizacionService {
   private satoshitangoARSETH  = new BehaviorSubject<CotizacionModule>(new CotizacionModule);
   private satoshitangoARSLTC  = new BehaviorSubject<CotizacionModule>(new CotizacionModule);
 
-  private copayUSDETH  = new BehaviorSubject<CotizacionModule>(new CotizacionModule);
+  private coinbaseUSDETH  = new BehaviorSubject<CotizacionModule>(new CotizacionModule);
 
   private decryptoARSBTC = new BehaviorSubject<CotizacionModule>(new CotizacionModule);
   private decryptoUSDBTC = new BehaviorSubject<CotizacionModule>(new CotizacionModule);
@@ -48,10 +49,10 @@ export class CotizacionService {
   public CsatoshitangoARSETH = this.satoshitangoARSETH.asObservable();
   public CsatoshitangoARSLTC = this.satoshitangoARSLTC.asObservable();
 
-  public CcopayUSDETH = this.copayUSDETH.asObservable();
+  public CcoinbaseUSDETH = this.coinbaseUSDETH.asObservable();
 
-  public CdecryptoUSDBTC = this.copayUSDETH.asObservable();
-  public CdecryptoARSBTC = this.copayUSDETH.asObservable();
+  public CdecryptoUSDBTC = this.decryptoUSDBTC.asObservable();
+  public CdecryptoARSBTC = this.decryptoARSBTC.asObservable();
 
   public CcryptomrkETHARS = this.CryptoMrkARSETH.asObservable();
 
@@ -61,8 +62,8 @@ export class CotizacionService {
   public changeBit2meEURETH(cotizacion: CotizacionModule):void{
     this.bit2meEURETH.next(cotizacion);
   }
-  public changeCopayUSDETH(cotizacion: CotizacionModule):void{
-    this.copayUSDETH.next(cotizacion);
+  public changeCoinbaseUSDETH(cotizacion: CotizacionModule):void{
+    this.coinbaseUSDETH.next(cotizacion);
   }
   public changeBit2meEURLTC(cotizacion: CotizacionModule):void{
     this.bit2meEURLTC.next(cotizacion);
@@ -92,7 +93,11 @@ export class CotizacionService {
     return this.http.get(`${this.AuthService.ruta}getCotizaciones`);
   }
   getCotizacionesV2(){
-    return this.http.get(`${this.AuthService.ruta}getCotizacionesV2`);
+    return this.http.get(`${this.AuthService.ruta}getCotizacionesV2`,{ observe:'response' })
+    .pipe( map((data => new CotizacionModule().deserialize(data))
+    )
+  )
+  
   }
   getCotizacionParaMonedero(){
     return this.http.get(`${this.AuthService.ruta}getCotizacionParaMonedero`);

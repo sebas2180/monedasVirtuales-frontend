@@ -9,9 +9,10 @@
 <menu   *ngIf="verMenu" 
         (cerrar_menu)="this.cerrar_menu($event)"
         @enterState
+
         (out_salir)="this.salir()">
 </menu>
-<lista-cotizaciones *ngIf="!isPrincipal || isLogeado" (outputUSDBTC)="this.changeUSDBTC($event)">   
+<lista-cotizaciones *ngIf="!isPrincipal || isLogeado" (outputUSDBTC)="this.changeUSDBTC($event)" [cancel_subsc]="this.cancel_subscripcion">   
 </lista-cotizaciones >
 
 <div class="principal" *ngIf="isPrincipal && !isLogeado">

@@ -21,7 +21,7 @@ export class MonedaComponent implements OnInit {
   cotizacionbit2meEURBTC : number;
   cotizacionbit2meEURLTC : number;
   cotizacionbit2meEURETH : number;
-  //cotizacionSatoARSETH : number;
+  cotizacionCoinbaseUSDETH : number;
    cotizacionSatoARSLTC : number;
   cotizacionCritpETHARS : number;
   importeTotal: number = 0;
@@ -29,9 +29,11 @@ export class MonedaComponent implements OnInit {
   multiplicador: number = 0;
   titulo: string;
   lugarVenta: string ='';
+  isPrimeraIteracion :boolean = true;
+  importeVenta : number = 0 ;
   constructor(public CotizacionService: CotizacionService,private MonedaService: MonedaService) { 
 
-    interval(2000).subscribe(
+    interval(5000).subscribe(
       resp=>{
         this.comprobar_titulo();
                   ///////// ETHEREUM ///////////////////
@@ -52,9 +54,9 @@ export class MonedaComponent implements OnInit {
             this.cotizacionbit2meEURLTC = cotizacion3['compra'];
           }
         });
-        this.CotizacionService.CcryptomrkETHARS.subscribe(cotizacion4=>{
+        this.CotizacionService.CcoinbaseUSDETH.subscribe(cotizacion4=>{
           if(cotizacion4){
-            this.cotizacionCritpETHARS = cotizacion4['compra'];
+            this.cotizacionCoinbaseUSDETH = cotizacion4['compra'];
           }
         });
                     ///////// BITCOIN ///////////////////
@@ -70,7 +72,9 @@ export class MonedaComponent implements OnInit {
         });
         this.CotizacionService.CbitstampUSDBTC.subscribe(cotizacion7=>{
           if(cotizacion7){
-            //console.log(cotizacion)
+            if(cotizacion7['compra']>0){
+              this.isPrimeraIteracion=false;
+            }
             this.cotizacionbitstampUSDBTC = cotizacion7['compra'];
           }
         });
@@ -82,14 +86,23 @@ export class MonedaComponent implements OnInit {
       case 'ARS':
         switch(this.titulo){
           case 'Bitcoin':  this.lugarVenta='Argenbtc';
-                           this.multiplicador = this.cotizacionbitArgenBTCARS;
+                          if(!this.isPrimeraIteracion){
+                            this.multiplicador = this.cotizacionbitArgenBTCARS;
+                          } else {
+                                this.multiplicador = this.monedas[0].compraARS ;
+                          }
               break;
           case 'Litecoin':  this.lugarVenta='Satoshitango';
                             this.multiplicador = this.cotizacionSatoARSLTC;
                            // this.multiplicador = this.cotizacionSatoARSLTC;
               break;
           case 'Ethereum':  this.lugarVenta='Cryptomarkt';
-                            this.multiplicador = this.cotizacionCritpETHARS;
+                            if(!this.isPrimeraIteracion){
+                              this.multiplicador = this.cotizacionCritpETHARS;
+                            } else {
+                                  this.multiplicador = this.monedas[0].compraARS ;
+                            }
+                break;
               break;
         }
         this.importeTotalMultiplicado = this.importeTotal * this.multiplicador;
@@ -98,12 +111,21 @@ export class MonedaComponent implements OnInit {
         case 'USD':
           switch(this.titulo) {
             case 'Bitcoin':  this.lugarVenta = 'Decrypto';
-                             this.multiplicador = this.cotizacionbitstampUSDBTC;
+                            if(!this.isPrimeraIteracion){
+                                this.multiplicador = this.cotizacionbitstampUSDBTC;
+                              } else {
+                                this.multiplicador = this.monedas[0].compraUSD ;
+                              }
                 break;
-            case 'Ethereum':  this.lugarVenta = 'NULL';
-                              this.multiplicador = this.cotizacionbit2meEURETH * 1.10 ;
+            case 'Ethereum':  this.lugarVenta = 'Coinbase';
+                              if(!this.isPrimeraIteracion){
+                                this.multiplicador = this.cotizacionCoinbaseUSDETH ;
+                              } else {
+                                this.multiplicador = this.monedas[0].compraUSD ;
+
+                              }
                               break;
-            case 'Litecoin':  this.lugarVenta = 'NULL';
+            case 'Litecoin':  this.lugarVenta = 'Coinbase';
                               this.multiplicador = this.cotizacionbit2meEURLTC * 1.10 ;
                 break;
              
@@ -114,18 +136,25 @@ export class MonedaComponent implements OnInit {
       case 'EUR':
         switch(this.titulo){
           case 'Bitcoin':  this.lugarVenta='Bit2me';
-                           this.multiplicador = this.cotizacionbit2meEURBTC;
-                           //this.export_total.emit({a: this.importeTotalMultiplicado,b:this.titulo});
+                           if(!this.isPrimeraIteracion){
+                            this.multiplicador = this.cotizacionbit2meEURBTC;
+                          } else {
+                            this.multiplicador = this.monedas[0].compraEUR ;
+                          }
               break;
           case 'Litecoin':  this.lugarVenta='Bit2me';
                             this.multiplicador = this.cotizacionbit2meEURLTC ;
                             //this.export_total.emit({a: this.importeTotalMultiplicado,b:this.titulo});
               break;
           case 'Ethereum':  this.lugarVenta='Bit2me';
-                            this.multiplicador = this.cotizacionbit2meEURETH;
-                            //this.export_total.emit({a: this.importeTotalMultiplicado,b:this.titulo});
+                            if(!this.isPrimeraIteracion){
+                              this.multiplicador = this.cotizacionbit2meEURETH;
+                            } else {
+                              this.multiplicador = this.monedas[0].compraEUR ;
+                            }
               break;
         }
+
         this.importeTotalMultiplicado = this.importeTotal * this.multiplicador;
         this.export_total.emit({a: this.importeTotalMultiplicado, b : this.titulo});
         break;
@@ -139,7 +168,8 @@ export class MonedaComponent implements OnInit {
         this.importeTotal+=this.monedas[index].importe;
       }
      }
-     console.log(this.importeTotal);
+
+    // console.log(this.importeTotal);
   }
   
 }

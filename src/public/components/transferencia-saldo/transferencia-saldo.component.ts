@@ -86,7 +86,18 @@ export class TransferenciaSaldoComponent implements OnInit {
     this.monederos = [];
         this.MonedaService.getMonedas().subscribe(
       res => {
-        
+
+        if ( res['status'] === 760 ){
+          Swal.fire({
+            icon: 'warning',
+            timer: 1500,
+            title: 'Se ha deslogeado por limite de tiempo.'
+          }).then(
+            r=>{
+             this.AuthService.clearLocalStorage();
+             this.route.navigate(['/pantallaprincipal']);
+            })
+         }
         if(this.form.get('moneda').value === 'Bitcoin') {
           this.monederos = res['BTC'] ;
         }

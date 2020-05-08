@@ -17,7 +17,9 @@ export class MonedaModule {
   importe?: number;
   create_at?: Date;
   monedero?:string;
-
+  compraUSD?: number;
+  compraEUR?: number;
+  compraARS?: number;
   
   deserialize?(input: any): this {
     return Object.assign(this, input);

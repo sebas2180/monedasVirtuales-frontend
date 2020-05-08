@@ -30,7 +30,7 @@ export class ViewEstadisticaCompraComponent implements OnInit {
           )
         }
         if(this.estadistica.tipo_moneda === 'Ethereum') {
-          this.CotizacionService.CcopayUSDETH.subscribe(
+          this.CotizacionService.CcoinbaseUSDETH.subscribe(
               res => {
               this.cotizacionUSD = res.compra;
                 this.saldoRestanteUSD = (this.estadistica.compra-this.estadistica.venta)*

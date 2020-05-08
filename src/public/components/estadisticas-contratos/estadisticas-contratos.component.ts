@@ -24,7 +24,7 @@ export class EstadisticasContratosComponent implements OnInit {
               private auth : AuthService,
               private CotizacionService : CotizacionService) {
         if( this.auth.isAuthenticatede()){
-          this.CotizacionService.CcopayUSDETH.subscribe(
+          this.CotizacionService.CcoinbaseUSDETH.subscribe(
             cotizacion => { this.cotizacionETHUSD = cotizacion['compra']
           }
           )

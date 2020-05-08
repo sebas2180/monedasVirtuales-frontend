@@ -16,19 +16,23 @@ export class EstadisticasCompraComponent implements OnInit {
   constructor(private MonedaService : MonedaService) { 
   }
 
-  ngOnInit(): void {
-    interval(6000).subscribe(
-      res => {
-        this.MonedaService.getEstadisticasTransacciones(this.id_usuario).subscribe(
-          res => {
-            this.isLoading = false;
-            // console.log(res);
-             this.Estadisticas= res['body'];
-          }
-        )
-      }
+  getEstadisticas(){
+      this.MonedaService.getEstadisticasTransacciones(this.id_usuario).subscribe(
+       res => {
+         this.isLoading = false;
+          console.log(res);
+          this.Estadisticas= res['body'];
+          this.getEstadisticas();
+       },err =>{
+         console.log(err)
+       }
 
-    )
+
+ )
+  }
+  ngOnInit(): void {
+    this.getEstadisticas();
+ 
   }
 
 }

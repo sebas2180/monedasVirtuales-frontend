@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
  
 import { Chart } from 'chart.js';
 import { AuthService } from './../../../services/authService/auth.service';
@@ -7,6 +8,7 @@ import { MonedaModule } from '../../../modelos/moneda/moneda.module';
 import { MonedaService } from '../../../services/moneda/moneda.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ChartType } from 'chart.js';
+import  Swal  from 'sweetalert2';
 //import { MultiDataSet, Label } from 'ng2-charts';
 
 @Component({
@@ -38,13 +40,22 @@ export class ListaMonedasComponent implements OnInit {
 
 
   constructor(public MonedaService: MonedaService,public CotizacionService: CotizacionService,
-              private AuthService: AuthService) {
+              private AuthService: AuthService
+              ,private route: Router) {
     this.MonedaService.getMonedas().subscribe(
       res => {
         console.log(res);
-        if(res['status']==760){
-          this.AuthService.clearLocalStorage();
-        }
+        if ( res['status'] === 760 ){
+          Swal.fire({
+            icon: 'warning',
+            timer: 1500,
+            title: 'Se ha deslogeado por limite de tiempo.'
+          }).then(
+            r=>{
+             this.AuthService.clearLocalStorage();
+             this.route.navigate(['/pantallaprincipal']);
+            })
+         }
         if(res['BTC'][0]){
           this.monedasBTC = res['BTC'];
         }

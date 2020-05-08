@@ -77,4 +77,11 @@ mat-card-header,mat-card-title{
         margin-top: 10px;
     }
 }
- 
+app-loader{
+    position: absolute;
+    z-index: 100 ;
+    width: 100%;
+    left: 30%;
+    height: 50%;;
+    height: 100% ;
+}

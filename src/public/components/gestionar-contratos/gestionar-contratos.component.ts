@@ -12,6 +12,7 @@ import  Swal  from 'sweetalert2';
   styleUrls: ['./gestionar-contratos.component.scss']
 })
 export class GestionarContratosComponent implements OnInit {
+  isLoad: boolean = false ;
   isPrincipal: boolean = false;
   isLogeado: boolean = false;
   verHistorial :boolean = false;
@@ -51,7 +52,7 @@ export class GestionarContratosComponent implements OnInit {
     }
     this.ContratoService.getCantidadContratos(this.usuario).subscribe(
       res => {
-         
+        this.isLoad = true;
         this.crearGrafico(res);
          // Chart.defaults.global.defaultFontColor = '#fff';
       },err => {
@@ -129,6 +130,7 @@ export class GestionarContratosComponent implements OnInit {
     const aux = this.AuthService.getLocal().split('"')[1];;
     this.ContratoService.getContratos(aux).subscribe(
       res => {
+        console.log( 'this.contratos' );
         this.contratos = res['body'] ;
         console.log( this.contratos );
       }

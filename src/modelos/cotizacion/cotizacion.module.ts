@@ -21,4 +21,9 @@ export class CotizacionModule {
   variacionDia? : number ;
   variacionHora? : number;
 
+    
+  deserialize?(input: any): this {
+    return Object.assign(this, input);
+  }
+
 }

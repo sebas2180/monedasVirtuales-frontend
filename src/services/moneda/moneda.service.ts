@@ -68,8 +68,10 @@ export class MonedaService {
   getEstadisticasTransacciones(id_usuario : string){ 
     const params = new HttpParams()
       .set('id_usuario', id_usuario);
+      console.log('GET ESTADISTICAS TRANSACCIONES')
     return this.http.get<string>(this.AuthService.ruta + `getEstadisticasTransacciones/`,{
-      params: params , observe: 'response'}).pipe( map((data => new EstadisticasMonedasModule().deserialize(data))
+      params: params , observe: 'response' })
+      .pipe( map((data => new EstadisticasMonedasModule().deserialize(data))
       )
     )
   }

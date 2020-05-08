@@ -60,9 +60,9 @@ export class NuevoSaldoComponent implements OnInit {
                 private MonedaService: MonedaService,
                 private route: Router,
                 private CotizacionService : CotizacionService ) {
-    interval(20000).subscribe(
+    interval(60000).subscribe(
       resp0 => {
-        this.CotizacionService.CcopayUSDETH.subscribe( cotizacion =>{
+        this.CotizacionService.CcoinbaseUSDETH.subscribe( cotizacion =>{
           this.precio_compra_ETH = cotizacion.compra;
           this.precio_venta_ETH = cotizacion.venta*0.96;
         });

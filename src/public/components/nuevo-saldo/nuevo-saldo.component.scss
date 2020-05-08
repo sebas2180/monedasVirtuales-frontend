@@ -23,9 +23,10 @@ mat-form-field{
     justify-content: space-around;
 }
 .tipo_op{
-    width: 40%;
+    position: relative;
+    width: 30%;
     font-size: 1rem;
-    margin-botton: 20px;
+    margin-left: 20px;
 }
 .titulo_tipo {
 
@@ -34,6 +35,10 @@ mat-form-field{
     text-align: center;
     font-size: 1.5rem;
     margin-top: 25px;
+}
+.compra_venta,.movimiento {
+    position: relative;
+    top: 50px;
 }
 .botonGuardar,.botonOtro{
     width: 90%;
@@ -45,7 +50,10 @@ mat-form-field{
         width: 27%;
         //margin-left: 5%;
         
+        
     }
+
+ 
 }
 @media(max-width:768px) {
     button{
@@ -53,5 +61,14 @@ mat-form-field{
         width: 90%;
         margin-left: 5%;
         margin-top: 15px;
+    }
+    .Formulario0{
+        flex-direction: column;
+    }
+    .tipo_op{
+        position: relative;
+        width: 80%;
+        font-size: 1rem;
+        margin-left: 10%;
     }
 }

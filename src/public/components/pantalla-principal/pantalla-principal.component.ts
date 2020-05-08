@@ -44,6 +44,8 @@ export class PantallaPrincipalComponent implements OnInit {
   isLogeado: boolean = false;
   verMenu: boolean = false;
   id_usuario: string='';
+  cancel_subscripcion = false;
+  CheckLoading : boolean = false;
   isVerEstadisticas : boolean = false;
   constructor(public AuthService: AuthService) {
     if(this.AuthService.isAuthenticatede()) {
@@ -120,4 +122,7 @@ export class PantallaPrincipalComponent implements OnInit {
   changeUSDBTC(e) {
     this.cotizacionesUSDBTC = e;
   }
+  // cancelar_sub(e) {
+  //   this.cancel_subscripcion= e;
+  // }
 }

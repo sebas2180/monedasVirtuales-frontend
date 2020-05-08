@@ -6,14 +6,14 @@
 ></barra-superior>
 <menu   *ngIf="verMenu && this.isLogeado" 
         (cerrar_menu)="this.cerrar_menu()"
-        @enterState>
+         >
 </menu>
 <div class="header">
-        <div class="mis_contratos" *ngIf="!this.verHistorial">
+        <div class="mis_contratos" *ngIf="!this.verHistorial && this.isLoad">
                 <p>Mis contratos</p>
         </div>
 </div>
-<div class="graficoYmonedas"  *ngIf="!this.verHistorial && !isVerNuevoPago">
+<div class="graficoYmonedas"  *ngIf="!this.verHistorial && !isVerNuevoPago && this.isLoad">
     <div class=" bodyMonedas">
        <div class="boton">
         <button  mat-raised-button  color="primary" *ngIf="!isNuevoContrato"   (click)=" this.isNuevoContrato=true ">
@@ -31,7 +31,7 @@
     </div>  
     </div>
 
-<div class="principal" *ngIf="!this.verHistorial">
+<div class="principal" *ngIf="!this.verHistorial && this.isLoad">
         <div class="card card-nuevo"  *ngIf="isVerNuevoPago"  >
                 <div class="card-header">
                         <p>Nuevo pago</p>
@@ -84,3 +84,7 @@
         <historial-pagos *ngIf="this.verHistorial" 
                         [contrato]="this.contrato" (emitterVolver)="this.change_ver_contrato($event)"></historial-pagos>
 </div>
+
+<app-loader *ngIf="!this.isLoad && !verMenu" [mensaje]="'Estamos trayendo tus contratos'">
+
+</app-loader>

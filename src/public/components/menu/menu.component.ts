@@ -26,6 +26,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class MenuComponent implements OnInit {
   @Output() cerrar_menu : EventEmitter<boolean> = new EventEmitter();
   @Output() out_salir : EventEmitter<boolean> = new EventEmitter();
+  @Output() cancel_subscriptions : EventEmitter<boolean> = new EventEmitter();
   centered = false;
   disabled = false;
   unbounded = false;
@@ -38,34 +39,42 @@ export class MenuComponent implements OnInit {
   }
   misMonederos(){
     this.cerrar_menu.emit();
-    this.route.navigate(['/pantallaPrincipal']);
+    this.cancel_subscriptions.emit(true);
+    this.route.navigate(['/pantallaprincipal']);
   }
   cotizaciones(){
     this.cerrar_menu.emit();
+    this.cancel_subscriptions.emit(true);
     this.route.navigate(['/cotizaciones']);
   }
   agregarPago(){
     this.cerrar_menu.emit();
+    this.cancel_subscriptions.emit(true);
     this.route.navigate(['/agregarPago']);
     
   }
   salir(){
     console.log('salir')
     this.AuthService.clearLocalStorage();
-    this.route.navigate(['/']);
     this.out_salir.emit();
+    this.cancel_subscriptions.emit(true);
+    this.route.navigate(['/']);
+ 
     
   }
   gestionarMonederos(){
+    this.cancel_subscriptions.emit(true);
     this.cerrar_menu.emit();
     this.route.navigate(['/gestionarMonederos']);
     
   }
   menuPrincipal(){
+    this.cancel_subscriptions.emit(true);
     this.cerrar_menu.emit();
     this.route.navigate(['/pantallaprincipal']);
   }
   gestionarContratos(){
+    this.cancel_subscriptions.emit(true);
     this.cerrar_menu.emit();
     this.route.navigate(['/gestionarContratos']);
   }
