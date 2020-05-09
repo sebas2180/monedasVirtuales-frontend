@@ -60,6 +60,8 @@ import { environment } from '../environments/environment';
 import { TransferenciaSaldoComponent } from '../public/components/transferencia-saldo/transferencia-saldo.component';
 import { TablaCotizacionesComponent } from '../public/components/tabla-cotizaciones/tabla-cotizaciones.component';
 import { GestionarCotizacionesComponent } from '../public/components/gestionar-cotizaciones/gestionar-cotizaciones.component';
+import { HttpcancelService } from 'src/services/httpCancelService/httpcancel.service';
+import { ManageHttpInterceptor } from 'src/services/httpInterceptor/managehttp.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -126,11 +128,16 @@ import { GestionarCotizacionesComponent } from '../public/components/gestionar-c
               CotizacionService,
               AuthService,
               ContratoService,
-      
+              HttpcancelService,
               GuardGuard,
               {
                 provide: HTTP_INTERCEPTORS,
                 useClass: TokenInterceptorService,
+                multi: true
+              },
+              {
+                provide: HTTP_INTERCEPTORS,
+                useClass: ManageHttpInterceptor,
                 multi: true
               }
             ],

@@ -33,6 +33,7 @@ export class EstadisticasContratosComponent implements OnInit {
             res => {
              
               for (let index = 0; index < 3; index++) {
+                console.log(res)
                 if (res['body'][index]) {
                   const element = res['body'][index];
                   this.total_contratos = this.total_contratos + parseInt(element['contratos']);

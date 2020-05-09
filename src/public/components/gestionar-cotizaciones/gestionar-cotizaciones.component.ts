@@ -32,15 +32,15 @@ export class GestionarCotizacionesComponent implements OnInit {
       this.isPrincipal = false;
       this.isLogeado = true;
       this.verMenu = false;
-
-      this.getCotizaciones();
      } else {
       this.route.navigate(['/pantallaprincipal']);
     }
   }
   async getCotizaciones(){
     this.CotizacionService.getCotizacionesV2().subscribe(
-      res => {
+      res0 => {
+        const res = res0['body'];
+        console.log(res);
         this.cotizacionesBTCARS = res['BTCARS'] ;
         this.isOkBTCARS=true;
 
@@ -61,6 +61,7 @@ export class GestionarCotizacionesComponent implements OnInit {
     )
   }
   ngOnInit(): void {
+    this.getCotizaciones();
   }
   cerrar_menu(){
     this.verMenu = false;

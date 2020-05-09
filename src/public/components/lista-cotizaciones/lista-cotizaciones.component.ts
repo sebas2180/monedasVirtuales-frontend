@@ -52,11 +52,11 @@ export class ListaCotizacionesComponent implements OnInit {
     }
   }
   constructor(public CotizacionService: CotizacionService, public MonedaService:MonedaService) { 
-    interval(60000).subscribe(
-      res => {
-        this.subscripcion.unsubscribe();
-      }
-    );
+    // interval(60000).subscribe(
+    //   res => {
+    //     this.subscripcion.unsubscribe();
+    //   }
+    // );
   }
 
   
@@ -72,8 +72,8 @@ export class ListaCotizacionesComponent implements OnInit {
     this.cotizacionesEURLTC = [];
     this.cotizacionesUSDLTC = [];
     this.subscripcion= this.CotizacionService.getCotizacionesV2().subscribe(
-      res=>{
-         console.log(res);
+      res0=>{
+        const res = res0['body'];
         this.CotizacionService.cotizacionesUSDBTC =   res['BTCUSD'];
         this.CotizacionService.cotizacionesEURBTC =   res['BTCEUR'];
         this.CotizacionService.cotizacionesARSBTC =   res['BTCARS'];

@@ -12,6 +12,7 @@ import  Swal  from 'sweetalert2';
   styleUrls: ['./gestionar-contratos.component.scss']
 })
 export class GestionarContratosComponent implements OnInit {
+  bajo :number = 0;   medio:number  = 0 ;   alto:number  = 0 ;
   isLoad: boolean = false ;
   isPrincipal: boolean = false;
   isLogeado: boolean = false;
@@ -39,27 +40,20 @@ export class GestionarContratosComponent implements OnInit {
               private ContratoService : ContratoService,
               private route: Router
               ) {
-        
+        setTimeout(()=>{
+          this.traer_contratos();
+          this.traerCantidadContratos();
+        },10);
         this.usuario = this.AuthService.getLocal().split('"')[1];
         this.newForm();
   if ( this.AuthService.isAuthenticatede() ) {
       this.isPrincipal = false;
       this.isLogeado = true;
       this.verMenu = false;
-      this.traer_contratos();
      } else {
       this.route.navigate(['/pantallaprincipal']);
     }
-    this.ContratoService.getCantidadContratos(this.usuario).subscribe(
-      res => {
-        this.isLoad = true;
-        this.crearGrafico(res);
-         // Chart.defaults.global.defaultFontColor = '#fff';
-      },err => {
-        console.log(err);
-        this.crearGrafico(null);
-      }
-    )
+
   }
   guardar(){
     if(!this.form.invalid){
@@ -69,6 +63,17 @@ export class GestionarContratosComponent implements OnInit {
       dataForm.append('tipo_contrato',this.form.get('tipo_contrato').value);
       this.ContratoService.registrarPago(dataForm).subscribe(
         res => {
+          if ( res['status'] === 760 ){
+            Swal.fire({
+              icon: 'warning',
+              timer: 1500,
+              title: 'Se ha deslogeado por limite de tiempo.'
+            }).then(
+              r=>{
+               this.AuthService.clearLocalStorage();
+               this.route.navigate(['/pantallaprincipal']);
+              })
+           }
           if(res['status'] === 772 ){
             this.form.reset();
             Swal.fire({
@@ -94,9 +99,9 @@ export class GestionarContratosComponent implements OnInit {
   }
 
   crearGrafico(res){
-    var bajo = 0; var medio = 0 ; var alto = 0 ;
+ 
     if(res != null){
-    bajo =   res['bajo']  ;  medio =  res['medio'] ;  alto =  res['alto'] ;
+    this.bajo =   res['bajo']  ;  this.medio =  res['medio'] ;  this.alto =  res['alto'] ;
     } 
     console.log(res);
     this.canvas =  document.getElementById('myChart');
@@ -107,7 +112,7 @@ export class GestionarContratosComponent implements OnInit {
           labels: ["Bajo riesgo", "Medio riesgo", "Alto riesgo"],
           datasets: [{
               label: 'Monedero',
-              data: [  res['bajo']  ,  medio =  res['medio'] ,  res['alto']  ],
+              data: [  this.bajo  ,     this.medio ,   this.alto  ],
               backgroundColor: [
                   'rgb(112, 80, 103)',
                   'rgb(122, 5, 201)',
@@ -133,9 +138,38 @@ export class GestionarContratosComponent implements OnInit {
         console.log( 'this.contratos' );
         this.contratos = res['body'] ;
         console.log( this.contratos );
+      },err=> {
+        console.log(err);
+        this.traer_contratos();
       }
     )
   }
+ traerCantidadContratos(){
+  this.ContratoService.getCantidadContratos(this.usuario).subscribe(
+    res => {
+
+      console.log(res);
+      if ( res['status'] === 760 ){
+        Swal.fire({
+          icon: 'warning',
+          timer: 1500,
+          title: 'Se ha deslogeado por limite de tiempo.'
+        }).then(
+          r=>{
+           this.AuthService.clearLocalStorage();
+           this.route.navigate(['/pantallaprincipal']);
+          });
+        }
+      this.isLoad = true;
+      this.crearGrafico(res);
+       // Chart.defaults.global.defaultFontColor = '#fff';
+    },err => {
+      console.log(err);
+      this.traerCantidadContratos();
+      this.crearGrafico(null);
+    }
+  )
+ }
   changeIsPrincipal(e){
     
   }
@@ -153,7 +187,6 @@ export class GestionarContratosComponent implements OnInit {
     if ( this.isNuevoContrato ) {
       this.isNuevoContrato = false;
       this.traer_contratos();
-      this.traer_contratos();
     } else {
       this.isNuevoContrato = true;
     }
@@ -169,6 +202,8 @@ export class GestionarContratosComponent implements OnInit {
 
   }
   ngOnInit(): void {
+
+
 
   }
 

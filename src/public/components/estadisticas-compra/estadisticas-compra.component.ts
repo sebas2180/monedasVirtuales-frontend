@@ -20,7 +20,6 @@ export class EstadisticasCompraComponent implements OnInit {
       this.MonedaService.getEstadisticasTransacciones(this.id_usuario).subscribe(
        res => {
          this.isLoading = false;
-          console.log(res);
           this.Estadisticas= res['body'];
           this.getEstadisticas();
        },err =>{
