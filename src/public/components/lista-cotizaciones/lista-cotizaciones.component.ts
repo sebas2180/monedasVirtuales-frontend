@@ -128,13 +128,17 @@ export class ListaCotizacionesComponent implements OnInit {
             this.CotizacionService.changeBitstampUSDBTC(element) ;
           }
         });
-        this.getCotizaciones();
       }
     )
 
   }
   ngOnInit(): void {
     this.getCotizaciones();
+   interval(65000).subscribe(
+     res =>{
+      this.getCotizaciones();
+     }
+   )
   }
 
 

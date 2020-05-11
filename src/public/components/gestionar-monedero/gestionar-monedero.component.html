@@ -8,5 +8,9 @@
         (cerrar_menu)="this.cerrar_menu()"
         @enterState>
 </menu>
-
-<nuevo-saldo></nuevo-saldo>
+<div class="header">
+        <p>Nueva operación</p>
+</div>
+<nuevo-monedero *ngIf="!this.isNuevoMonedero" (isNuevoMonedero)="this.isNuevoMonedero=$event"></nuevo-monedero>
+<nuevo-saldo *ngIf="!this.isNuevoMonedero"></nuevo-saldo>
+ 

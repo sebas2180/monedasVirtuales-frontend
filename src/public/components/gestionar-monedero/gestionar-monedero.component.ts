@@ -10,6 +10,7 @@ export class GestionarMonederoComponent implements OnInit {
   isPrincipal: boolean = false;
   isLogeado: boolean = false;
   verMenu: boolean = false;
+  isNuevoMonedero : boolean = false ;
   constructor(private AuthService : AuthService) {
 
   if(this.AuthService.isAuthenticatede() ) {
@@ -29,6 +30,11 @@ export class GestionarMonederoComponent implements OnInit {
   }
   cerrar_menu(){
     this.verMenu = false;
+  }
+  changeIsNuevoMonedero(e) {
+    alert('e');
+    this.isNuevoMonedero=e;
+
   }
   changeIsPrincipal(e){}
   ngOnInit(): void {

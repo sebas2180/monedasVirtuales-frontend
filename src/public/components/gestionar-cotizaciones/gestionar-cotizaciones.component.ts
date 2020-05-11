@@ -54,7 +54,6 @@ export class GestionarCotizacionesComponent implements OnInit {
         this.isOkBTCUSD=true;
         console.log(  'this.cotizacionesBTCARS' )
          this.isLoad = true ;
-         this.getCotizaciones();
       },error => {
         console.log(error);
       }
@@ -62,6 +61,11 @@ export class GestionarCotizacionesComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getCotizaciones();
+    interval(65000).subscribe(
+      res =>{
+        this.getCotizaciones();
+      }
+    )
   }
   cerrar_menu(){
     this.verMenu = false;

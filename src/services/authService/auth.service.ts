@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   //public ruta :string  = `http://localhost:3000/`;
-
+  public ruta_cotizaciones :string  = `http://167.99.54.122:3001/`;
   public ruta :string  = `http://167.99.54.122:3000/`;
 
   constructor(private http: HttpClient, private route : Router) { }
@@ -18,7 +18,7 @@ export class AuthService {
   public clearLocalStorage(){
     localStorage.removeItem('userInfo');
     localStorage.removeItem('access-token');
-    this.getLocal();
+    this.getLocal();;
   }
   public getLocal(){
     return localStorage.getItem('userInfo');

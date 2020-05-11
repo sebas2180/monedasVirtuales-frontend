@@ -90,16 +90,16 @@ export class CotizacionService {
     this.decryptoARSBTC.next(cotizacion);
   }
   getCotizaciones(){
-    return this.http.get(`${this.AuthService.ruta}getCotizaciones`);
+    return this.http.get(`${this.AuthService.ruta_cotizaciones}getCotizaciones`);
   }
   getCotizacionesV2(){
-    return this.http.get(`${this.AuthService.ruta}getCotizacionesV2`,{ observe:'response' })
+    return this.http.get(`${this.AuthService.ruta_cotizaciones}getCotizacionesV2`,{ observe:'response' })
     .pipe( map((data => new CotizacionModule().deserialize(data))
     )
   )
   
   }
   getCotizacionParaMonedero(){
-    return this.http.get(`${this.AuthService.ruta}getCotizacionParaMonedero`);
+    return this.http.get(`${this.AuthService.ruta_cotizaciones}getCotizacionParaMonedero`);
   }
 }

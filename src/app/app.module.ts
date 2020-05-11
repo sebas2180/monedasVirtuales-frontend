@@ -62,6 +62,7 @@ import { TablaCotizacionesComponent } from '../public/components/tabla-cotizacio
 import { GestionarCotizacionesComponent } from '../public/components/gestionar-cotizaciones/gestionar-cotizaciones.component';
 import { HttpcancelService } from 'src/services/httpCancelService/httpcancel.service';
 import { ManageHttpInterceptor } from 'src/services/httpInterceptor/managehttp.interceptor';
+import { NuevoMonederoComponent } from '../public/components/nuevo-monedero/nuevo-monedero.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +92,8 @@ import { ManageHttpInterceptor } from 'src/services/httpInterceptor/managehttp.i
     LogosProveedoresComponent,
     TransferenciaSaldoComponent,
     TablaCotizacionesComponent,
-    GestionarCotizacionesComponent
+    GestionarCotizacionesComponent,
+    NuevoMonederoComponent
   ],
   imports: [
     AppRoutingModule,

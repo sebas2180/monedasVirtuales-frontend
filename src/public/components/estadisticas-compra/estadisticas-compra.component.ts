@@ -21,7 +21,7 @@ export class EstadisticasCompraComponent implements OnInit {
        res => {
          this.isLoading = false;
           this.Estadisticas= res['body'];
-          this.getEstadisticas();
+        
        },err =>{
          console.log(err)
        }
@@ -31,6 +31,11 @@ export class EstadisticasCompraComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getEstadisticas();
+    interval(30000).subscribe(
+      res=>{
+        this.getEstadisticas();
+      }
+    )
  
   }
 
