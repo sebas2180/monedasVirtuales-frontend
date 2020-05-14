@@ -1,13 +1,29 @@
 .botones{
     position: relative;
+    margin-top: 25%;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+
+}
+button{
+    width: 50%;
+   
+    font-size: 1.5rem;;
+}
+.principal{
+    position: relative;
+    width: 100%;
+}
+mat-form-field{
+    position: relative;
+    left: 2.5%;
+    width: 95%;
 }
 
-@media(min-width:768px){
-    .nuevo_monedero{
+@media(max-width:768px){
+    button{
         position: relative;
-        width: 33%;
+        width: 100%;
     }
 }

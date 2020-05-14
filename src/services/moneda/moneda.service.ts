@@ -65,6 +65,7 @@ export class MonedaService {
       params: params});
   }
 
+
   getEstadisticasTransacciones(id_usuario : string){ 
     const params = new HttpParams()
       .set('id_usuario', id_usuario);

@@ -32,11 +32,17 @@
     *ngIf="this.monedasETC"
     (export_total)="this.setTotal($event)"
     ></app-moneda>
+
     <app-moneda [monedas]="this.monedasLTC" 
                 [tipo_moneda]="this.moneda_seleccionada"    
                 *ngIf="this.monedasLTC"
                 (export_total)="this.setTotal($event)"
     ></app-moneda>
 
+    <app-moneda [monedas]="this.monedasKL" 
+                [tipo_moneda]="this.moneda_seleccionada"    
+                *ngIf="this.monedasKL"
+                (export_total)="this.setTotal($event)"
+    ></app-moneda>
     </div>
 </div>

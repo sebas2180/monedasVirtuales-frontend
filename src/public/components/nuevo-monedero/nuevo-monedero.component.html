@@ -1,3 +1,28 @@
-<div class="botones">
-    <button class="nuevo_monedero" mat-raised-button [color]="this.color_compra" (click)="crear_monedero()">Crear nuevo monedero</button>
+
+<div  class="principal">
+    <form [formGroup]="form">
+        <mat-form-field class="select"  appearance="fill">
+            <mat-label>Cryto moneda</mat-label>
+            <mat-select formControlName="moneda" > 
+                <mat-option *ngFor="let moneda of this.tipo_moneda"  
+                            [value]="moneda"  >
+                    {{moneda}}</mat-option>        
+                </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="number"  appearance="fill">
+            <mat-label>Nombre monedero</mat-label>
+            <input matInput type="text"formControlName="nombre" >
+            <mat-error *ngIf="this.form.get('nombre').value">Falta nombre</mat-error>
+        </mat-form-field>
+        <div class="botones">
+            <button  mat-stroked-button color="primary" (click)="this.guardar()">
+                Guardar
+            </button>
+            <button  mat-stroked-button color="warm" (click)="salir()">
+                Volver
+            </button>
+        </div>
+
+    </form>
 </div>

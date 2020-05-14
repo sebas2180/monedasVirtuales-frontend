@@ -16,6 +16,9 @@ export class MonedaComponent implements OnInit {
  
   @Input() monedas: MonedaModule[];
   @Input() tipo_moneda: string = 'ARS';
+  // cotizacionkLARS : number;
+  // cotizacionkLUSD : number;
+  // cotizacionkLEuro : number;
   cotizacionbitstampUSDBTC : number;
   cotizacionbitArgenBTCARS : number;
   cotizacionbit2meEURBTC : number;
@@ -92,6 +95,10 @@ export class MonedaComponent implements OnInit {
                                 this.multiplicador = this.monedas[0].compraARS ;
                           }
               break;
+      case 'Kuanliandp':  this.lugarVenta='USD';
+              this.multiplicador = 80*132 ;
+              //this.export_total.emit({a: this.importeTotalMultiplicado,b:this.titulo});
+        break;
           case 'Litecoin':  this.lugarVenta='Satoshitango';
                             this.multiplicador = this.cotizacionSatoARSLTC;
                            // this.multiplicador = this.cotizacionSatoARSLTC;
@@ -125,6 +132,10 @@ export class MonedaComponent implements OnInit {
 
                               }
                               break;
+            case 'Kuanliandp':  this.lugarVenta='USD';
+                              this.multiplicador = 80 ;
+                              //this.export_total.emit({a: this.importeTotalMultiplicado,b:this.titulo});
+                      break;
             case 'Litecoin':  this.lugarVenta = 'Coinbase';
                               this.multiplicador = this.cotizacionbit2meEURLTC * 1.10 ;
                 break;
@@ -146,6 +157,10 @@ export class MonedaComponent implements OnInit {
                             this.multiplicador = this.cotizacionbit2meEURLTC ;
                             //this.export_total.emit({a: this.importeTotalMultiplicado,b:this.titulo});
               break;
+          case 'Kuanliandp':  this.lugarVenta='EURO';
+              this.multiplicador =  (1.085*80) ;
+              //this.export_total.emit({a: this.importeTotalMultiplicado,b:this.titulo});
+            break;
           case 'Ethereum':  this.lugarVenta='Bit2me';
                             if(!this.isPrimeraIteracion){
                               this.multiplicador = this.cotizacionbit2meEURETH;

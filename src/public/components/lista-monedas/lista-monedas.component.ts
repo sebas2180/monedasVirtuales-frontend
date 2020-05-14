@@ -17,7 +17,7 @@ import  Swal  from 'sweetalert2';
   styleUrls: ['./lista-monedas.component.scss']
 })
 export class ListaMonedasComponent implements OnInit {
-    monedasBTC: MonedaModule[]; monedasETC: MonedaModule[]; monedasLTC: MonedaModule[];
+    monedasBTC: MonedaModule[]; monedasETC: MonedaModule[]; monedasLTC: MonedaModule[];monedasKL: MonedaModule[];
     moneda_seleccionada: string= 'ARS';
     colorARS  ='basic';
     colorEUR ='primary';
@@ -26,9 +26,11 @@ export class ListaMonedasComponent implements OnInit {
     total_BTC :number=0;
     total_ETH :number=0;
     total_LTC:number=0;
+    total_KL:number=0;
     por_ETH : number =0;
     por_BTC : number =0 ;
     por_LTC : number =0 ;
+    por_KL : number =0 ;
     isLoading : boolean = true;
     graficoCharged : number = 0;
     title = 'angular8chartjs';
@@ -65,6 +67,9 @@ export class ListaMonedasComponent implements OnInit {
         if(res['LTC'][0]){
           this.monedasLTC=res['LTC'];
         }
+        if(res['KL'][0]){
+          this.monedasKL=res['KL'];
+        }
       }, err => {
         console.log(err);
       }
@@ -100,9 +105,13 @@ export class ListaMonedasComponent implements OnInit {
         case 'Litecoin':
           this.total_LTC = e.a;
           break;
+        case 'Kuanliandp':
+          this.total_KL = e.a;
+          break;
       }
-      this.total_monedero = this.total_ETH + this.total_BTC + this.total_LTC;
+      this.total_monedero = this.total_ETH + this.total_BTC + this.total_LTC+this.total_KL;
       this.por_BTC =parseFloat( ( (100/this.total_monedero)*this.total_BTC).toPrecision(4) );
+      this.por_KL =parseFloat( ( (100/this.total_monedero)*this.total_KL).toPrecision(4) );
       this.por_ETH = parseFloat(((100/this.total_monedero)*this.total_ETH).toPrecision(4));
       this.por_LTC = (100/this.total_monedero)*this.total_LTC;
       if(this.graficoCharged < 4){
@@ -117,10 +126,10 @@ export class ListaMonedasComponent implements OnInit {
     let myChart = new Chart(this.ctx, {
       type: 'doughnut',
       data: {
-          labels: ["Bitcoin", "Ethereum", "Litecoin"],
+          labels: ["Bitcoin", "Ethereum", "Litecoin","Kuanliandp"],
           datasets: [{
               label: 'Monedero',
-              data: [ this.por_BTC, this.por_ETH, this.por_LTC],
+              data: [ this.por_BTC, this.por_ETH, this.por_LTC,this.por_KL],
               backgroundColor: [
                   'rgb(253, 249, 255)',
                   'rgb(122, 5, 201)',

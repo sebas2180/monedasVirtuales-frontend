@@ -1,3 +1,4 @@
+import { ManejoFechasService } from './../../../services/manejoFechas/manejo-fechas-service.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ContratoService } from './../../../services/contrato/contrato.service';
 import { AuthService } from './../../../services/authService/auth.service';
@@ -12,7 +13,7 @@ import  Swal  from 'sweetalert2';
   styleUrls: ['./gestionar-contratos.component.scss']
 })
 export class GestionarContratosComponent implements OnInit {
-  bajo :number = 0;   medio:number  = 0 ;   alto:number  = 0 ;
+  bajo   = 0;   medio   = 0 ;   alto  = 0 ;
   isLoad: boolean = false ;
   isPrincipal: boolean = false;
   isLogeado: boolean = false;
@@ -33,11 +34,13 @@ export class GestionarContratosComponent implements OnInit {
   newForm(){
     this.form = new FormGroup({
       tipo_contrato: new FormControl('',[Validators.required]),
+      fecha: new FormControl('',[Validators.required]),
       importe: new FormControl('0',[Validators.required,Validators.min(0.000000001)])
     })
   }
   constructor(public AuthService : AuthService,
               private ContratoService : ContratoService,
+              private ManejoFechasService: ManejoFechasService,
               private route: Router
               ) {
         setTimeout(()=>{
@@ -61,6 +64,8 @@ export class GestionarContratosComponent implements OnInit {
       dataForm.append('id_usuario',this.usuario);
       dataForm.append('eth_recibido',this.form.get('importe').value);
       dataForm.append('tipo_contrato',this.form.get('tipo_contrato').value);
+      console.log(this.ManejoFechasService.convertDateToCreateAt(this.form.get('fecha').value));
+      dataForm.append('fecha',this.ManejoFechasService.convertDateToCreateAt(this.form.get('fecha').value));
       this.ContratoService.registrarPago(dataForm).subscribe(
         res => {
           if ( res['status'] === 760 ){
@@ -101,6 +106,7 @@ export class GestionarContratosComponent implements OnInit {
   crearGrafico(res){
  
     if(res != null){
+      console.log('ES NULL')
     this.bajo =   res['bajo']  ;  this.medio =  res['medio'] ;  this.alto =  res['alto'] ;
     } 
     console.log(res);

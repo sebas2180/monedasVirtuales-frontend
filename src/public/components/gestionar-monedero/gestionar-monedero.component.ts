@@ -31,11 +31,11 @@ export class GestionarMonederoComponent implements OnInit {
   cerrar_menu(){
     this.verMenu = false;
   }
-  changeIsNuevoMonedero(e) {
-    alert('e');
-    this.isNuevoMonedero=e;
+  // changeIsNuevoMonedero(e) {
+  //   alert('e');
+  //   this.isNuevoMonedero=e;
 
-  }
+  // }
   changeIsPrincipal(e){}
   ngOnInit(): void {
   }

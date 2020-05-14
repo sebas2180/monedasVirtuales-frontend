@@ -151,6 +151,7 @@ export class NuevoSaldoComponent implements OnInit {
         dataForm.append('id_usuario',this.form.get('id_usuario').value );
         dataForm.append('monto_operacion',this.form3.get('agregar').value );
         dataForm.append('cotizacion_usd',this.form3.get('cotizacion_USD').value );
+        dataForm.append('agrega_montos','true');
         this.MonedaService.updateImporte(dataForm).subscribe(
           res => {
               if ( res['status'] == 754 ) {
@@ -182,6 +183,7 @@ export class NuevoSaldoComponent implements OnInit {
         dataForm.append('tipo_operacion',this.form.get('tipo_operacion').value );
         dataForm.append('monto_operacion',this.form3.get('agregar').value );
         dataForm.append('cotizacion_usd',this.form3.get('cotizacion_USD').value );
+        dataForm.append('agrega_montos','true');
         this.MonedaService.addMoneda(dataForm).subscribe(
           res => {
             if ( res['status'] == 752 ) {
