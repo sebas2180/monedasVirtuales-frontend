@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  ruta :string  = `http://localhost:3000/`;
-  //public ruta_cotizaciones :string  = `http://167.99.54.122:3001/`;
+  //ruta :string  = `http://localhost:3000/`;
+  public ruta_cotizaciones :string  = `http://167.99.54.122:3001/`;
   public ruta :string  = `http://167.99.54.122:3000/`;
 
   constructor(private http: HttpClient, private route : Router) { }
