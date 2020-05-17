@@ -49,13 +49,13 @@ export class NuevoSaldoComponent implements OnInit {
       nombre: new FormControl('', [ Validators.required , Validators.minLength(4)]),
     });
     this.form3 = new FormGroup({
+      is_inversion: new FormControl('', [ Validators.required]),
       id_monedero: new FormControl(' ', [ Validators.required ] ),
       saldo_actual: new FormControl('0', [ Validators.required , Validators.min(-10)]),
       agregar: new FormControl('0', [ Validators.required, Validators.min(0)]),
       nuevo_saldo: new FormControl('0', [ Validators.required , Validators.min(0)]),
-      cotizacion_USD: new FormControl('0', [ Validators.required , Validators.min(0)])
-    });
-  }
+      cotizacion_USD: new FormControl('0', [ Validators.required , Validators.min(0.001)])
+    });  }
   constructor( private AuthService : AuthService,
                 private MonedaService: MonedaService,
                 private route: Router,
@@ -139,9 +139,17 @@ export class NuevoSaldoComponent implements OnInit {
       }
     )
   }
+  
   guardar() { 
+     
+    if(this.form.get('tipo_operacion').value === ('Venta' || 'Transferencia' )) {
+      this.form3.patchValue( { 'is_inversion' :'false' } );
+      console.log(this.form3.get('is_inversion').value);
+    } else {
+      console.log(this.form3.get('is_inversion'));
+    }
     if ( !this.form3.invalid) {
-      console.log(this.form.get('nombreMonedero').value);
+ 
       if (this.form.get('nombreMonedero').value != '+ Nuevo monedero'){ 
         var dataForm = new FormData();
         dataForm.append('id_monedero',this.form3.get('id_monedero').value );
@@ -151,6 +159,7 @@ export class NuevoSaldoComponent implements OnInit {
         dataForm.append('id_usuario',this.form.get('id_usuario').value );
         dataForm.append('monto_operacion',this.form3.get('agregar').value );
         dataForm.append('cotizacion_usd',this.form3.get('cotizacion_USD').value );
+        dataForm.append('is_inversion',this.form3.get('is_inversion').value );
         dataForm.append('agrega_montos','true');
         this.MonedaService.updateImporte(dataForm).subscribe(
           res => {
@@ -175,8 +184,10 @@ export class NuevoSaldoComponent implements OnInit {
           }
         )
       } else {
+        console.log(this.form3.get('is_inversion').value )
         var dataForm = new FormData();
         dataForm.append('importe', this.form3.get('nuevo_saldo').value );
+        dataForm.append('is_inversion',this.form3.get('is_inversion').value );
         dataForm.append('id_usuario',this.form.get('id_usuario').value );
         dataForm.append('monedero',this.form2.get('nombre').value );
         dataForm.append('nombre',this.form.get('moneda').value );

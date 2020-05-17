@@ -34,6 +34,17 @@ export class MonedaComponent implements OnInit {
   lugarVenta: string ='';
   isPrimeraIteracion :boolean = true;
   importeVenta : number = 0 ;
+  isEliminar : boolean = false;
+  myStyles1 = {
+
+  };
+  myStyles = {
+    'position': 'relative',
+    'background-color': 'grey',
+    'font-size': '1rem',
+    'width': '10px',
+    'font-weight': 'bold'
+    }
   constructor(public CotizacionService: CotizacionService,private MonedaService: MonedaService) { 
 
     interval(5000).subscribe(
@@ -83,6 +94,20 @@ export class MonedaComponent implements OnInit {
         });
       }
     );
+  }
+  agrandar() {
+    this.myStyles = {
+      'position': 'grey',
+      'background-color': 'red',
+      'font-size': '1rem',
+      'width': '100%',
+      'font-weight': 'bold',
+ 
+      }
+      this.  myStyles1 = {
+        'position': 'relative',
+        'hide': 'true'
+      };
   }
   comprobar_titulo(){
     switch(this.tipo_moneda){

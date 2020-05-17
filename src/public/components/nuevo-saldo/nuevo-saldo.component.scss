@@ -1,4 +1,4 @@
-mat-form-field{
+mat-form-field,mat-radio-group{
     position: relative;
     left: 2.5%;
     width: 95%;
@@ -16,6 +16,16 @@ mat-form-field{
     justify-items: center;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+}
+.label-inversion{
+    position: relative;
+    width: 100%;
+    
+}
+.radiobuttons{
+    position: relative;
+    display: flex;
     justify-content: space-around;
 }
 .tipo_op{

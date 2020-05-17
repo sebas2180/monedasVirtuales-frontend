@@ -41,7 +41,7 @@ mat-card-content{
     display: flex;
     width: 100%;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
 }
 .monedaItem,.titulos,.footer{
     background-color: white;
@@ -49,14 +49,28 @@ mat-card-content{
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    //justify-content: space-around;
     align-items: center;
     align-content: center;
     
 }
+.xa,.titulo,.itemfooter{
+    display: flex;
+    position: relative;
+    width: 25%;
+    justify-content: center;
+}
+.buton_elimitar{
+    display: flex;
+    justify-content: stretch;
+    height: 50px;
+    font-size: 1rem;
+    color: white;
+    background-color: red;
+}
 .titulos{
     background-color: white;
-    font-size: 1.2rem;
+    font-size: 0.8 rem;
     font-weight: bold;
 
     

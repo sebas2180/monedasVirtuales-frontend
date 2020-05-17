@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 
 import { ContratoService } from './../services/contrato/contrato.service';
 import { NuevoContratoComponent } from './../public/components/nuevo-contrato/nuevo-contrato.component';
@@ -8,6 +9,7 @@ import { MenuComponent } from './../public/components/menu/menu.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatRadioModule} from '@angular/material/radio';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -99,7 +101,7 @@ import { NuevoMonederoComponent } from '../public/components/nuevo-monedero/nuev
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-  
+    MatRadioModule,
     MatRippleModule,
     RouterModule,
     BrowserAnimationsModule,
@@ -122,6 +124,8 @@ import { NuevoMonederoComponent } from '../public/components/nuevo-monedero/nuev
   exports:[
     MatInputModule,
     MatSelectModule,
+    MatRadioModule,
+    
     MatButtonModule
   ],
   providers: [ 

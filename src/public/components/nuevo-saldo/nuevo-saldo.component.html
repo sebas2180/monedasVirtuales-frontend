@@ -80,7 +80,17 @@
                     <input matInput type="number"formControlName="nuevo_saldo" (keyup)="modificarSaldoFinal()">
                     <mat-error *ngIf="this.form3.controls.nuevo_saldo.invalid">El saldo no puede ser negativo</mat-error>
                 </mat-form-field>
+    
                 
+                <mat-radio-group formControlName="is_inversion" *ngIf="this.form.get('tipo_operacion').value === 'Compra'">
+                    <mat-label class="label-inversion">¿Es un ingreso de dinero proveniente de cryptomonedas ?</mat-label>
+                    <div class="radiobuttons" >
+                        <mat-radio-button value="false">No</mat-radio-button>
+                        <mat-radio-button  value="true">Si</mat-radio-button>
+                    </div>
+                    <mat-error *ngIf="this.form3.controls.is_inversion.invalid">Falta seleccion</mat-error>
+                </mat-radio-group>
+            
                 <button mat-raised-button 
                 color="primary" 
                 (click)="guardar()"  class="botonGuardar">

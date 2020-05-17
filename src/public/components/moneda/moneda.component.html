@@ -11,13 +11,14 @@
             <div class="titulo">    <p class="tituloNombre">Cantidad   </p>  </div>
             <div class="titulo">    <p class="tituloNombre">{{this.lugarVenta}}    </p>  </div>
         </div>
-        <div *ngFor="let moneda of monedas"  class="monedaList">
+        <div *ngFor="let moneda of monedas"  class="monedaList"  [ngStyle]="myStyles1">
             <div  class=" card monedaItem" style="height: 50px;">
-                <div class="proveedor"><span class="material-icons">  list_alt  </span></div>
-                <div class="proveedor">{{this.moneda.monedero}}</div>
-                <div class="cantidad">{{this.moneda.importe}}</div>    
-                <div class="venta_3">{{this.moneda.importe * this.multiplicador | number:'1.2-2' }}</div>    
+                <div class="proveedor xa"><span class="material-icons">  list_alt  </span></div>
+                <div class="proveedor xa">{{this.moneda.monedero}}</div>
+                <div class="cantidad xa">{{this.moneda.importe}}</div>    
+                <div class="venta_3 xa">{{this.moneda.importe * this.multiplicador | number:'1.2-2' }}</div>    
             </div>
+            <div class="buton_elimitar" (click)="this.agrandar()" [ngStyle]="myStyles"><p>a</p></div>
         </div>
         <div class="footer">
             <div class="itemfooter">
